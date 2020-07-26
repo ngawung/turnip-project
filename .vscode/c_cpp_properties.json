@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "name": "NDS",
+            "includePath": [
+                "${workspaceFolder}/nflib/include/*",
+                "/home/melody/Desktop/devkitpro/libnds/include/*",
+                "/home/melody/Desktop/devkitpro/devkitARM/arm-none-eabi/include/*"
+            ],
+            "defines": [
+                "_DEBUG",
+                "_UNICODE",
+                "WIN32",
+                "ARM7",
+                "ARM9"
+            ],
+            "compilerPath": "/usr/bin/cpp",
+            "cStandard": "gnu11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-x64"
+        }
+    ],
+    "version": 4
+}
