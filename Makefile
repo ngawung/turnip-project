@@ -70,6 +70,7 @@ SOURCES		:=	source
 INCLUDES	:=	include
 DATA		:=	data
 NITRODATA	:=	nitrofiles
+DIST		:=	dist
 
 #---------------------------------------------------------------------------------
 # options for code generation
@@ -107,7 +108,7 @@ LIBDIRS	:=	$(LIBNDS) $(CURDIR)/nflib
 ifneq ($(BUILD),$(notdir $(CURDIR)))
 #---------------------------------------------------------------------------------
 
-export OUTPUT	:=	$(CURDIR)/$(TARGET)
+export OUTPUT	:=	$(CURDIR)/$(DIST)/$(TARGET)
 
 export VPATH	:=	$(foreach dir,$(SOURCES),$(CURDIR)/$(dir)) \
 					$(foreach dir,$(DATA),$(CURDIR)/$(dir))
@@ -158,13 +159,14 @@ endif
 
 #---------------------------------------------------------------------------------
 $(BUILD):
+	mkdir -p $(DIST)
 	@[ -d $@ ] || mkdir -p $@
 	@make --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
 
 #---------------------------------------------------------------------------------
 clean:
 	@echo clean ...
-	@rm -fr $(BUILD) $(TARGET).elf $(TARGET).nds $(TARGET).arm9
+	@rm -fr $(BUILD) dist
 
 #---------------------------------------------------------------------------------
 else
