@@ -4,15 +4,33 @@
 
 int main(int argc, char **argv) {
 
-	consoleDemoInit();		// Inicializa la consola de texto
-	consoleClear();			// Borra la pantalla
-	setBrightness(3, 0);	// Restaura el brillo
+	NF_Set2D(0, 0);
+	NF_Set2D(1, 0);
 
+	consoleDemoInit();
 	iprintf("\n Hello World!");
+	swiWaitForVBlank();
+
+	NF_SetRootFolder("NITROFS");
+
+	NF_InitSpriteBuffers();
+	NF_InitSpriteSys(0);
+
+	NF_LoadSpriteGfx("cat2", 0, 32, 32);
+	NF_LoadSpritePal("cat2", 0);
+
+	NF_VramSpriteGfx(0, 0, 0, true);
+	NF_VramSpritePal(0, 0, 0);
+
+	NF_CreateSprite(0, 0, 0, 0, 20, 20);
+	
 	
 	while(1) {
 
-		swiWaitForVBlank();		// Espera al sincronismo vertical
+		NF_SpriteOamSet(0);
+		swiWaitForVBlank();
+
+		oamUpdate(&oamMain);
 
 	}
 
