@@ -1,6 +1,4 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
     "version": "2.0.0",
     "tasks": [
         {
@@ -11,8 +9,8 @@
             "dependsOrder": "sequence",
             "dependsOn": [
                 "make clean",
-                "make debug",
-                "run"
+                "make run",
+                "run desmume"
             ],
             "group": {
                 "kind": "build",
@@ -20,21 +18,9 @@
             }
         },
         {
-            "label": "make debug",
+            "label": "make run",
             "type": "shell",
             "command": "make",
-            "args": [
-                "DEBUG=1"
-            ],
-            "problemMatcher": []
-        },
-        {
-            "label": "make release",
-            "type": "shell",
-            "command": "make",
-            "args": [
-                "DEBUG=0"
-            ],
             "problemMatcher": []
         },
         {
@@ -47,12 +33,12 @@
             "problemMatcher": []
         },
         {
-            "label": "run",
+            "label": "run desmume",
             "type": "shell",
             "isBackground": true,
             "command": "/usr/games/desmume",
             "args": [
-                "${workspaceFolder}/${workspaceFolderBasename}.nds"
+                "${workspaceFolder}/dist/${workspaceFolderBasename}.nds"
             ],
             "presentation": {
                 "clear": true,
@@ -70,7 +56,7 @@
             "command": "/usr/games/desmume",
             "args": [
                 "--arm9gdb=20000",
-                "${workspaceFolder}/${workspaceFolderBasename}.nds"
+                "${workspaceFolder}/dist/${workspaceFolderBasename}.nds"
             ],
             "presentation": {
                 "clear": true,

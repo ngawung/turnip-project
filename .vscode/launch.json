@@ -1,15 +1,13 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/${workspaceFolderBasename}.elf",
+            "program": "${workspaceFolder}/dist/${workspaceFolderBasename}.elf",
             "targetArchitecture": "arm",
+            // "preLaunchTask": "gdb-debug", // run this task manually then start debug
             "postDebugTask": "stop-emulation",
             "serverLaunchTimeout": 10000,
             "stopAtEntry": true,
