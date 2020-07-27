@@ -8,7 +8,8 @@ int main(int argc, char **argv) {
 	NF_Set2D(1, 0);
 
 	consoleDemoInit();
-	iprintf("\n Hello World!");
+	iprintf("\nHelloooo....");
+
 	swiWaitForVBlank();
 
 	NF_SetRootFolder("NITROFS");
@@ -16,13 +17,14 @@ int main(int argc, char **argv) {
 	NF_InitSpriteBuffers();
 	NF_InitSpriteSys(0);
 
-	NF_LoadSpriteGfx("cat2", 0, 32, 32);
-	NF_LoadSpritePal("cat2", 0);
+	NF_LoadSpriteGfx("cat", 0, 32, 32);
+	NF_LoadSpritePal("cat", 0);
 
 	NF_VramSpriteGfx(0, 0, 0, true);
 	NF_VramSpritePal(0, 0, 0);
 
 	NF_CreateSprite(0, 0, 0, 0, 20, 20);
+
 	
 	
 	while(1) {
