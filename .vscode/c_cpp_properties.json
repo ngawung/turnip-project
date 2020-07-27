@@ -1,11 +1,12 @@
 {
     "configurations": [
         {
-            "name": "NDS",
+            "name": "NDS | Linux",
             "includePath": [
-                "${workspaceFolder}/nflib/include/*",
-                "/home/melody/Desktop/devkitpro/libnds/include/*",
-                "/home/melody/Desktop/devkitpro/devkitARM/arm-none-eabi/include/*"
+                "${workspaceFolder}/**",
+                "/home/melody/Desktop/devkitpro/libnds/include/**",
+                "/home/melody/Desktop/devkitpro/devkitARM/include/**",
+                "/home/melody/Desktop/devkitpro/devkitARM/arm-none-eabi/include/**"
             ],
             "defines": [
                 "_DEBUG",
@@ -14,10 +15,15 @@
                 "ARM7",
                 "ARM9"
             ],
-            "compilerPath": "/usr/bin/cpp",
-            "cStandard": "gnu11",
-            "cppStandard": "c++17",
-            "intelliSenseMode": "gcc-x64"
+            "compilerPath": "/home/melody/Desktop/devkitpro/devkitARM/bin/arm-none-eabi-g++",
+            "cStandard": "c11",
+            "cppStandard": "c++20",
+            "intelliSenseMode": "gcc-x64",
+            "forcedInclude": [
+                "/home/melody/Desktop/devkitpro/libnds/include/nds/arm9/input.h",
+                "/home/melody/Desktop/devkitpro/devkitARM/arm-none-eabi/include/sys/unistd.h"
+            ]
+            
         }
     ],
     "version": 4
