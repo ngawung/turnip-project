@@ -10,10 +10,16 @@ int main(int argc, char **argv) {
 	consoleDemoInit();
 	iprintf("\nHelloooo....");
 
-	swiWaitForVBlank();
-
 	NF_SetRootFolder("NITROFS");
+	
+	// setup bg
+	NF_InitTiledBgBuffers();
+	NF_InitTiledBgSys(0);
 
+	NF_LoadTiledBg("bg", "bg", 256, 256);
+	NF_CreateTiledBg(0, 3, "bg");
+
+	// setup sprite
 	NF_InitSpriteBuffers();
 	NF_InitSpriteSys(0);
 
@@ -23,9 +29,12 @@ int main(int argc, char **argv) {
 	NF_VramSpriteGfx(0, 0, 0, true);
 	NF_VramSpritePal(0, 0, 0);
 
-	NF_CreateSprite(0, 0, 0, 0, 20, 20);
+	int i = 0;
 
 	while(1) {
+		
+		NF_CreateSprite(0, 0, 0, 0, 20 + i, 20);
+		i++;
 
 		NF_SpriteOamSet(0);
 		swiWaitForVBlank();
