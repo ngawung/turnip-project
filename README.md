@@ -26,16 +26,6 @@ Saya saranin make [vscode](https://code.visualstudio.com/download) buat debuggin
 
 - (Note: gaperlu install `gdb` udah disediain sama devkitPro nya)
 
-
-Pertama kamu perlu [devkitPro](https://devkitpro.org) khusus nya devkitARM sama libnds.
-Cara install bisa cek langsung wiki nya di [devkitPro Getting Started](https://devkitpro.org/wiki/Getting_Started)
-
-Kemudian clone repository ini. Buat clone tinggal run command ini `git clone https://github.com/ngawung/turnip-project.git`
-
-Kamu juga perlu IDE saya sarankan pake vscode
-
-<sup>(commands nya mungkin agak beda tergantung OS, tinggal menyesuaikan saja)</sup>
-
 ## LICENSE
 
 GPLv3
