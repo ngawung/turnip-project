@@ -4,8 +4,24 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "clean run",
+            "type": "shell",
+            "command": "echo done",
+            "problemMatcher": [],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "make clean",
+                "make debug",
+                "run"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
             "label": "make debug",
-            "type": "process",
+            "type": "shell",
             "command": "make",
             "args": [
                 "DEBUG=1"
@@ -14,20 +30,16 @@
         },
         {
             "label": "make release",
-            "type": "process",
+            "type": "shell",
             "command": "make",
             "args": [
                 "DEBUG=0"
             ],
-            "problemMatcher": [],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
+            "problemMatcher": []
         },
         {
-            "label": "clean",
-            "type": "process",
+            "label": "make clean",
+            "type": "shell",
             "command": "make",
             "args": [
                 "clean"
