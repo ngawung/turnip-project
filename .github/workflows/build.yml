@@ -30,7 +30,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: "dist"
-          path: dist/*
+          path: dist/turnip-project.nds
       - name: "Upload build artefact"
         uses: actions/upload-artifact@v2
         with:
