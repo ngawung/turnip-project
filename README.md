@@ -21,6 +21,7 @@ Saya saranin make [vscode](https://code.visualstudio.com/download) buat debuggin
 1. Rubah dulu semua path di folder `./vscode`
 <sup>(Note: Dsini saya make OS linux, jadi mungkin buat windows sama mac perlu di rubah dikit settingan nya)</sup>
 2. Download [DesMuME](http://desmume.org/) versi dev
+<sup>(Note: Kalo kamu make windows mungkin bisa make no$gba katanya bisa track vram)</sup>
 3. Run task `gdb-debug`
 4. Run vscode debug (F5)
 
