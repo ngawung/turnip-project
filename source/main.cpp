@@ -1,18 +1,27 @@
-#include <stdio.h>
+#include <iostream>
 #include <nds.h>
 #include <nf_lib.h>
 
 #include "simplenfl.h"
+#include "utils/SpriteManager.h"
 
-int main(int argc, char **argv) {
-	
+using namespace std;
+
+void screenSetup() {
 	NF_Set3D(0, 0);
 	NF_Set2D(1, 0);
 
-	consoleDemoInit();
-	iprintf("\nHelloooo....");
-
 	NF_SetRootFolder("NITROFS");
+}
+
+int main(int argc, char **argv) {
+
+	screenSetup();
+
+	// setup console
+	consoleDemoInit();
+	NG::print("Helloooooo");
+	NG::print(NG::hello("Ferdian"));
 	
 	// setup bg
 	NF_InitTiledBgBuffers();
