@@ -2,8 +2,10 @@
 #include <nds.h>
 #include <nf_lib.h>
 
-int main(int argc, char **argv) {
+#include "simplenfl.h"
 
+int main(int argc, char **argv) {
+	
 	NF_Set3D(0, 0);
 	NF_Set2D(1, 0);
 
