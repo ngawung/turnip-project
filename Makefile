@@ -22,9 +22,9 @@ include $(DEVKITARM)/base_rules
 
 LIBNDS	:=	$(DEVKITPRO)/libnds
 
-GAME_TITLE	    :=	Text 1
-GAME_SUBTITLE1	:=	Text 2
-GAME_SUBTITLE2	:=	Text 3
+GAME_TITLE	    :=	Rune Factory
+GAME_SUBTITLE1	:=	Smile Once More
+GAME_SUBTITLE2	:=	Ngawung Game
 GAME_ICON		:=	$(CURDIR)/../icon.bmp
 
 _ADDFILES	:=	-d $(NITRO_FILES)
