@@ -27,6 +27,11 @@ Saya saranin make [vscode](https://code.visualstudio.com/download) buat debuggin
 
 - (Note: gaperlu install `gdb` udah disediain sama devkitPro nya)
 
+## Credits
+- [devkitPro](https://devkitpro.org/wiki/Getting_Started) for your great tools
+- [NightfoxLib](https://sourceforge.net/projects/nflib/) for your best ram management and graphic lib
+- [SimpleNFL](https://github.com/PipeWarp/SimpleNFL/) for make my life easier
+
 ## LICENSE
 
 GPLv3
