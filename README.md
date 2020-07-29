@@ -1,7 +1,7 @@
 # Turnip Project
 
 ![status](https://img.shields.io/github/workflow/status/ngawung/turnip-project/CI?style=for-the-badge)
-![GitHub](https://img.shields.io/github/license/ngawung/turnip-project?style=for-the-badge)
+![license](https://img.shields.io/github/license/ngawung/turnip-project?style=for-the-badge)
 
 Hello there....
 this is a simple devkitpro project...
