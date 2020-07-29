@@ -4,7 +4,7 @@
 
 int main(int argc, char **argv) {
 
-	NF_Set2D(0, 0);
+	NF_Set3D(0, 0);
 	NF_Set2D(1, 0);
 
 	consoleDemoInit();
@@ -16,30 +16,37 @@ int main(int argc, char **argv) {
 	NF_InitTiledBgBuffers();
 	NF_InitTiledBgSys(0);
 
-	NF_LoadTiledBg("bg", "bg", 256, 256);
+	NF_LoadTiledBg("new/bg", "bg", 256, 256);
 	NF_CreateTiledBg(0, 3, "bg");
 
 	// setup sprite
 	NF_InitSpriteBuffers();
-	NF_InitSpriteSys(0);
+	NF_Init3dSpriteSys();
+	// NF_InitSpriteSys(0);
 
-	NF_LoadSpriteGfx("cat", 0, 32, 32);
-	NF_LoadSpritePal("cat", 0);
+	NF_LoadSpriteGfx("new/mist", 0, 64, 128);
+	NF_LoadSpritePal("new/mist", 0);
 
-	NF_VramSpriteGfx(0, 0, 0, true);
-	NF_VramSpritePal(0, 0, 0);
+	NF_Vram3dSpriteGfx(0, 0, true);
+	NF_Vram3dSpritePal(0, 0);
+
+	// NF_VramSpriteGfx(0, 0, 0, true);
+	// NF_VramSpritePal(0, 0, 0);
 
 	int i = 0;
+	NF_Create3dSprite(0, 0, 0, 20, 20);
 
 	while(1) {
 		
-		NF_CreateSprite(0, 0, 0, 0, 20 + i, 20);
+		NF_Move3dSprite(0, 20 + i, 20);
 		i++;
 
-		NF_SpriteOamSet(0);
+		// NF_SpriteOamSet(0);
+		NF_Draw3dSprites();
+		glFlush(0);
 		swiWaitForVBlank();
 
-		oamUpdate(&oamMain);
+		// oamUpdate(&oamMain);
 
 	}
 
