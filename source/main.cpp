@@ -1,11 +1,8 @@
-#include <iostream>
 #include <nds.h>
 #include <nf_lib.h>
 
 #include "simplenfl.h"
-#include "utils/SpriteManager.h"
-
-using namespace std;
+#include "NG.h"
 
 void screenSetup() {
 	NF_Set3D(0, 0);
@@ -20,8 +17,17 @@ int main(int argc, char **argv) {
 
 	// setup console
 	consoleDemoInit();
-	NG::print("Helloooooo");
-	NG::print(NG::hello("Ferdian"));
+	NG::log("Helloooooo");
+	NG::log("test");
+
+	NGScene myScene;
+
+	for (int i = 0; i<5; i++) {
+		NGObject myObject;
+		myScene.addChild(myObject);
+	}
+
+	std::cout << myScene.children.size() << std::endl;
 	
 	// setup bg
 	NF_InitTiledBgBuffers();
