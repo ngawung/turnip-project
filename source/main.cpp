@@ -1,6 +1,8 @@
 #include <nds.h>
 #include <nf_lib.h>
 
+#include <sstream>
+
 #include "simplenfl.h"
 #include "NG.h"
 
@@ -11,9 +13,18 @@ void screenSetup() {
 	NF_SetRootFolder("NITROFS");
 }
 
+void init_bg() {
+	NF_InitTiledBgBuffers();
+	NF_InitTiledBgSys(0);
+
+	NF_LoadTiledBg("new/bg", "bg", 256, 256);
+	NF_CreateTiledBg(0, 3, "bg");
+}
+
 int main(int argc, char **argv) {
 
 	screenSetup();
+	init_bg();
 
 	// setup console
 	consoleDemoInit();
@@ -22,19 +33,22 @@ int main(int argc, char **argv) {
 
 	NGScene myScene;
 
-	for (int i = 0; i<5; i++) {
-		NGObject myObject;
+	for (unsigned int i = 0; i<5; i++) {
+		std::stringstream ss;
+		ss << "Object no " << i;
+		NGObject myObject(ss.str());
 		myScene.addChild(myObject);
 	}
 
-	std::cout << myScene.children.size() << std::endl;
-	
-	// setup bg
-	NF_InitTiledBgBuffers();
-	NF_InitTiledBgSys(0);
+	for (unsigned int i = 0; i<myScene.children.size(); i++) {
+		NG::log(myScene.children[i].getName());
+	}
 
-	NF_LoadTiledBg("new/bg", "bg", 256, 256);
-	NF_CreateTiledBg(0, 3, "bg");
+	myScene.getChildbyId(3).x = 100;
+
+	std::cout << myScene.children[3].x << std::endl;
+
+	// std::cout << myScene.children.size() << std::endl;
 
 	// setup sprite
 	NF_InitSpriteBuffers();
@@ -46,9 +60,6 @@ int main(int argc, char **argv) {
 
 	NF_Vram3dSpriteGfx(0, 0, true);
 	NF_Vram3dSpritePal(0, 0);
-
-	// NF_VramSpriteGfx(0, 0, 0, true);
-	// NF_VramSpritePal(0, 0, 0);
 
 	int i = 0;
 	NF_Create3dSprite(0, 0, 0, 20, 20);

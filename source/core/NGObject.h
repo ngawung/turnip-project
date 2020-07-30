@@ -1,17 +1,19 @@
-#include <string>
-
-
 class NGObject {
     public:
         int x;
         int y;
-        std::string name;
 
         static int objectNum;
+    private:
+        std::string _name;
     
     public:
-        NGObject() {
-            
+        NGObject(std::string name) {
+            _name = name;
+        }
+
+        std::string getName() {
+            return _name;
         }
 };
 

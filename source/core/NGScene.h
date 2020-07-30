@@ -1,5 +1,3 @@
-#include <iostream>
-#include <vector>
 #include "NGObject.h"
 
 class NGScene {
@@ -23,7 +21,24 @@ class NGScene {
             
         }
 
+        // main function
+
+        unsigned int numChildren() {
+            return children.size();
+        }
+
         void addChild(NGObject& child) {
             children.push_back(child);
+        }
+
+        NGObject& getChildByName(std::string name) {
+            for (unsigned int i=0; i<children.size(); i++) {
+                if (children[i].getName() == name) return children[i];
+            }
+        }
+
+        NGObject& getChildbyId(unsigned int id) {
+            NGObject* ptr = &children[id];
+            if (ptr) return children[id];
         }
 };
