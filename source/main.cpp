@@ -44,9 +44,21 @@ int main(int argc, char **argv) {
 		NG::log(myScene.children[i].getName());
 	}
 
-	myScene.getChildbyId(3).x = 100;
+	int toFind = 5;
+	std::string toFindStr = "Object no 9";
 
-	std::cout << myScene.children[3].x << std::endl;
+	if (myScene.getChildbyId(toFind) == NULL) {
+		std::cout << "Not Found!" << std::endl;
+	} else {
+		std::cout << "Result: " << myScene.getChildbyId(toFind)->getName() << std::endl;
+	}
+
+	if (myScene.getChildByName(toFindStr) == NULL) {
+		std::cout << "Not Found!" << std::endl;
+	} else {
+		std::cout << "Result: " << myScene.getChildByName(toFindStr)->getName() << std::endl;
+	}
+	
 
 	// std::cout << myScene.children.size() << std::endl;
 
@@ -63,7 +75,6 @@ int main(int argc, char **argv) {
 
 	int i = 0;
 	NF_Create3dSprite(0, 0, 0, 20, 20);
-	int id = 0;
 
 	while(1) {
 		
@@ -86,9 +97,6 @@ int main(int argc, char **argv) {
 				NF_Create3dSprite(y, 0, 0, randX, randY);
 			}
 		}
-
-		int randX = rand() % 256 + 1;
-		int randY = rand() % 192 + 1;
 		// NF_Create3dSprite(0, 0, 0, randX, randY);
 		
 		NF_Move3dSprite(0, 20 + i, 20);

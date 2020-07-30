@@ -31,14 +31,18 @@ class NGScene {
             children.push_back(child);
         }
 
-        NGObject& getChildByName(std::string name) {
+        NGObject* getChildByName(std::string name) {
             for (unsigned int i=0; i<children.size(); i++) {
-                if (children[i].getName() == name) return children[i];
+                if (children[i].getName() == name) {
+                    return &children[i];
+                }
             }
+            
+            return nullptr;
         }
 
-        NGObject& getChildbyId(unsigned int id) {
-            NGObject* ptr = &children[id];
-            if (ptr) return children[id];
+        NGObject* getChildbyId(unsigned int id) {
+            if (id >= children.size()) return nullptr;
+            else return &children[id];
         }
 };
