@@ -28,18 +28,36 @@ class NGScene {
             children.push_back(child);
         }
 
-        bool removeChild(NGObject* child) {
+        bool removeChild(NGObject& child) {
             for (unsigned int i=0; i<children.size(); i++) {
                 NGObject* current_child = &children[i];
-                if (current_child == child) {
-                    std::cout << "Removed\n";
+                if (current_child == &child) {
                     children.erase(children.begin() + i);
                     return true;
                 }
             }
-
-            std::cout << "Not Found!\n";
             return false;
+        }
+
+        bool removeChildByName(std::string name) {
+            NGObject* ptr = getChildByName(name);
+            if (ptr != nullptr) {
+                removeChild(*ptr);
+                return true;
+            } else return false;
+        }
+
+        bool removeChildById(unsigned int id) {
+            if (id >= children.size()) return false;
+            else {
+                children.erase(children.begin() + id);
+                return true;
+            }
+        }
+
+        bool removeChildAll() {
+            children.clear();
+            return true;
         }
 
         unsigned int numChildren() {

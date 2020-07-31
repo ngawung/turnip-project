@@ -40,7 +40,11 @@ int main(int argc, char **argv) {
 		myScene.addChild(myObject);
 	}
 
-	myScene.removeChild(myScene.getChildbyId(3));
+	myScene.removeChild(*myScene.getChildbyId(3));
+	myScene.removeChildById(2);
+	myScene.removeChildByName("Object no 1");
+
+	std::cout << "Pointer: " << myScene.getChildByName("Object no 1") << std::endl;
 
 	for (unsigned int i = 0; i<myScene.numChildren(); i++) {
 		NG::log(myScene.getChildbyId(i)->getName());
