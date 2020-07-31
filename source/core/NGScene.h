@@ -1,7 +1,8 @@
 #include "NGObject.h"
+#include <algorithm>
 
 class NGScene {
-    public:
+    private:
         std::vector<NGObject> children;
 
     public:
@@ -23,16 +24,30 @@ class NGScene {
 
         // main function
 
-        unsigned int numChildren() {
-            return children.size();
-        }
-
         void addChild(NGObject& child) {
             children.push_back(child);
         }
 
-        NGObject* getChildByName(std::string name) {
+        bool removeChild(NGObject* child) {
             for (unsigned int i=0; i<children.size(); i++) {
+                NGObject* current_child = &children[i];
+                if (current_child == child) {
+                    std::cout << "Removed\n";
+                    children.erase(children.begin() + i);
+                    return true;
+                }
+            }
+
+            std::cout << "Not Found!\n";
+            return false;
+        }
+
+        unsigned int numChildren() {
+            return children.size();
+        }
+
+        NGObject* getChildByName(std::string name) {
+            for (unsigned int i=0; i<children.size(); i++) { 
                 if (children[i].getName() == name) {
                     return &children[i];
                 }

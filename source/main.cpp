@@ -40,24 +40,26 @@ int main(int argc, char **argv) {
 		myScene.addChild(myObject);
 	}
 
-	for (unsigned int i = 0; i<myScene.children.size(); i++) {
-		NG::log(myScene.children[i].getName());
+	myScene.removeChild(myScene.getChildbyId(3));
+
+	for (unsigned int i = 0; i<myScene.numChildren(); i++) {
+		NG::log(myScene.getChildbyId(i)->getName());
 	}
 
-	int toFind = 5;
-	std::string toFindStr = "Object no 9";
+	// int toFind = 5;
+	// std::string toFindStr = "Object no 9";
 
-	if (myScene.getChildbyId(toFind) == NULL) {
-		std::cout << "Not Found!" << std::endl;
-	} else {
-		std::cout << "Result: " << myScene.getChildbyId(toFind)->getName() << std::endl;
-	}
+	// if (myScene.getChildbyId(toFind) == NULL) {
+	// 	std::cout << "Not Found!" << std::endl;
+	// } else {
+	// 	std::cout << "Result: " << myScene.getChildbyId(toFind)->getName() << std::endl;
+	// }
 
-	if (myScene.getChildByName(toFindStr) == NULL) {
-		std::cout << "Not Found!" << std::endl;
-	} else {
-		std::cout << "Result: " << myScene.getChildByName(toFindStr)->getName() << std::endl;
-	}
+	// if (myScene.getChildByName(toFindStr) == NULL) {
+	// 	std::cout << "Not Found!" << std::endl;
+	// } else {
+	// 	std::cout << "Result: " << myScene.getChildByName(toFindStr)->getName() << std::endl;
+	// }
 	
 
 	// std::cout << myScene.children.size() << std::endl;
