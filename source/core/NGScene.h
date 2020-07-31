@@ -15,7 +15,7 @@ class NGScene {
         }
 
         void preUpdate(double dt) {
-
+            update(dt);
         }
 
         void update(double dt) {

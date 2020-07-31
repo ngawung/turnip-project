@@ -1,6 +1,7 @@
 #include <nds.h>
 #include <nf_lib.h>
 
+#include <time.h>
 #include <sstream>
 
 #include "simplenfl.h"
@@ -63,6 +64,12 @@ int main(int argc, char **argv) {
 	NF_Create3dSprite(0, 0, 0, 20, 20);
 
 	while(1) {
+
+		time_t unixTime = time(NULL);
+		struct tm* timeStruct = gmtime((const time_t *)&unixTime);
+
+		consoleClear();
+		std::cout << timeStruct->tm_hour << ":" << timeStruct->tm_min << ":" << timeStruct->tm_sec << ":" << std::endl;
 		
 		scanKeys();
 		if(KEY_A & keysUp()) {
@@ -94,7 +101,6 @@ int main(int argc, char **argv) {
 		swiWaitForVBlank();
 
 		// oamUpdate(&oamMain);
-
 	}
 
 	return 0;
