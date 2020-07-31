@@ -39,34 +39,14 @@ int main(int argc, char **argv) {
 		NGObject myObject(ss.str());
 		myScene.addChild(myObject);
 	}
-
-	myScene.removeChild(*myScene.getChildbyId(3));
-	myScene.removeChildById(2);
-	myScene.removeChildByName("Object no 1");
-
-	std::cout << "Pointer: " << myScene.getChildByName("Object no 1") << std::endl;
-
-	for (unsigned int i = 0; i<myScene.numChildren(); i++) {
-		NG::log(myScene.getChildbyId(i)->getName());
-	}
-
-	// int toFind = 5;
-	// std::string toFindStr = "Object no 9";
-
-	// if (myScene.getChildbyId(toFind) == NULL) {
-	// 	std::cout << "Not Found!" << std::endl;
-	// } else {
-	// 	std::cout << "Result: " << myScene.getChildbyId(toFind)->getName() << std::endl;
-	// }
-
-	// if (myScene.getChildByName(toFindStr) == NULL) {
-	// 	std::cout << "Not Found!" << std::endl;
-	// } else {
-	// 	std::cout << "Result: " << myScene.getChildByName(toFindStr)->getName() << std::endl;
-	// }
 	
+	NGObject dupe1("dupe");
+	myScene.addChild(dupe1);
 
-	// std::cout << myScene.children.size() << std::endl;
+	NGObject dupe2("dupe");
+	myScene.addChild(dupe2);
+
+	myScene.printName();
 
 	// setup sprite
 	NF_InitSpriteBuffers();
