@@ -1,9 +1,9 @@
-class AssetsManager {
+class Assets {
 	public:
 		inline static std::map<std::string, u16> sprite;
 		inline static std::map<std::string, u16> pallete;
 		inline static std::string test;
-
+	
 	public:
 		// ram vram 256
 		static void load3dSprite(const char* file, std::string name, u16 ramslot, u16 width, u16 height, bool keepframe) {
