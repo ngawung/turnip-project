@@ -1,8 +1,13 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
 
+// core
 #include "core/NGScene.h"
+
+// utils
+#include "utils/AssetsManager.h"
 
 namespace NG {
 
