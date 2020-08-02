@@ -48,33 +48,29 @@ int main() {
 	NG::log("Helloooooo");
 	NG::log("test");
 
+	// preload assets
+	Assets::load3dSprite("new/mist", "mist", NG::getId(0), 64, 128, true);
+	Assets::load3dPallete("new/mist", "mist", NG::getId(0));
+
 	NGScene myScene;
 
-	for (unsigned int i = 0; i<5; i++) {
-		std::stringstream ss;
-		ss << "Object no " << i;
-		NGObject myObject(ss.str());
-		myScene.addChild(myObject);
-	}
-	
-	NGObject dupe1("dupe");
-	myScene.addChild(dupe1);
-
-	NGObject dupe2("dupe");
-	myScene.addChild(dupe2);
-
-	myScene.printName();
+	NGObject mist("mist", Assets::getSprite("mist"), Assets::getPallete("mist"));
+	myScene.addChild(mist);
 
 	NF_LoadTiledBg("new/bg", "bg", 256, 256);
 	NF_CreateTiledBg(0, 3, "bg");
 
-	AssetsManager::load3dSprite("new/mist", "mist", 0, 64, 128, true);
-	AssetsManager::load3dPallete("new/mist", "mist", 0);
-
 	int i = 0;
-	//NF_Create3dSprite(0, 0, 0, 20, 20);
-	NF_Create3dSprite(0, AssetsManager::getSprite("mist"), AssetsManager::getPallete("mist"), 20, 20);
 
+	// for (int y =0; y<255; y++) {
+	// 	int randX = rand() % 256 + 1;
+	// 	int randY = rand() % 192 + 1;
+	// 	NGObject m(std::to_string(y), Assets::getSprite("mist"), Assets::getPallete("mist"));
+	// 	m.x = randX;
+	// 	m.y = randY;
+	// 	myScene.addChild(m);
+	// }
+	
 	while(1) {
 
 		scanKeys();
@@ -93,14 +89,19 @@ int main() {
 			for (int y =0; y<255; y++) {
 				int randX = rand() % 256 + 1;
 				int randY = rand() % 192 + 1;
-				NF_Create3dSprite(y, AssetsManager::getSprite("mist"), AssetsManager::getPallete("mist"), randX, randY);
+				NGObject m(std::to_string(y), Assets::getSprite("mist"), Assets::getPallete("mist"));
+				m.x = randX;
+				m.y = randY;
+				myScene.addChild(m);
 			}
 		}
-		// NF_Create3dSprite(0, 0, 0, randX, randY);
 		
-		NF_Move3dSprite(0, 20 + i, 20);
-		i++;
-		if(i>(255 -20)) i = 0;
+		if (KEY_Y & keysUp()) {
+			for (int y =0; y<255; y++) {
+				myScene.removeChildByName(std::to_string(y));
+			}
+		}
+		
 		// NF_SpriteOamSet(0);
 		NF_Draw3dSprites();
 		glFlush(0);

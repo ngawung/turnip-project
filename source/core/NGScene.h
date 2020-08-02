@@ -2,100 +2,118 @@
 #include <algorithm>
 
 class NGScene {
-    private:
-        std::vector<NGObject> children;
+	private:
+		std::vector<NGObject*> children;
 
-    public:
-        NGScene() {
-           initialize();
-        }
+	public:
+		NGScene() {
+		   initialize();
+		}
 
-        void initialize() {
-             std::cout << "Scene initialize\n";
-        }
+		void initialize() {
+			 std::cout << "Scene initialize\n";
+		}
 
-        void preUpdate(double dt) {
-            update(dt);
-        }
+		void preUpdate(double dt) {
+			update(dt);
+		}
 
-        void update(double dt) {
-            
-        }
+		void update(double dt) {
+			
+		}
 
-        // main function
+		// main function
 
-        // nyalain force kalo kamu yakin ga ada name conflict, lebih cepat karna ga perlu loop children
-        void addChild(NGObject& child, bool force = false) {
-            if (force) {
-                return children.push_back(child);
-            } else {
-                for (unsigned int i=0; i<children.size(); i++) { 
-                    if (child.getName() == children[i].getName()) {
-                        std::cout << "Nama " << child.getName() << " sudah ada." << std::endl;
-                        return;
-                    }
-                }
+		void addChild(NGObject& child) {
+			// check duplicate
+			for (unsigned int i=0; i<children.size(); i++) { 
+				if (child.getName() == (*children[i]).getName()) {
+					std::cout << "Nama " << child.getName() << " sudah ada." << std::endl;
+					return;
+				}
+			}
 
-                return children.push_back(child);
-            }
-        }
+			children.push_back(&child);
+			// get the last index
+			uint index = children.size() - 1;
 
-        bool removeChild(NGObject& child) {
-            for (unsigned int i=0; i<children.size(); i++) {
-                NGObject* current_child = &children[i];
-                if (current_child == &child) {
-                    children.erase(children.begin() + i);
-                    return true;
-                }
-            }
-            return false;
-        }
+			std::cout << "index no " << index << std::endl;
+			
+			// render sprite
+			child.draw(index);
+		}
 
-        bool removeChildByName(std::string name) {
-            NGObject* ptr = getChildByName(name);
-            if (ptr != nullptr) {
-                removeChild(*ptr);
-                return true;
-            } else return false;
-        }
+		bool removeChild(NGObject& child) {
+			for (unsigned int i=0; i<children.size(); i++) {
+				if (children[i] == &child) {
+					std::cout << "id from removeChild " << child.getId() << "\n";
 
-        bool removeChildById(unsigned int id) {
-            if (id >= children.size()) return false;
-            else {
-                children.erase(children.begin() + id);
-                return true;
-            }
-        }
+					child.destroy();
+					children.erase(children.begin() + i);
+					return true;
+				}
+			}
+			std::cout << "Failed to remove child" << std::endl;
+			return false;
+		}
 
-        bool removeChildAll() {
-            children.clear();
-            return true;
-        }
+		bool removeChildByName(std::string name) {
+			NGObject* ptr = getChildByName(name);
+			if (ptr != nullptr) {
+				removeChild(*ptr);
+				return true;
+			} else {
+				std::cout << "Failed to remove " << name << std::endl;
+				return false;
+			}
+		}
 
-        unsigned int numChildren() {
-            return children.size();
-        }
+		bool removeChildById(unsigned int id) {
+			NGObject* child = getChildbyId(id);
 
-        NGObject* getChildByName(std::string name) {
-            for (unsigned int i=0; i<children.size(); i++) { 
-                if (children[i].getName() == name) {
-                    return &children[i];
-                }
-            }
-            
-            return nullptr;
-        }
+			if (child) {
+				(*child).destroy();
+				children.erase(children.begin() + id);
+				return true;
+			} else {
+				std::cout << "Failed to remove id " << id << std::endl;
+				return false;
+			}
+		}
 
-        NGObject* getChildbyId(unsigned int id) {
-            if (id >= children.size()) return nullptr;
-            else return &children[id];
-        }
+		bool removeChildAll() {
+			for (unsigned int i=0; i<children.size(); i++) {
+				(*children[i]).destroy();
+			}
 
-        // test function
+			children.clear();
+			return true;
+		}
 
-        void printName() {
-            for (unsigned int i=0; i<children.size(); i++) { 
-                std::cout << children[i].getName() << std::endl;
-            }
-        }
+		unsigned int numChildren() {
+			return children.size();
+		}
+
+		NGObject* getChildByName(std::string name) {
+			for (unsigned int i=0; i<children.size(); i++) { 
+				if ((*children[i]).getName() == name) {
+					return children[i];
+				}
+			}
+			
+			return nullptr;
+		}
+
+		NGObject* getChildbyId(unsigned int id) {
+			if (id >= children.size()) return nullptr;
+			else return children[id];
+		}
+
+		// test function
+
+		void printName() {
+			for (unsigned int i=0; i<children.size(); i++) { 
+				std::cout << (*children[i]).getId() << ":" << (*children[i]).getName() << std::endl;
+			}
+		}
 };
