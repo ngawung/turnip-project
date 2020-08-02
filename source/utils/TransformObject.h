@@ -1,4 +1,4 @@
-class AngleConversion {
+class TransformObject {
     public:
         // covert 0-360 to 0-512
         static int rotate(int angle) {
@@ -12,5 +12,16 @@ class AngleConversion {
             int new_max = 512;
 
             return ((double)((double)(((double)angle) / ((double)old_max))) * ((double)new_max));
+        }
+
+        // convert 0-800% to 0-64-512 (64 = 100%)
+        static int scale(int value) {
+            if (value > 800) value = 800;
+            if (value < 0) value = 0;
+
+            int old_max = 800;
+            int new_max = 512;
+
+            return ((double)((double)(((double)value) / ((double)old_max))) * ((double)new_max));
         }
 };

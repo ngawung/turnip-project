@@ -3,6 +3,8 @@ class NGObject {
         int x;
         int y;
         int rotation;
+        int scaleX;
+        int scaleY;
 
         bool enableUpdate;
 
@@ -11,6 +13,8 @@ class NGObject {
         int _x;
         int _y;
         int _rotation;
+        int _scaleX;
+        int _scaleY;
 
         std::string _name;
         u16 _sprite;
@@ -44,8 +48,14 @@ class NGObject {
                 }
 
                 if (_rotation != rotation) {
-                    NF_Rotate3dSprite(_id, 0, 0, AngleConversion::rotate(rotation));
+                    NF_Rotate3dSprite(_id, 0, 0, TransformObject::rotate(rotation));
                     _rotation = rotation;
+                }
+
+                if (_scaleX != scaleX || _scaleY != scaleY) {
+                    NF_Scale3dSprite(_id, TransformObject::scale(scaleX), TransformObject::scale(scaleY));
+                    _scaleX = scaleX;
+                    _scaleY = scaleY;
                 }
             }
         }

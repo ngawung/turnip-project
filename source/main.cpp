@@ -93,7 +93,9 @@ int main() {
 			NGObject* obj = myScene.addChild(std::to_string(i), Assets::getSprite("mist"), Assets::getPallete("mist"));
 			obj->x = randX;
 			obj->y = randY;
-			obj->rotation = 90;
+			obj->rotation = rand() % 360 + 1;
+			obj->scaleX = rand() % 100 + 1;
+			obj->scaleY = rand() % 100 + 1;
 			i++;
 		}
 		

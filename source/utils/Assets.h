@@ -52,10 +52,12 @@ class Assets {
 		static u16 getSprite(std::string name) {
 			auto it = sprite.find(name);
 			if (it != sprite.end()) return it->second;
+			else return -1;
 		}
 
 		static u16 getPallete(std::string name) {
 			auto it = pallete.find(name);
 			if (it != pallete.end()) return it->second;
+			else return -1;
 		}
 };
