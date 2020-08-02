@@ -54,8 +54,7 @@ int main() {
 
 	NGScene myScene;
 
-	NGObject mist("mist", Assets::getSprite("mist"), Assets::getPallete("mist"));
-	myScene.addChild(mist);
+	//myScene.addChild("mist", Assets::getSprite("mist"), Assets::getPallete("mist"));
 
 	NF_LoadTiledBg("new/bg", "bg", 256, 256);
 	NF_CreateTiledBg(0, 3, "bg");
@@ -81,26 +80,27 @@ int main() {
 		}
 		
 		if (KEY_B & keysUp()) {
-			iprintf("\nCreate..!");
-			NF_CreateTiledBg(0, 3, "bg");
+			i--;
+			// myScene.removeChild(myScene.getChildByName(std::to_string(i)));
+			// myScene.removeChildByName(std::to_string(i));
+			// myScene.removeChildById(i);
+			myScene.removeChildAll();
 		}
 
 		if (KEY_X & keysUp()) {
-			for (int y =0; y<255; y++) {
-				int randX = rand() % 256 + 1;
-				int randY = rand() % 192 + 1;
-				NGObject m(std::to_string(y), Assets::getSprite("mist"), Assets::getPallete("mist"));
-				m.x = randX;
-				m.y = randY;
-				myScene.addChild(m);
-			}
+			int randX = rand() % 256 + 1;
+			int randY = rand() % 192 + 1;
+			NGObject* obj = myScene.addChild(std::to_string(i), Assets::getSprite("mist"), Assets::getPallete("mist"));
+			obj->x = randX;
+			obj->y = randY;
+			i++;
 		}
 		
 		if (KEY_Y & keysUp()) {
-			for (int y =0; y<255; y++) {
-				myScene.removeChildByName(std::to_string(y));
-			}
+			myScene.printName();
 		}
+
+		myScene.preUpdate();
 		
 		// NF_SpriteOamSet(0);
 		NF_Draw3dSprites();

@@ -3,7 +3,7 @@
 
 class NGScene {
 	private:
-		std::vector<NGObject*> children;
+		std::vector<NGObject> children;
 
 	public:
 		NGScene() {
@@ -14,41 +14,67 @@ class NGScene {
 			 std::cout << "Scene initialize\n";
 		}
 
-		void preUpdate(double dt) {
-			update(dt);
+		void preUpdate() {
+			for (uint i=0; i<children.size(); i++) {
+				children[i].update();
+			}
+
+			update();
 		}
 
-		void update(double dt) {
+		void update() {
 			
 		}
 
 		// main function
 
-		void addChild(NGObject& child) {
+		NGObject* addChild(std::string name, u16 sprite, u16 pallete) {
 			// check duplicate
 			for (unsigned int i=0; i<children.size(); i++) { 
-				if (child.getName() == (*children[i]).getName()) {
-					std::cout << "Nama " << child.getName() << " sudah ada." << std::endl;
-					return;
+				if (name == children[i].getName()) {
+					std::cout << "Nama " << name << " sudah ada." << std::endl;
+					return nullptr;
 				}
 			}
 
-			children.push_back(&child);
+			// create child
+			NGObject child(name, sprite, pallete);
+
+			// im assume child gonna destroyed after this block end
+			// so i push duplicate instead
+			children.push_back(child);
+
 			// get the last index
 			uint index = children.size() - 1;
 
-			std::cout << "index no " << index << std::endl;
-			
 			// render sprite
-			child.draw(index);
+			children[index].draw(index);
+
+			return &children[index];
 		}
 
-		bool removeChild(NGObject& child) {
-			for (unsigned int i=0; i<children.size(); i++) {
-				if (children[i] == &child) {
-					std::cout << "id from removeChild " << child.getId() << "\n";
+		NGObject* getChildByName(std::string name) {
+			for (unsigned int i=0; i<children.size(); i++) { 
+				if (children[i].getName() == name) {
+					return &children[i];
+				}
+			}
+			
+			return nullptr;
+		}
 
-					child.destroy();
+		NGObject* getChildbyId(unsigned int id) {
+			if (id >= children.size()) return nullptr;
+			else return &children[id];
+		}
+
+		bool removeChild(NGObject* child) {
+			for (unsigned int i=0; i<children.size(); i++) {
+				if (&children[i] == child) {
+					std::cout << "id from removeChild " << child->getId() << "\n";
+
+					child->destroy();
+					// erase call destructor before removing
 					children.erase(children.begin() + i);
 					return true;
 				}
@@ -60,7 +86,7 @@ class NGScene {
 		bool removeChildByName(std::string name) {
 			NGObject* ptr = getChildByName(name);
 			if (ptr != nullptr) {
-				removeChild(*ptr);
+				removeChild(ptr);
 				return true;
 			} else {
 				std::cout << "Failed to remove " << name << std::endl;
@@ -71,8 +97,9 @@ class NGScene {
 		bool removeChildById(unsigned int id) {
 			NGObject* child = getChildbyId(id);
 
-			if (child) {
-				(*child).destroy();
+			if (child != nullptr) {
+				child->destroy();
+				// erase call destructor before removing
 				children.erase(children.begin() + id);
 				return true;
 			} else {
@@ -83,7 +110,7 @@ class NGScene {
 
 		bool removeChildAll() {
 			for (unsigned int i=0; i<children.size(); i++) {
-				(*children[i]).destroy();
+				children[i].destroy();
 			}
 
 			children.clear();
@@ -94,26 +121,11 @@ class NGScene {
 			return children.size();
 		}
 
-		NGObject* getChildByName(std::string name) {
-			for (unsigned int i=0; i<children.size(); i++) { 
-				if ((*children[i]).getName() == name) {
-					return children[i];
-				}
-			}
-			
-			return nullptr;
-		}
-
-		NGObject* getChildbyId(unsigned int id) {
-			if (id >= children.size()) return nullptr;
-			else return children[id];
-		}
-
 		// test function
 
 		void printName() {
 			for (unsigned int i=0; i<children.size(); i++) { 
-				std::cout << (*children[i]).getId() << ":" << (*children[i]).getName() << std::endl;
+				std::cout << children[i].getId() << ":" << children[i].getName() << " " << children[i].x << ":" << children[i].y << std::endl;
 			}
 		}
 };

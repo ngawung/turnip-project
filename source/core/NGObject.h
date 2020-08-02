@@ -20,17 +20,11 @@ class NGObject {
 
             x = 0;
             y = 0;
-            enableUpdate = false;
-        }
-
-        ~NGObject() {
-            
+            enableUpdate = true;
         }
 
         void draw(u16 id) {
             _id = id;
-
-            std::cout << "draw at " << _id << std::endl;
 
             NF_Create3dSprite(_id, _sprite, _pallete, x, y);
         }
