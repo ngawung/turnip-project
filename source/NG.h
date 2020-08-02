@@ -2,12 +2,16 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <algorithm>
 
-// core
-#include "core/NGScene.h"
 
 // utils
+#include "utils/AngleConversion.h"
 #include "utils/Assets.h"
+
+// core
+#include "core/NGObject.h"
+#include "core/NGScene.h"
 
 namespace NG {
 

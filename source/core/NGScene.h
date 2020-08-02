@@ -1,6 +1,3 @@
-#include "NGObject.h"
-#include <algorithm>
-
 class NGScene {
 	private:
 		std::vector<NGObject> children;

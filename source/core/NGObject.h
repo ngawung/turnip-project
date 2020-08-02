@@ -2,11 +2,16 @@ class NGObject {
     public:
         int x;
         int y;
+        int rotation;
 
         bool enableUpdate;
 
         static int objectNum;
     private:
+        int _x;
+        int _y;
+        int _rotation;
+
         std::string _name;
         u16 _sprite;
         u16 _pallete;
@@ -18,8 +23,9 @@ class NGObject {
             _sprite = sprite;
             _pallete = pallete;
 
-            x = 0;
-            y = 0;
+            x = _x = 0;
+            y = _y = 0;
+            rotation = _rotation = 0;
             enableUpdate = true;
         }
 
@@ -31,7 +37,16 @@ class NGObject {
 
         void update() {
             if (enableUpdate) {
-                NF_Move3dSprite(_id, x, y);
+                if (_x != x || _y != y) {
+                    NF_Move3dSprite(_id, x, y);
+                    _x = x;
+                    _y = y;
+                }
+
+                if (_rotation != rotation) {
+                    NF_Rotate3dSprite(_id, 0, 0, AngleConversion::rotate(rotation));
+                    _rotation = rotation;
+                }
             }
         }
 
