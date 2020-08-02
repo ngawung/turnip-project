@@ -87,15 +87,16 @@ int main() {
 			myScene.removeChildAll();
 		}
 
-		if (KEY_X & keysUp()) {
+		if (KEY_X & keysHeld()) {
 			int randX = rand() % 256 + 1;
 			int randY = rand() % 192 + 1;
 			NGObject* obj = myScene.addChild(std::to_string(i), Assets::getSprite("mist"), Assets::getPallete("mist"));
-			obj->x = randX;
-			obj->y = randY;
-			obj->rotation = rand() % 360 + 1;
-			obj->scaleX = rand() % 100 + 1;
-			obj->scaleY = rand() % 100 + 1;
+			obj->x = i;
+			obj->y = i;
+			//obj->rotation = rand() % 360 + 1;
+			//obj->scaleX = rand() % 800 + 1;
+			//obj->scaleY = rand() % 800 + 1;
+			obj->layer = i*2;
 			i++;
 		}
 		

@@ -5,6 +5,7 @@ class NGObject {
         int rotation;
         int scaleX;
         int scaleY;
+        int layer;
 
         bool enableUpdate;
 
@@ -15,6 +16,7 @@ class NGObject {
         int _rotation;
         int _scaleX;
         int _scaleY;
+        int _layer;
 
         std::string _name;
         u16 _sprite;
@@ -30,6 +32,9 @@ class NGObject {
             x = _x = 0;
             y = _y = 0;
             rotation = _rotation = 0;
+            scaleX = _scaleX = 100;
+            scaleY = _scaleY = 100;
+            layer = _layer = 0;
             enableUpdate = true;
         }
 
@@ -56,6 +61,14 @@ class NGObject {
                     NF_Scale3dSprite(_id, TransformObject::scale(scaleX), TransformObject::scale(scaleY));
                     _scaleX = scaleX;
                     _scaleY = scaleY;
+                }
+
+                if (_layer != layer) {
+                    if (layer > 512) layer = 512;
+                    if (layer < -512) layer = -512;
+                    std::cout << "layer " << -layer << std::endl;
+                    NF_3dSpriteSetDeep(_id, -layer);
+                    _layer = layer;
                 }
             }
         }
