@@ -1,7 +1,12 @@
 - [x] using pointer instead of reff
+- [x] basic transform
+- [x] simple animation manager
 - [ ] adding container/group support
+- [ ] scene manager
 - [ ] simple tween system
 - [ ] camera manager
+- [ ] better input
+- [ ] 
 - [ ] 
 - [ ] 
 - [ ] 
