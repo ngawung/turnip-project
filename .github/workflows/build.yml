@@ -5,6 +5,7 @@ on:
     paths-ignore:
       - '.vscode'
       - 'README.md'
+      - 'TODO.md'
   pull_request:
     branches: ["*"]
     paths-ignore:
