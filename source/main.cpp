@@ -1,8 +1,6 @@
 #include <nds.h>
 #include <nf_lib.h>
 
-#include <sstream>
-
 #include "simplenfl.h"
 #include "NG.h"
 
@@ -59,12 +57,15 @@ int main() {
 
 	NGScene myScene;
 
-	std::map<std::string, std::vector<int>> testMap;
-	std::vector<int> vect{1, 0};
-	testMap.insert({"idle", vect});
+	// std::map<std::string, std::vector<int>> testMap;
+	// std::vector<int> vect{1, 0};
+	// testMap.insert({"idle", vect});
 
 	NGObject* anim = myScene.addChild("anim", Assets::getSprite("anim"), Assets::getPallete("anim"));
-	anim->setupAnimation(testMap, 0);
+	// anim->setupAnimation(testMap, 0);
+	anim->addAnimation("idle", std::vector<int>{1, 0});
+
+	anim->play("idle");
 
 	NF_LoadTiledBg("new/bg", "bg", 256, 256);
 	NF_CreateTiledBg(0, 3, "bg");
@@ -111,7 +112,15 @@ int main() {
 		}
 		
 		if (KEY_Y & keysUp()) {
-			myScene.printName();
+			// myScene.printName();
+
+			// for (int x : myScene.getChildByName("anim")->_animationData.find("idle")->second) 
+        	// 	std::cout << x << " ";
+			// std::cout << std::endl;
+
+			for (int x : std::vector<int>{1,2,3,4,5,6,7,8}) 
+				std::cout << x << " ";
+			std::cout << std::endl;
 		}
 
 		if (KEY_L & keysHeld()) {
