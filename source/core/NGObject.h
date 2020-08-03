@@ -113,6 +113,15 @@ class NGObject {
 			_animationData.insert({name, frames});
 		}
 
+		void updateAnimation(std::string name, std::vector<int> frames) {
+			auto it = _animationData.find(name);
+			if (it != _animationData.end()) {
+				it->second = frames;
+			} else {
+				std::cout << "Cannot find " << name << " animation" << std::endl;
+			}
+		}
+
 		void removeAnimation(std::string name) {
 			_animationData.erase(name);
 		}
@@ -120,6 +129,17 @@ class NGObject {
 		void clearAnimation(std::string name) {
 			_animationData.clear();
 			reset();
+		}
+
+		void quickPlay(std::vector<int> frames, int frameskip = 0) {
+			auto it = _animationData.find("_quick");
+			if (it != _animationData.end()) {
+				it->second = frames;
+			} else {
+				addAnimation("_quick", frames);
+			}
+
+			play("_quick", frameskip);
 		}
 
 		void play(std::string name, int frameskip = 0) {

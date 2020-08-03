@@ -63,9 +63,7 @@ int main() {
 
 	NGObject* anim = myScene.addChild("anim", Assets::getSprite("anim"), Assets::getPallete("anim"));
 	// anim->setupAnimation(testMap, 0);
-	anim->addAnimation("idle", std::vector<int>{1, 0});
-
-	anim->play("idle");
+	anim->quickPlay(std::vector<int>{1, 0});
 
 	NF_LoadTiledBg("new/bg", "bg", 256, 256);
 	NF_CreateTiledBg(0, 3, "bg");
