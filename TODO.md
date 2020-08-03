@@ -1,1 +1,7 @@
-- [ ] using pointer instead of reff
+- [x] using pointer instead of reff
+- [ ] adding container/group support
+- [ ] simple tween system
+- [ ] camera manager
+- [ ] 
+- [ ] 
+- [ ] 
