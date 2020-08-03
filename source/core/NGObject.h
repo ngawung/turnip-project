@@ -6,8 +6,11 @@ class NGObject {
         int scaleX;
         int scaleY;
         int layer;
+        int frame;
+        int maxFrame;
 
         bool enableUpdate;
+        bool enableAnimation;
 
         static int objectNum;
     private:
@@ -17,6 +20,7 @@ class NGObject {
         int _scaleX;
         int _scaleY;
         int _layer;
+        int _frame;
 
         std::string _name;
         u16 _sprite;
@@ -34,8 +38,10 @@ class NGObject {
             rotation = _rotation = 0;
             scaleX = _scaleX = 100;
             scaleY = _scaleY = 100;
-            layer = _layer = 0;
+            layer = _layer = -1;
+            frame = _frame;
             enableUpdate = true;
+            enableAnimation = false;
         }
 
         void draw(u16 id) {
@@ -69,6 +75,16 @@ class NGObject {
                     std::cout << "layer " << -layer << std::endl;
                     NF_3dSpriteSetDeep(_id, -layer);
                     _layer = layer;
+                }
+
+                if (_frame != frame) {
+                    if (frame < 0) frame = 0;
+                    NF_Set3dSpriteFrame(_id, frame);
+                }
+
+                if (enableAnimation) {
+                    frame++;
+                    if (frame > maxFrame) frame = 0;
                 }
             }
         }

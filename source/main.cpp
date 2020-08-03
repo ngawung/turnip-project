@@ -43,6 +43,8 @@ int main() {
 	setupScreen();
 	setupBuffer(1);
 
+	srand(time(NULL));
+
 	// setup console
 	consoleDemoInit();
 	NG::log("Helloooooo");
@@ -52,9 +54,14 @@ int main() {
 	Assets::load3dSprite("new/mist", "mist", NG::getId(0), 64, 128, true);
 	Assets::load3dPallete("new/mist", "mist", NG::getId(0));
 
+	Assets::load3dSprite("new/anim", "anim", NG::getId(1), 32, 32, false);
+	Assets::load3dPallete("new/anim", "anim", NG::getId(1));
+
 	NGScene myScene;
 
-	//myScene.addChild("mist", Assets::getSprite("mist"), Assets::getPallete("mist"));
+	NGObject* anim = myScene.addChild("anim", Assets::getSprite("anim"), Assets::getPallete("anim"));
+	anim->enableAnimation = true;
+	anim->maxFrame = 1;
 
 	NF_LoadTiledBg("new/bg", "bg", 256, 256);
 	NF_CreateTiledBg(0, 3, "bg");
@@ -91,11 +98,11 @@ int main() {
 			int randX = rand() % 256 + 1;
 			int randY = rand() % 192 + 1;
 			NGObject* obj = myScene.addChild(std::to_string(i), Assets::getSprite("mist"), Assets::getPallete("mist"));
-			obj->x = i;
-			obj->y = i;
-			//obj->rotation = rand() % 360 + 1;
-			//obj->scaleX = rand() % 800 + 1;
-			//obj->scaleY = rand() % 800 + 1;
+			obj->x = randX;
+			obj->y = randY;
+			obj->rotation = rand() % 360 + 1;
+			obj->scaleX = rand() % 800 + 1;
+			obj->scaleY = rand() % 800 + 1;
 			obj->layer = i*2;
 			i++;
 		}
@@ -110,6 +117,7 @@ int main() {
 		NF_Draw3dSprites();
 		glFlush(0);
 		swiWaitForVBlank();
+		NF_Update3dSpritesGfx();
 
 		// oamUpdate(&oamMain);
 	}
