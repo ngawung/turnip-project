@@ -7,7 +7,7 @@ class NGObject {
         int scaleY;
         int layer;
         int frame;
-        int maxFrame;
+        int delay;
 
         bool enableUpdate;
         bool enableAnimation;
@@ -21,6 +21,11 @@ class NGObject {
         int _scaleY;
         int _layer;
         int _frame;
+
+        std::map<std::string, std::vector<int>> _animationData;
+        std::string _currentPlay;
+        int _currentFrame;
+        int _currentDelay;
 
         std::string _name;
         u16 _sprite;
@@ -39,9 +44,11 @@ class NGObject {
             scaleX = _scaleX = 100;
             scaleY = _scaleY = 100;
             layer = _layer = -1;
+
             frame = _frame;
             enableUpdate = true;
             enableAnimation = false;
+            delay = _currentDelay = 0;
         }
 
         void draw(u16 id) {
@@ -83,14 +90,60 @@ class NGObject {
                 }
 
                 if (enableAnimation) {
-                    frame++;
-                    if (frame > maxFrame) frame = 0;
+                    frame = _animationData.find(_currentPlay)->second[_currentFrame];
+                    _currentDelay++;
+                    if (_currentDelay > delay) {
+                        _currentDelay = 0;
+                        _currentFrame++;
+                        if (_currentFrame > ((int)_animationData.find(_currentPlay)->second.size() - 1)) {
+                            _currentFrame = 0;
+                        }
+                    }
                 }
             }
         }
 
         void destroy() {
             NF_Delete3dSprite(_id);
+        }
+
+        // Animation stuff
+        void quickAnimation(int maxFrame, int delay) {
+            
+        }
+
+        void setupAnimation(std::map<std::string, std::vector<int>> animationData, int frameskip) {
+            _animationData = animationData;
+            play(_animationData.begin()->first);
+            delay = frameskip;
+        }
+
+        void play(std::string name) {
+            auto it = _animationData.find(name);
+			if (it != _animationData.end()) {
+                _currentPlay = it->first;
+                _currentFrame = 0;
+                frame = it->second[0];
+                enableAnimation = true;
+            } else {
+                std::cout << "Cannot find " << name << " animation" << std::endl;
+            }
+        }
+
+        void stop(std::string name) {
+            auto it = _animationData.find(name);
+			if (it != _animationData.end()) {
+                _currentPlay = it->first;
+                frame = it->second[0];
+                enableAnimation = false;
+            } else {
+                std::cout << "Cannot find " << name << " animation" << std::endl;
+            }
+        }
+
+        void reset() {
+            frame = 0;
+            enableAnimation = false;
         }
 
         std::string getName() {

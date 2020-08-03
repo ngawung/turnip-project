@@ -59,9 +59,12 @@ int main() {
 
 	NGScene myScene;
 
+	std::map<std::string, std::vector<int>> testMap;
+	std::vector<int> vect{1, 0};
+	testMap.insert({"idle", vect});
+
 	NGObject* anim = myScene.addChild("anim", Assets::getSprite("anim"), Assets::getPallete("anim"));
-	anim->enableAnimation = true;
-	anim->maxFrame = 1;
+	anim->setupAnimation(testMap, 0);
 
 	NF_LoadTiledBg("new/bg", "bg", 256, 256);
 	NF_CreateTiledBg(0, 3, "bg");
@@ -109,6 +112,20 @@ int main() {
 		
 		if (KEY_Y & keysUp()) {
 			myScene.printName();
+		}
+
+		if (KEY_L & keysHeld()) {
+			NGObject* obj = myScene.getChildByName("anim");
+			obj->delay--;
+			if (obj->delay < 0) obj->delay = 0;
+			std::cout << obj->delay << std::endl;
+		}
+
+		if (KEY_R & keysHeld()) {
+			NGObject* obj = myScene.getChildByName("anim");
+			obj->delay++;
+			if (obj->delay < 0) obj->delay = 0;
+			std::cout << obj->delay << std::endl;
 		}
 
 		myScene.preUpdate();
