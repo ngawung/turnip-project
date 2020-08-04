@@ -57,34 +57,26 @@ int main() {
 
 	NGScene myScene;
 
-	// std::map<std::string, std::vector<int>> testMap;
-	// std::vector<int> vect{1, 0};
-	// testMap.insert({"idle", vect});
-
 	NGObject* anim = myScene.addChild("anim", Assets::getSprite("anim"), Assets::getPallete("anim"));
-	// anim->setupAnimation(testMap, 0);
 	anim->quickPlay(std::vector<int>{1, 0});
 
 	NF_LoadTiledBg("new/bg", "bg", 256, 256);
-	NF_CreateTiledBg(0, 3, "bg");
+	// NF_CreateTiledBg(0, 3, "bg");
 
 	int i = 0;
 
-	// for (int y =0; y<255; y++) {
-	// 	int randX = rand() % 256 + 1;
-	// 	int randY = rand() % 192 + 1;
-	// 	NGObject m(std::to_string(y), Assets::getSprite("mist"), Assets::getPallete("mist"));
-	// 	m.x = randX;
-	// 	m.y = randY;
-	// 	myScene.addChild(m);
-	// }
-	
+	// testing text
+	NF_InitTextSys(SCREEN_0);
+	NF_LoadTextFont("new/default", "font", 256, 256, 0);
+	NF_CreateTextLayer(SCREEN_0, 2, 0, "font");
+	NF_WriteText(SCREEN_0, 2, 0, 0, "Hellooo world...");
+	NF_UpdateTextLayers();
+
 	while(1) {
 
 		scanKeys();
 		if(KEY_A & keysUp()) {
 			iprintf("\nReset..!");
-			// NF_ResetTiledBgBuffers();
 			NF_DeleteTiledBg(0, 3);
 		}
 		
@@ -110,15 +102,7 @@ int main() {
 		}
 		
 		if (KEY_Y & keysUp()) {
-			// myScene.printName();
 
-			// for (int x : myScene.getChildByName("anim")->_animationData.find("idle")->second) 
-        	// 	std::cout << x << " ";
-			// std::cout << std::endl;
-
-			for (int x : std::vector<int>{1,2,3,4,5,6,7,8}) 
-				std::cout << x << " ";
-			std::cout << std::endl;
 		}
 
 		if (KEY_L & keysHeld()) {
@@ -137,13 +121,10 @@ int main() {
 
 		myScene.preUpdate();
 		
-		// NF_SpriteOamSet(0);
 		NF_Draw3dSprites();
 		glFlush(0);
 		swiWaitForVBlank();
 		NF_Update3dSpritesGfx();
-
-		// oamUpdate(&oamMain);
 	}
 
 	return 0;
