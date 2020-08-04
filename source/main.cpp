@@ -57,6 +57,8 @@ int main() {
 
 	NGScene myScene;
 
+	NF_3dSpritesLayer(3);
+
 	NGObject* anim = myScene.addChild("anim", Assets::getSprite("anim"), Assets::getPallete("anim"));
 	anim->quickPlay(std::vector<int>{1, 0});
 
