@@ -29,7 +29,13 @@ void setupBuffer(char mode) {
 		NF_InitSpriteSys(SCREEN_1);
 	} else {
 		NF_Init3dSpriteSys();
+		NF_3dSpritesLayer(2);
 	}
+
+	// setup bmfont
+	NF_InitTextSys(SCREEN_0);
+	NF_LoadTextFont("new/default", "font", 256, 256, 0);
+	NF_CreateTextLayer(SCREEN_0, 1, 0, "font");
 }
 
 void renderScene(NGScene& scene) {
@@ -57,24 +63,20 @@ int main() {
 
 	NGScene myScene;
 
-	NF_3dSpritesLayer(3);
-
-	NGObject* anim = myScene.addChild("anim", Assets::getSprite("anim"), Assets::getPallete("anim"));
-	anim->quickPlay(std::vector<int>{1, 0});
+	//NGObject* anim = myScene.addChild("anim", Assets::getSprite("anim"), Assets::getPallete("anim"));
+	//anim->quickPlay(std::vector<int>{1, 0});
 
 	NF_LoadTiledBg("new/bg", "bg", 256, 256);
 	// NF_CreateTiledBg(0, 3, "bg");
+	
+	NF_WriteText(SCREEN_0, 1, 1, 1, "Sharance Tree...");
 
 	int i = 0;
 
-	// testing text
-	NF_InitTextSys(SCREEN_0);
-	NF_LoadTextFont("new/default", "font", 256, 256, 0);
-	NF_CreateTextLayer(SCREEN_0, 2, 0, "font");
-	NF_WriteText(SCREEN_0, 2, 0, 0, "Hellooo world...");
-	NF_UpdateTextLayers();
-
 	while(1) {
+
+		i++;
+
 
 		scanKeys();
 		if(KEY_A & keysUp()) {
@@ -127,6 +129,7 @@ int main() {
 		glFlush(0);
 		swiWaitForVBlank();
 		NF_Update3dSpritesGfx();
+		NF_UpdateTextLayers();
 	}
 
 	return 0;
