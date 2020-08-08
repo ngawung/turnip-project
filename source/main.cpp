@@ -63,20 +63,17 @@ int main() {
 
 	NGScene myScene;
 
-	//NGObject* anim = myScene.addChild("anim", Assets::getSprite("anim"), Assets::getPallete("anim"));
-	//anim->quickPlay(std::vector<int>{1, 0});
+	NGObject* anim = myScene.addChild("anim", Assets::getSprite("anim"), Assets::getPallete("anim"));
+	anim->quickPlay(std::vector<int>{1, 0});
 
 	NF_LoadTiledBg("new/bg", "bg", 256, 256);
 	// NF_CreateTiledBg(0, 3, "bg");
 	
-	NF_WriteText(SCREEN_0, 1, 1, 1, "Sharance Tree...");
+	NF_WriteText(SCREEN_0, 1, 1, 5, "Hello World...");
 
 	int i = 0;
 
 	while(1) {
-
-		i++;
-
 
 		scanKeys();
 		if(KEY_A & keysUp()) {
