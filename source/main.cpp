@@ -35,7 +35,6 @@ void setupBuffer(char mode) {
 	// setup bmfont
 	NF_InitTextSys(SCREEN_0);
 	NF_LoadTextFont("new/default", "font", 256, 256, 0);
-	NF_CreateTextLayer(SCREEN_0, 1, 0, "font");
 }
 
 void renderScene(NGScene& scene) {
@@ -67,9 +66,30 @@ int main() {
 	anim->quickPlay(std::vector<int>{1, 0});
 
 	NF_LoadTiledBg("new/bg", "bg", 256, 256);
-	// NF_CreateTiledBg(0, 3, "bg");
+	NF_CreateTiledBg(0, 3, "bg");
+
+	// ===== bmfont =====
+
+	NF_CreateTextLayer(SCREEN_0, 1, 0, "font");
+	NF_CreateTextLayer(SCREEN_0, 2, 0, "font");
+
+	// NF_DefineTextColor(SCREEN_0, 1, 5, 31, 0, 0);
+
+	// rgb color
+	RGB rgb;
+	rgb.set(50, 168, 82);
+	Colors::defineTextRGB(SCREEN_0, 1, 3, rgb);
+
+	// hex color
+	Colors::defineTextHex(SCREEN_0, 1, 5, 0xa82062); // for some reason layer 1 work instead of 2
+
+	NF_SetTextColor(SCREEN_0, 1, 3);
+	NF_WriteText(SCREEN_0, 1, 1, 5, "RGB Color...");
 	
-	NF_WriteText(SCREEN_0, 1, 1, 5, "Hello World...");
+	NF_SetTextColor(SCREEN_0, 2, 5);
+	NF_WriteText(SCREEN_0, 2, 1, 6, "Hex Color...");
+
+	NF_UpdateTextLayers();
 
 	int i = 0;
 
