@@ -16,8 +16,7 @@ class TransformObject {
 
         // convert 0-800% to 0-64-512 (64 = 100%)
         static int scale(int value) {
-            if (value > 800) value = 800;
-            if (value < 0) value = 0;
+            value = std::clamp(value, 0, 800);
 
             int old_max = 800;
             int new_max = 512;
