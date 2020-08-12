@@ -9,10 +9,18 @@
 class NGMain {
     public:
     private:
+        inline static NGMain* _instance = 0;
         NGScene* _currentScene;
 
     public:
+        static NGMain* getInstance() {
+            return _instance;
+        }
+
         NGMain() {
+            NGMain* ptr = this;
+           _instance = ptr;
+
             initialize();
         }
 
