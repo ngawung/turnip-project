@@ -1,4 +1,5 @@
 {
+    "terminal.integrated.shellArgs.windows": ["-l"],
     "files.associations": {
         "iostream": "cpp",
         "string": "cpp",
