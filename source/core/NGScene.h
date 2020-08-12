@@ -29,7 +29,7 @@ class NGScene {
 		// main function
 
 		NGObject* addChild(NGObject* child) {
-			if (children.size() == 255) {
+			if (children.size() == 254) { // sometime it crash when there is 255 sprite in screen
 				std::cout << "Max child size reached";
 				return nullptr;
 			}
