@@ -7,8 +7,8 @@ class NGScene {
 		   initialize();
 		}
 
-		void initialize() {
-			 std::cout << "Scene initialize\n";
+		virtual ~NGScene() {
+			
 		}
 
 		void preUpdate() {
@@ -19,7 +19,10 @@ class NGScene {
 			update();
 		}
 
-		void update() {
+		virtual void initialize() {}
+		virtual void update() {}
+
+		virtual void destroy() {
 			
 		}
 

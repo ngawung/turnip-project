@@ -5,7 +5,6 @@
 #include <algorithm>
 #include <time.h>
 
-
 // utils
 #include "utils/TransformObject.h"
 #include "utils/Assets.h"
@@ -14,6 +13,11 @@
 // core
 #include "core/NGObject.h"
 #include "core/NGScene.h"
+#include "core/NGMain.h"
+
+//scene
+#include "scene/scene1.h"
+#include "scene/scene2.h"
 
 namespace NG {
 
