@@ -25,7 +25,7 @@ class NGMain {
 
             // setup screen
             NF_Set3D(SCREEN_0, 0);
-            NF_Set3D(SCREEN_1, 0);
+            NF_Set2D(SCREEN_1, 0);
 
             NF_SetRootFolder("NITROFS");
 
@@ -35,6 +35,7 @@ class NGMain {
             NF_InitTiledBgSys(SCREEN_1);
 
             // update 3d sprite
+            NF_InitSpriteBuffers();
             NF_Init3dSpriteSys();
 		    NF_3dSpritesLayer(2);  //default 3d sprite layer 2
 

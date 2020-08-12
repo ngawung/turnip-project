@@ -4,11 +4,13 @@
 #include <map>
 #include <algorithm>
 #include <time.h>
+#include <random>
 
 // utils
 #include "utils/TransformObject.h"
 #include "utils/Assets.h"
 #include "utils/Colors.h"
+#include "utils/Random.h"
 
 // core
 #include "core/NGObject.h"
