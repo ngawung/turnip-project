@@ -68,3 +68,176 @@ bool SNF::overlap(float x1, float y1, float x2, float y2, float x3, float y3, fl
     }
     return false;
 }
+
+bool SNF::getKeys(Key key, KeyPhase phase) {
+    switch (key) {
+        case Key::A:
+            switch (phase) {
+                case KeyPhase::release:
+                    return (KEY_A & keysUp());
+                    break;
+                case KeyPhase::press:
+                    return (KEY_A & keysDown());
+                    break;
+                case KeyPhase::held:
+                    return (KEY_A & keysHeld());
+                    break;
+            }
+            break;
+        
+        case Key::B:
+            switch (phase) {
+                case KeyPhase::release:
+                    return (KEY_B & keysUp());
+                    break;
+                case KeyPhase::press:
+                    return (KEY_B & keysDown());
+                    break;
+                case KeyPhase::held:
+                    return (KEY_B & keysHeld());
+                    break;
+            }
+            break;
+        
+        case Key::X:
+            switch (phase) {
+                case KeyPhase::release:
+                    return (KEY_X & keysUp());
+                    break;
+                case KeyPhase::press:
+                    return (KEY_X & keysDown());
+                    break;
+                case KeyPhase::held:
+                    return (KEY_X & keysHeld());
+                    break;
+            }
+            break;
+        
+        case Key::Y:
+            switch (phase) {
+                case KeyPhase::release:
+                    return (KEY_Y & keysUp());
+                    break;
+                case KeyPhase::press:
+                    return (KEY_Y & keysDown());
+                    break;
+                case KeyPhase::held:
+                    return (KEY_Y & keysHeld());
+                    break;
+            }
+            break;
+        
+        case Key::L:
+            switch (phase) {
+                case KeyPhase::release:
+                    return (KEY_L & keysUp());
+                    break;
+                case KeyPhase::press:
+                    return (KEY_L & keysDown());
+                    break;
+                case KeyPhase::held:
+                    return (KEY_L & keysHeld());
+                    break;
+            }
+            break;
+        
+        case Key::R:
+            switch (phase) {
+                case KeyPhase::release:
+                    return (KEY_R & keysUp());
+                    break;
+                case KeyPhase::press:
+                    return (KEY_R & keysDown());
+                    break;
+                case KeyPhase::held:
+                    return (KEY_R & keysHeld());
+                    break;
+            }
+            break;
+        
+        case Key::UP:
+            switch (phase) {
+                case KeyPhase::release:
+                    return (KEY_UP & keysUp());
+                    break;
+                case KeyPhase::press:
+                    return (KEY_UP & keysDown());
+                    break;
+                case KeyPhase::held:
+                    return (KEY_UP & keysHeld());
+                    break;
+            }
+            break;
+        
+        case Key::DOWN:
+            switch (phase) {
+                case KeyPhase::release:
+                    return (KEY_DOWN & keysUp());
+                    break;
+                case KeyPhase::press:
+                    return (KEY_DOWN & keysDown());
+                    break;
+                case KeyPhase::held:
+                    return (KEY_DOWN & keysHeld());
+                    break;
+            }
+            break;
+        
+        case Key::LEFT:
+            switch (phase) {
+                case KeyPhase::release:
+                    return (KEY_LEFT & keysUp());
+                    break;
+                case KeyPhase::press:
+                    return (KEY_LEFT & keysDown());
+                    break;
+                case KeyPhase::held:
+                    return (KEY_LEFT & keysHeld());
+                    break;
+            }
+            break;
+        
+        case Key::RIGHT:
+            switch (phase) {
+                case KeyPhase::release:
+                    return (KEY_RIGHT & keysUp());
+                    break;
+                case KeyPhase::press:
+                    return (KEY_RIGHT & keysDown());
+                    break;
+                case KeyPhase::held:
+                    return (KEY_RIGHT & keysHeld());
+                    break;
+            }
+            break;
+        
+        case Key::SELECT:
+            switch (phase) {
+                case KeyPhase::release:
+                    return (KEY_SELECT & keysUp());
+                    break;
+                case KeyPhase::press:
+                    return (KEY_SELECT & keysDown());
+                    break;
+                case KeyPhase::held:
+                    return (KEY_SELECT & keysHeld());
+                    break;
+            }
+            break;
+        
+        case Key::START:
+            switch (phase) {
+                case KeyPhase::release:
+                    return (KEY_START & keysUp());
+                    break;
+                case KeyPhase::press:
+                    return (KEY_START & keysDown());
+                    break;
+                case KeyPhase::held:
+                    return (KEY_START & keysHeld());
+                    break;
+            }
+            break;    
+    }
+    return false;
+}

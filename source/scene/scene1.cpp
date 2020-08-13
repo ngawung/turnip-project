@@ -41,21 +41,21 @@ void scene1::update() {
         std::cout << "Touch" << std::endl;
     }
 
-    if (KEY_LEFT & keysUp()) {
+    if (SNF::getKeys(SNF::Key::LEFT, SNF::KeyPhase::release)) {
         NGMain::getInstance()->set_scene(new scene2());
     }
 
-    if (KEY_RIGHT & keysUp()) {
+    if (SNF::getKeys(SNF::Key::RIGHT, SNF::KeyPhase::release)) {
         NGMain::getInstance()->get_scene()->printName();
     }
 
-    // if (KEY_DOWN & keysHeld()) {
-    //     NGObject* obj = new NGObject(Random::string(5), Assets::getSprite("mist"), Assets::getPallete("mist"));
-    //     obj->x = Random::range(256);
-    //     obj->y = Random::range(192);
-    //     NGMain::getInstance()->get_scene()->addChild(obj);
+    if (SNF::getKeys(SNF::Key::DOWN, SNF::KeyPhase::held)) {
+        NGObject* obj = new NGObject(Random::string(5), Assets::getSprite("mist"), Assets::getPallete("mist"));
+        obj->x = Random::range(256);
+        obj->y = Random::range(192);
+        NGMain::getInstance()->get_scene()->addChild(obj);
 
-    //     i++;
-    //     std::cout << i << std::endl;
-    // }
+        i++;
+        std::cout << i << std::endl;
+    }
 }
