@@ -3,6 +3,7 @@ currently working on
 - [ ] listen touch from sprite
 - [ ] better input
 - [x] simple tween system (using lib)
+- [ ] modify simplenfl
 - [ ]
 
 done
