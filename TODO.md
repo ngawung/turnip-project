@@ -1,4 +1,8 @@
 currently working on
+- [ ] Running text
+- [ ] finish all default bmfont character
+- [ ] add save feature
+- [ ] add more rng function
 - [ ]
 
 done
@@ -12,7 +16,7 @@ done
 - [x] listen touch from sprite
 - [x] better input (?? im just improving simplenfl basically)
 - [x] simple tween system (using lib)
-- [x] modify simplenfl (40%)
+- [x] modify simplenfl
 - [ ] 
 
 feature
