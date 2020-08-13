@@ -1,9 +1,4 @@
 currently working on
-- [x] using proper linking method (major rework)
-- [x] listen touch from sprite
-- [ ] better input
-- [x] simple tween system (using lib)
-- [x] modify simplenfl (40%)
 - [ ]
 
 done
@@ -13,6 +8,11 @@ done
 - [x] scene manager
 - [x] rework child system using heap memmory
 - [x] using less global variable
+- [x] using proper linking method (major rework)
+- [x] listen touch from sprite
+- [x] better input (?? im just improving simplenfl basically)
+- [x] simple tween system (using lib)
+- [x] modify simplenfl (40%)
 - [ ] 
 
 feature
