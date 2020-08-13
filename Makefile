@@ -66,8 +66,15 @@ _ADDFILES	:=	-d $(NITRO_FILES)
 #---------------------------------------------------------------------------------
 TARGET		:=	$(shell basename $(CURDIR))
 BUILD		:=	build
-SOURCES		:=	source
-INCLUDES	:=	include
+SOURCES		:=	source \
+				source/core \
+				source/scene \
+				source/utils
+INCLUDES	:=	include \
+				include/core \
+				include/scene \
+				include/utils \
+				include/lib
 DATA		:=	data
 NITRODATA	:=	nitrofiles
 DIST		:=	dist

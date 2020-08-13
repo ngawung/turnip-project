@@ -1,4 +1,5 @@
 currently working on
+- [x] using proper linking method (major rework)
 - [ ] listen touch from sprite
 - [ ] better input
 - [ ] simple tween system
