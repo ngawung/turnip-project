@@ -2,13 +2,12 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "clean run",
+            "label": "Build and run",
             "type": "shell",
             "command": "echo done",
             "problemMatcher": [],
             "dependsOrder": "sequence",
             "dependsOn": [
-                "make clean",
                 "make run",
                 "run desmume"
             ],
