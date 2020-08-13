@@ -4,6 +4,22 @@
 #include <string>
 #include <vector>
 
+#include "simplenfl.h"
+
+typedef struct ObjectBound {
+	uint16_t x;
+	uint16_t y;
+	uint16_t width;
+	uint16_t height;
+
+	void set(uint16_t x, uint16_t y, uint16_t width, uint16_t height) {
+		this->x = x;
+		this->y = y;
+		this->width = width;
+		this->height = height;
+	}
+} ObjectBound;
+
 class NGObject {
     public:
         int x;
@@ -14,6 +30,7 @@ class NGObject {
 		int layer;
 		int frame;
 		int delay;
+		ObjectBound bound;
 
 		bool enableUpdate;
 		bool enableAnimation;
@@ -54,6 +71,9 @@ class NGObject {
         void play(std::string name, int frameskip = 0);
         void stop(std::string name);
         void reset();
+
+		// Touch
+		bool getTouch(SNF::KeyPhase phase);
 
         // Basic tool
         std::string getName();

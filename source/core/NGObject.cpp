@@ -20,6 +20,9 @@ NGObject::NGObject(std::string name, uint16_t sprite, uint16_t pallete) {
 	scaleY = _scaleY = 100;
 	layer = _layer = -1;
 
+	// touch
+	bound.set(0, 0, 0, 0);
+
 	// animation
 	frame = _frame;
 	enableUpdate = true;
@@ -143,6 +146,24 @@ void NGObject::stop(std::string name) {
 void NGObject::reset() {
 	frame = 0;
 	enableAnimation = false;
+}
+
+// Touch
+bool NGObject::getTouch(SNF::KeyPhase phase) {
+	if (bound.x == 0 && bound.y == 0 && bound.width == 0 && bound.height == 0) {
+		if (SNF::getTouch(phase))
+			std::cout << "Please set sprite '" << getName() << "(" << getId() << ")' bound first!" << std::endl;
+		
+		return false;
+	}
+
+	return SNF::getTouchRect(
+		x + bound.x,
+		y + bound.y,
+		bound.width,
+		bound.height,
+		phase
+	);
 }
 
 // Basic tool

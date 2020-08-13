@@ -69,7 +69,8 @@ BUILD		:=	build
 SOURCES		:=	source \
 				source/core \
 				source/scene \
-				source/utils
+				source/utils \
+				include/lib
 INCLUDES	:=	include \
 				include/core \
 				include/scene \
