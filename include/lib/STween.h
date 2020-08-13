@@ -78,12 +78,12 @@ public:
 	}
 
 	int tweenID;
-	bool fromReady;
-	bool byPointer;
-	bool reversed;
 	T* initialValue;
 	T initialCpy;
 	T finalValue;
+	bool fromReady;
+	bool byPointer;
+	bool reversed;
 	float duration;
 	EasingFunction easing;
 	float timeCounter;
