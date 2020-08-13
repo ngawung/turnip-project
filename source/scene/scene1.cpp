@@ -8,6 +8,8 @@
 
 #include "STween.h"
 
+#include "simplenfl.h"
+
 NGObject* mist;
 STween::STween<int> tween;
 
@@ -17,6 +19,7 @@ scene1::scene1() {
 
 void done(int val) {
     mist->x = val;
+    // std::cout << val << std::endl;
 }
 
 void scene1::initialize() {
@@ -25,11 +28,19 @@ void scene1::initialize() {
     mist = new NGObject(Random::string(5), Assets::getSprite("mist"), Assets::getPallete("mist"));
     NGMain::getInstance()->get_scene()->addChild(mist);
 
-    tween.From(i).To(256 - 64).Time(5.0).OnStep(done).Easing(STween::EasingFunction::CubicInOut);
+    tween.From(i).To(256 - 64).Time(10.0).OnStep(done).Easing(STween::EasingFunction::CubicInOut);
 }
 
 void scene1::update() {
     tween.Update(0.02); // fixed dt, time doesnt work on desmume
+
+    if (getTouch(KeyPhase::release)) {
+    //     std::cout << Stylus.px << ":" << Stylus.py << std::endl;
+    }
+
+    if (istouched(mist->x, mist->y, 64, 128, KeyPhase::release)) {
+        std::cout << "Touch" << std::endl;
+    }
 
     if (KEY_LEFT & keysUp()) {
         NGMain::getInstance()->set_scene(new scene2());
