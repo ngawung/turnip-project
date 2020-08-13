@@ -1,9 +1,9 @@
 currently working on
 - [x] using proper linking method (major rework)
-- [ ] listen touch from sprite
+- [x] listen touch from sprite
 - [ ] better input
 - [x] simple tween system (using lib)
-- [ ] modify simplenfl
+- [x] modify simplenfl (40%)
 - [ ]
 
 done
@@ -18,6 +18,7 @@ done
 feature
 - [ ] adding container/group support
 - [ ] camera manager
+- [ ] adding circle shape sprite touch
 - [ ] 
 
 random
