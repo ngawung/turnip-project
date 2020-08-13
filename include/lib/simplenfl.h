@@ -14,13 +14,47 @@
 //The Docs/wiki is in the github repository
 //Have fun!
 
-enum KeyPhase { release, press, held };
+#pragma once
 
-u16 Pressed;
-u16 Held;
-u16 Released;
-touchPosition Stylus;
-touchPosition PrevStylus; // previous frame stylus position
+class SNF {
+    public:
+    
+        enum KeyPhase { release, press, held };
+
+        static inline touchPosition Stylus;
+        static inline touchPosition PrevStylus; // previous frame stylus position
+
+        // quick load sprite
+        static void loadsprite(int screen, int ramslot, int vramslot, int width, int height, const char *dir, const char *dir2, bool transflag);
+        
+        // quick load bmfont
+        static void loadfont(const char *file, const char *fontname, int width, int height, int rot, int screen, int layer);
+        
+        // quick load bg
+        static void loadbg(const char *dir, const char *name, int width, int height, int screen, int layer);
+        
+        // quick play sound
+        static void playandloadsound(const char *file, int channel, int freq, int sampleform, int vol, int pan, bool loop, int loopstart);
+
+        // get touch by KeyPhase
+        static bool getTouch(KeyPhase phase);
+
+        // get touch by Rectangle
+        static bool getTouchRect(int x, int y, int width, int height, KeyPhase phase);
+
+        // check rectangle overlap
+        static bool overlap(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4);
+};
+
+    
+// ====================================//
+// this function broken on my env...
+// too lazy to fix
+// ====================================//
+
+// u16 Pressed;
+// u16 Held;
+// u16 Released;
 
 // const char *A = "A";
 // const char *B = "B";
@@ -41,82 +75,6 @@ touchPosition PrevStylus; // previous frame stylus position
 // const char* keyup = "keyup";
 // const char* keydown = "keydown";
 // const char* keyheld = "keyheld";
-
-void loadsprite(int screen, int ramslot, int vramslot, int width, int height, const char *dir, const char *dir2,
-                bool transflag);
-
-void loadsprite(int screen, int ramslot, int vramslot, int width, int height, const char *dir, const char *dir2,
-                bool transflag) {
-    NF_LoadSpriteGfx(dir, ramslot, width, height);
-    NF_LoadSpritePal(dir2, ramslot);
-    NF_VramSpriteGfx(screen, ramslot, vramslot, transflag);
-    NF_VramSpritePal(screen, ramslot, vramslot);
-}
-
-void loadfont(const char *file, const char *fontname, int width, int height, int rot, int screen, int layer);
-
-void loadfont(const char *file, const char *fontname, int width, int height, int rot, int screen, int layer) {
-    NF_LoadTextFont(file, fontname, width, height, rot);
-    NF_CreateTextLayer(screen, layer, rot, fontname);
-}
-
-void loadbg(const char *dir, const char *name, int width, int height, int screen, int layer);
-
-void loadbg(const char *dir, const char *name, int width, int height, int screen, int layer) {
-    NF_LoadTiledBg(dir, name, width, height);
-    NF_CreateTiledBg(screen, layer, name);
-}
-
-void
-playandloadsound(const char *file, int channel, int freq, int sampleform, int vol, int pan, bool loop, int loopstart);
-
-void
-playandloadsound(const char *file, int channel, int freq, int sampleform, int vol, int pan, bool loop, int loopstart) {
-    NF_LoadRawSound(file, channel, freq, sampleform);
-    NF_PlayRawSound(channel, vol, pan, loop, loopstart);
-}
-
-bool getTouch(KeyPhase phase);
-
-bool getTouch(KeyPhase phase) {
-    touchRead(&Stylus);
-    
-    switch (phase){
-        case KeyPhase::release:
-            // store prev stylus because px,py return 0 when KeysUp()
-            if (KEY_TOUCH & keysHeld()) PrevStylus = Stylus;
-
-            if (KEY_TOUCH & keysUp()) {
-                Stylus = PrevStylus;
-                return true;
-            }
-            else break;
-        
-        case KeyPhase::press:
-            if (KEY_TOUCH & keysDown()) return true;
-            else break;
-
-        case KeyPhase::held:
-            if (KEY_TOUCH & keysHeld()) return true;
-            else break;
-    }
-
-    return false;
-}
-
-bool istouched(int x, int y, int width, int height, KeyPhase phase);
-
-bool istouched(int x, int y, int width, int height, KeyPhase phase) {
-    if (getTouch(phase)) {
-        int mathx = x + width;
-        int mathy = y + height;
-        return Stylus.px > x && Stylus.px < mathx && Stylus.py > y && Stylus.py < mathy;
-    }
-    return false;
-}
-
-// this function broken on my env...
-// too lazy to fix
 
 // bool ispressed(const char *button, const char *type);
 
@@ -455,15 +413,3 @@ bool istouched(int x, int y, int width, int height, KeyPhase phase) {
 //     }
     
 // }
-
-bool overlap(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4);
-
-bool overlap(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {
-    if ((x3 <= x1 && x1 <= x4 && y3 <= y1 && y1 <= y4) ||
-        (x3 <= x1 && x1 <= x4 && y3 <= y2 && y2 <= y4) ||
-        (x3 <= x2 && x2 <= x4 && y3 <= y1 && y1 <= y4) ||
-        (x3 <= x2 && x2 <= x4 && y3 <= y2 && y2 <= y4)) {
-        return true;
-    }
-    return false;
-}
