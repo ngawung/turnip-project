@@ -1,4 +1,7 @@
-#include <nf_lib.h>
+#include <map>
+#include <string>
+
+#include "nf_lib.h"
 #include "Assets.h"
 
 // ram vram 256

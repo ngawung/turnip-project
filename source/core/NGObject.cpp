@@ -1,9 +1,4 @@
-#include <iostream>
-#include <algorithm>
-#include <nf_lib.h>
-
 #include "NGObject.h"
-#include "TransformObject.h"
 
 NGObject::NGObject(std::string name, uint16_t sprite, uint16_t pallete) {
 	_name = name;
@@ -149,7 +144,7 @@ void NGObject::reset() {
 }
 
 // Touch
-bool NGObject::getTouch(SNF::KeyPhase phase) {
+bool NGObject::getTouch(KeyPhase phase) {
 	if (bound.x == 0 && bound.y == 0 && bound.width == 0 && bound.height == 0) {
 		if (SNF::getTouch(phase))
 			std::cout << "Please set sprite '" << getName() << "(" << getId() << ")' bound first!" << std::endl;

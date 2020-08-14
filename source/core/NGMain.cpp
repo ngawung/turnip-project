@@ -1,9 +1,3 @@
-#include <iostream>
-#include <time.h>
-
-#include <nds.h>
-#include <nf_lib.h>
-
 #include "NGMain.h"
 
 NGMain* NGMain::_instance = 0;

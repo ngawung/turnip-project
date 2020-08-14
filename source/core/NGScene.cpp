@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "NGScene.h"
 
 NGScene::NGScene() {

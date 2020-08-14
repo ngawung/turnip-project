@@ -1,12 +1,5 @@
-#include <iostream>
-
-#include "NGMain.h"
 #include "scene1.h"
 #include "scene2.h"
-#include "Random.h"
-#include "Assets.h"
-
-#include "STween.h"
 
 NGObject* mist;
 STween::STween<int> tween;
@@ -27,29 +20,39 @@ void scene1::initialize() {
     mist->bound.set(0, 0, 64, 128);
     NGMain::getInstance()->get_scene()->addChild(mist);
 
+    
+
     tween.From(i).To(256 - 64).Time(10.0).OnStep(done).Easing(STween::EasingFunction::CubicInOut);
 }
 
 void scene1::update() {
     tween.Update(0.02); // fixed dt, time doesnt work on desmume
 
-    if (SNF::getTouch(SNF::KeyPhase::release)) {
+    if (SNF::getTouch(KeyPhase::release)) {
         std::cout << SNF::Stylus.px << ":" << SNF::Stylus.py << std::endl;
     }
 
-    if (mist->getTouch(SNF::KeyPhase::release)) {
+    if (mist->getTouch(KeyPhase::release)) {
         std::cout << "Touch" << std::endl;
     }
 
-    if (SNF::getKeys(SNF::Key::LEFT, SNF::KeyPhase::release)) {
+    if (SNF::getKeys(Key::LEFT, KeyPhase::release)) {
         NGMain::getInstance()->set_scene(new scene2());
     }
 
-    if (SNF::getKeys(SNF::Key::RIGHT, SNF::KeyPhase::release)) {
+    if (SNF::getKeys(Key::RIGHT, KeyPhase::release)) {
         NGMain::getInstance()->get_scene()->printName();
     }
+    
+    if (SNF::getKeys(Key::A, KeyPhase::release)) {
+        std::cout << "open" << std::endl;
+    }
 
-    if (SNF::getKeys(SNF::Key::DOWN, SNF::KeyPhase::held)) {
+    if (SNF::getKeys(Key::UP, KeyPhase::release)) {
+        std::cout << "Save" << std::endl;
+    }
+
+    if (SNF::getKeys(Key::DOWN, KeyPhase::held)) {
         NGObject* obj = new NGObject(Random::string(5), Assets::getSprite("mist"), Assets::getPallete("mist"));
         obj->x = Random::range(256);
         obj->y = Random::range(192);
@@ -59,3 +62,4 @@ void scene1::update() {
         std::cout << i << std::endl;
     }
 }
+

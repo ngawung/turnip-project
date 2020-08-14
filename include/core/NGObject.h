@@ -1,10 +1,21 @@
 #pragma once
 
+#include <iostream>
 #include <map>
 #include <string>
 #include <vector>
+#include <algorithm>
+#include <time.h>
+
+#include <nds.h>
+#include <nf_lib.h>
 
 #include "simplenfl.h"
+#include "STween.h"
+#include "Random.h"
+#include "Assets.h"
+#include "TransformObject.h"
+
 
 typedef struct ObjectBound {
 	uint16_t x;
@@ -73,7 +84,7 @@ class NGObject {
         void reset();
 
 		// Touch
-		bool getTouch(SNF::KeyPhase phase);
+		bool getTouch(KeyPhase phase);
 
         // Basic tool
         std::string getName();

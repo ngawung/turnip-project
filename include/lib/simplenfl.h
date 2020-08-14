@@ -16,18 +16,17 @@
 
 #pragma once
 
+enum Key {
+    UP, DOWN, LEFT, RIGHT,
+    START, SELECT,
+    A, B, X, Y,
+    R, L
+};
+
+enum KeyPhase { release, press, held };
+
 class SNF {
     public:
-
-        enum Key {
-            UP, DOWN, LEFT, RIGHT,
-            START, SELECT,
-            A, B, X, Y,
-            R, L
-        };
-
-        enum KeyPhase { release, press, held };
-
         static inline touchPosition Stylus;
         static inline touchPosition PrevStylus; // previous frame stylus position
 

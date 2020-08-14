@@ -1,5 +1,6 @@
 #pragma once
 
+#include "NGMain.h"
 #include "NGScene.h"
 
 class scene2 : public NGScene {

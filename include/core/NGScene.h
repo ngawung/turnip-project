@@ -1,12 +1,7 @@
 #pragma once
 
-#include <vector>
-
-#include <nds.h>
-#include <nf_lib.h>
-
-#include "simplenfl.h"
 #include "NGObject.h"
+
 
 class NGScene {
     public:

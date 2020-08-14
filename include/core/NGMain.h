@@ -10,6 +10,11 @@
 #define LAYER_2 2
 #define LAYER_3 3
 
+typedef struct Stage {
+    const uint width = 256;
+    const uint height = 192;
+} Stage;
+
 class NGMain {
     public:
     private:

@@ -1,8 +1,5 @@
 #pragma once
 
-#include <map>
-#include <string>
-
 class Assets {
     public:
         inline static std::map<std::string, uint16_t> sprite;

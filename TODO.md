@@ -1,8 +1,9 @@
 currently working on
 - [ ] Running text
 - [ ] finish all default bmfont character
-- [ ] add save feature
 - [ ] add more rng function
+- [ ] member intialization
+- [ ] add save feature (im struggling... it doesnt workk)
 - [ ]
 
 done
