@@ -1,6 +1,8 @@
 #include "NGObject.h"
 
-NGObject::NGObject(std::string name, uint16_t sprite, uint16_t pallete) {
+NGObject::NGObject(std::string name, uint16_t sprite, uint16_t pallete) 
+	:bound(0, 0, 0, 0)
+{
 	_name = name;
 
 	// graphic
@@ -14,9 +16,6 @@ NGObject::NGObject(std::string name, uint16_t sprite, uint16_t pallete) {
 	scaleX = _scaleX = 100;
 	scaleY = _scaleY = 100;
 	layer = _layer = -1;
-
-	// touch
-	bound.set(0, 0, 0, 0);
 
 	// animation
 	frame = _frame;

@@ -2,7 +2,8 @@ currently working on
 - [ ] Running text
 - [ ] finish all default bmfont character
 - [ ] add more rng function
-- [ ] member intialization
+- [ ] bmfont manager class
+- [x] member intialization (done i guess?? im only using this for const and class)
 - [ ] add save feature (im struggling... it doesnt workk)
 - [ ]
 

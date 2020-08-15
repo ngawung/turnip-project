@@ -23,6 +23,12 @@ typedef struct ObjectBound {
 	uint16_t width;
 	uint16_t height;
 
+	ObjectBound(uint16_t _x, uint16_t _y, uint16_t _width, uint16_t _height)
+		: x(_x), y(_y), width(_width), height(_height)
+	{
+
+	}
+
 	void set(uint16_t x, uint16_t y, uint16_t width, uint16_t height) {
 		this->x = x;
 		this->y = y;

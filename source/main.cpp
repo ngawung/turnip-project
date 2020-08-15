@@ -17,7 +17,6 @@ int main() {
 	
 	game->set_scene(new scene1());
 	
-	std::cout << "Done" << std::endl;
 
 	while(1) {
 		game->update();
