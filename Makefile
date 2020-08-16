@@ -179,13 +179,7 @@ $(BUILD):
 
 	$(CURDIR)/tools/dlditool $(CURDIR)/tools/r4tf.dldi $(CURDIR)/$(DIST)/patch/$(TARGET)-r4.nds
 	$(CURDIR)/tools/dlditool $(CURDIR)/tools/mpcf.dldi $(CURDIR)/$(DIST)/patch/$(TARGET)-mpcf.nds
-
-	@rm -fr $(DIST)/fat
-	mkdir -p $(DIST)/fat
-
-	dd if=/dev/zero of=$(DIST)/fat/drastic_dldi.img bs=1M count=1
-	mkdosfs $(DIST)/fat/drastic_dldi.img
-
+	
 #---------------------------------------------------------------------------------
 clean:
 	@echo clean ...
