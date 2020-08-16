@@ -50,6 +50,7 @@
         "chrono": "cpp",
         "ctime": "cpp",
         "ratio": "cpp",
-        "map": "cpp"
+        "map": "cpp",
+        "fstream": "cpp"
     }
 }

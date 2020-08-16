@@ -5,7 +5,7 @@
 
 #include "NGMain.h"
 #include "Assets.h"
-#include "scene1.h"
+#include "scene2.h"
 
 int main() {
 
@@ -15,7 +15,7 @@ int main() {
 	Assets::load3dSprite("new/mist", "mist", 0, 64, 128, false);
 	Assets::load3dPallete("new/mist", "mist", 0);
 	
-	game->set_scene(new scene1());
+	game->set_scene(new scene2());
 	
 
 	while(1) {
