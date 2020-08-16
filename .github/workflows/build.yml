@@ -25,15 +25,36 @@ jobs:
     steps:
       - name: "Checkout"
         uses: actions/checkout@v2
+
       - name: Build
         run: make
-      - name: "Upload dist artefact"
-        uses: actions/upload-artifact@v2
-        with:
-          name: "dist"
-          path: dist/turnip-project.nds
+
       - name: "Upload build artefact"
         uses: actions/upload-artifact@v2
         with:
           name: "build"
           path: build/*
+
+      - name: "Upload base artefact"
+        uses: actions/upload-artifact@v2
+        with:
+          name: "base"
+          path: dist/turnip-project.nds
+
+      - name: "Upload r4 artefact"
+        uses: actions/upload-artifact@v2
+        with:
+          name: "r4"
+          path: dist/patch/turnip-project-r4.nds
+      
+      - name: "Upload mpcf artefact"
+        uses: actions/upload-artifact@v2
+        with:
+          name: "mpcf"
+          path: dist/patch/turnip-project-mpcf.nds
+      
+      - name: "Upload fat image"
+        uses: actions/upload-artifact@v2
+        with:
+          name: "fat"
+          path: dist/fat/drastic_dldi.img
