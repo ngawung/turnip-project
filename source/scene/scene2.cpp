@@ -20,6 +20,9 @@ void scene2::initialize() {
     std::cout << "Scene 2 init" << std::endl;
 
     SaveGame::initialize();
+
+    Assets::load3dSprite("new/mist", "mist", 0, 64, 128, false);
+	Assets::load3dPallete("new/mist", "mist", 0);
 }
 
 void scene2::update() {
@@ -48,5 +51,14 @@ void scene2::update() {
         } else {
             std::cout << "Load failed! fat not supported" << std::endl;
         }
+    }
+
+    if (SNF::getKeys(Key::RIGHT, KeyPhase::held)) {
+        NGObject* obj = new NGObject(Random::string(5), Assets::getSprite("mist"), Assets::getPallete("mist"));
+        obj->x = Random::range(256);
+        obj->y = Random::range(192);
+        NGMain::getInstance()->get_scene()->addChild(obj);
+
+        i++;
     }
 }

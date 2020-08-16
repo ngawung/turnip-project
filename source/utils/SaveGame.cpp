@@ -1,5 +1,7 @@
 #include <iostream>
 #include <sstream>
+#include <unistd.h>
+
 #include <fat.h>
 #include "SaveGame.h"
 
@@ -10,6 +12,9 @@ void SaveGame::initialize() {
     _fat = fatInitDefault();
 
     if (!_fat) std::cout << "Warning fat not supported!" << std::endl;
+
+    // change default directory back to nitrofs
+    chdir("nitro:/");
 }
 
 bool SaveGame::save(const void* data, std::string filename) {

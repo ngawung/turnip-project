@@ -12,8 +12,8 @@ int main() {
 
 	NGMain* game = new NGMain(true);
 	
-	Assets::load3dSprite("new/mist", "mist", 0, 64, 128, false);
-	Assets::load3dPallete("new/mist", "mist", 0);
+	// Assets::load3dSprite("new/mist", "mist", 0, 64, 128, false);
+	// Assets::load3dPallete("new/mist", "mist", 0);
 	
 	game->set_scene(new scene2());
 	
