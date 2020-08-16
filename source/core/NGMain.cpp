@@ -43,6 +43,8 @@ void NGMain::initialize() {
 
     if (_console) enableConsole();
     std::cout << "Game Initialize" << std::endl;
+
+    SaveGame::initialize();
 }
 
 void NGMain::update() {

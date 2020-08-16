@@ -1,11 +1,8 @@
 #include <iostream>
 #include <fstream>
 
-#include "NGMain.h"
 #include "scene1.h"
 #include "scene2.h"
-#include "Random.h"
-#include "Assets.h"
 
 class Student {
     public:
@@ -19,8 +16,6 @@ scene2::scene2() {
 void scene2::initialize() {
     std::cout << "Scene 2 init" << std::endl;
 
-    SaveGame::initialize();
-
     Assets::load3dSprite("new/mist", "mist", 0, 64, 128, false);
 	Assets::load3dPallete("new/mist", "mist", 0);
 }
@@ -32,8 +27,9 @@ void scene2::update() {
             strcpy(one.var, Random::string(10).c_str());
             std::cout << "Saving random string: " << one.var << std::endl;
 
-            std::ofstream ofs("fat:/savefile.sav", std::ios::binary);
-            ofs.write((char*)&one, sizeof(one));
+            std::cout << "size1: " << sizeof(one) << std::endl;
+
+            SaveGame::save(&one, "slot_1");
 
         } else {
             std::cout << "Save failed! fat not supported" << std::endl;
@@ -44,8 +40,7 @@ void scene2::update() {
         if (SaveGame::isFatSupported()) {
             Student two;
 
-            std::ifstream ifs("fat:/savefile.sav", std::ios::binary);
-            ifs.read((char*)&two, sizeof(two));
+            SaveGame::load(&two, "slot_1");
 
             std::cout << "Hasil load: " << two.var << std::endl;
         } else {

@@ -1,5 +1,4 @@
 #include <iostream>
-#include <sstream>
 #include <unistd.h>
 
 #include <fat.h>
@@ -17,45 +16,48 @@ void SaveGame::initialize() {
     chdir("nitro:/");
 }
 
-bool SaveGame::save(const void* data, std::string filename) {
-    // using stringstream
-    std::stringstream ss;
-    ss << "fat:/" << filename << ".sav";
+// bool SaveGame::save(const char* data, std::string filename) {
+//     // using stringstream
+//     std::stringstream ss;
+//     ss << "fat:/" << filename << ".sav";
 
-    // convert ss to string
-    std::string str(ss.str());
+//     // convert ss to string
+//     std::string str(ss.str());
 
-    FILE* savefile = fopen(str.c_str() ,"wb");
-    if (savefile) {
-        fwrite(data, 1, sizeof(data), savefile);
-        fclose(savefile);
-        return true;
-    } else {
-        std::cout << "Failed to open savefile" <<std::endl;
-        fclose(savefile);
-        return false;
-    }
-}
+//     std::ofstream ofs(str.c_str(), std::ios::binary);
 
-bool SaveGame::load(void* data, std::string filename) {
-    // using stringstream
-    std::stringstream ss;
-    ss << "fat:/" << filename << ".sav";
+//      std::cout << "size2: " << sizeof(data) << std::endl;
+    
+//     if (ofs.is_open()) {
+//         ofs.write(data, sizeof(data));
+//         ofs.close();
+//         return true;
+//     } else {
+//         ofs.close();
+//         return false;
+//     }
+// }
 
-    // convert ss to string
-    std::string str(ss.str());
+// bool SaveGame::load(char* data, std::string filename) {
+//     // using stringstream
+//     std::stringstream ss;
+//     ss << "fat:/" << filename << ".sav";
 
-    FILE* savefile = fopen(str.c_str() ,"rb");
-    if (savefile) {
-        fread(&data, 1, sizeof(data), savefile);
-        fclose(savefile);
-        return true;
-    } else {
-        std::cout << "Failed to open savefile" <<std::endl;
-        fclose(savefile);
-        return false;
-    }
-}
+//     // convert ss to string
+//     std::string str(ss.str());
+
+//     std::cout << "size3: " << sizeof(data) << std::endl;
+
+//     std::ifstream ifs(str.c_str(), std::ios::binary);
+//     if (ifs.is_open()) {
+//         ifs.read(data, sizeof(data));
+//         ifs.close();
+//         return true;
+//     } else {
+//         ifs.close();
+//         return false;
+//     }
+// }
 
 bool SaveGame::isFatSupported() {
     return _fat;

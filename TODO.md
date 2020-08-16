@@ -4,7 +4,7 @@ currently working on
 - [ ] add more rng function
 - [ ] bmfont manager class
 - [x] member intialization (done i guess?? im only using this for const and class)
-- [ ] add save feature (im struggling... it doesnt workk)
+- [x] add save feature (im struggling... it doesnt workk)
 - [ ]
 
 done
