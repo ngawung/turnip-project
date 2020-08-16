@@ -52,9 +52,3 @@ jobs:
         with:
           name: "mpcf"
           path: dist/patch/turnip-project-mpcf.nds
-      
-      - name: "Upload fat image"
-        uses: actions/upload-artifact@v2
-        with:
-          name: "fat"
-          path: dist/fat/drastic_dldi.img
