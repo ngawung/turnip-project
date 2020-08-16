@@ -2,7 +2,7 @@
 #include <unistd.h>
 
 #include <fat.h>
-#include "SaveGame.h"
+#include "SaveGame.hpp"
 
 bool SaveGame::_fat = false;
 void* SaveGame::_data = nullptr;

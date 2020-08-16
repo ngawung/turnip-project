@@ -1,5 +1,5 @@
 #include <algorithm>
-#include "Random.h"
+#include "Random.hpp"
 
 // generate random string
 std::string Random::string(size_t length) {

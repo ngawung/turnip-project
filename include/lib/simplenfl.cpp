@@ -1,6 +1,6 @@
 #include <nf_lib.h>
 
-#include "simplenfl.h"
+#include "simplenfl.hpp"
 
 void SNF::loadsprite(int screen, int ramslot, int vramslot, int width, int height, const char *dir, const char *dir2, bool transflag) {
     NF_LoadSpriteGfx(dir, ramslot, width, height);

@@ -1,4 +1,4 @@
-#include "NGScene.h"
+#include "NGScene.hpp"
 
 NGScene::NGScene() {
 

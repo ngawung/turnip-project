@@ -1,5 +1,5 @@
 #include <algorithm>
-#include "Color.h"
+#include "Color.hpp"
 
 void RGB::set(int8_t r, int8_t g, int8_t b) {
     this->r = r;

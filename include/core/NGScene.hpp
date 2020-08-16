@@ -1,6 +1,6 @@
 #pragma once
 
-#include "NGObject.h"
+#include "NGObject.hpp"
 
 
 class NGScene {

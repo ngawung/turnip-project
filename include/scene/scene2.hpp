@@ -1,14 +1,15 @@
 #pragma once
 
-#include "NGScene.h"
+#include "NGMain.hpp"
+#include "NGScene.hpp"
 
-class scene1 : public NGScene {
+class scene2 : public NGScene {
     public:
         int i;
     private:
     
     public:
-        scene1();
+        scene2();
         void initialize() override;
         void update() override;
     private:

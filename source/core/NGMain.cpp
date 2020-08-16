@@ -1,4 +1,4 @@
-#include "NGMain.h"
+#include "NGMain.hpp"
 
 NGMain* NGMain::_instance = 0;
 

@@ -10,12 +10,12 @@
 #include <nds.h>
 #include <nf_lib.h>
 
-#include "simplenfl.h"
-#include "STween.h"
-#include "Random.h"
-#include "Assets.h"
-#include "TransformObject.h"
-#include "SaveGame.h"
+#include "simplenfl.hpp"
+#include "STween.hpp"
+#include "Random.hpp"
+#include "Assets.hpp"
+#include "TransformObject.hpp"
+#include "SaveGame.hpp"
 
 
 typedef struct ObjectBound {

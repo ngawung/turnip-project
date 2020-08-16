@@ -1,5 +1,5 @@
 #include <algorithm>
-#include "TransformObject.h"
+#include "TransformObject.hpp"
 
 // convert 0-360 to 0-512
 int TransformObject::rotate(int angle) {

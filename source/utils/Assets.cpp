@@ -2,7 +2,7 @@
 #include <string>
 
 #include "nf_lib.h"
-#include "Assets.h"
+#include "Assets.hpp"
 
 // ram vram 256
 void Assets::load3dSprite(const char* file, std::string name, uint16_t ramslot, uint16_t width, uint16_t height, bool keepframe) {

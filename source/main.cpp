@@ -3,9 +3,9 @@
 #include <nds.h>
 #include <nf_lib.h>
 
-#include "NGMain.h"
-#include "Assets.h"
-#include "scene2.h"
+#include "NGMain.hpp"
+#include "Assets.hpp"
+#include "scene2.hpp"
 
 int main() {
 

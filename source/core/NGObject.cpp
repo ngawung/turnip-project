@@ -1,4 +1,4 @@
-#include "NGObject.h"
+#include "NGObject.hpp"
 
 NGObject::NGObject(std::string name, uint16_t sprite, uint16_t pallete) 
 	:bound(0, 0, 0, 0)

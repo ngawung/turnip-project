@@ -1,8 +1,8 @@
 #include <iostream>
 #include <fstream>
 
-#include "scene1.h"
-#include "scene2.h"
+#include "scene1.hpp"
+#include "scene2.hpp"
 
 class Student {
     public:
