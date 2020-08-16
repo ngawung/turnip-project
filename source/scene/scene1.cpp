@@ -1,8 +1,6 @@
 #include "scene1.h"
 #include "scene2.h"
 
-#include <fat.h>
-
 NGObject* mist;
 STween::STween<int> tween;
 
@@ -15,27 +13,23 @@ void done(int val) {
     // std::cout << val << std::endl;
 }
 
-FILE* savefile;
-
-struct VariablesToSave {
-    std::string var3;
-} SaveData;
+struct test {
+    char str[10];
+};
 
 void scene1::initialize() {
-    std::cout << "Scene initialize" << std::endl;
 
-    std::cout << "Tekan UP buat save" << std::endl;
-    std::cout << "Tekan DOWN buat load" << std::endl;
+    std::cout << std::endl << "Tekan UP buat save" << std::endl;
+    std::cout << std::endl << "Tekan DOWN buat load" << std::endl;
 
     // mist = new NGObject(Random::string(5), Assets::getSprite("mist"), Assets::getPallete("mist"));
     // mist->bound.set(0, 0, 64, 128);
     // NGMain::getInstance()->get_scene()->addChild(mist);
 
-    
-
     // tween.From(i).To(256 - 64).Time(10.0).OnStep(done).Easing(STween::EasingFunction::CubicInOut);
 
-    fatInitDefault();
+    // init fat
+    SaveGame::initialize();
 }
 
 void scene1::update() {
@@ -62,28 +56,37 @@ void scene1::update() {
     // }
 
     if (SNF::getKeys(Key::UP, KeyPhase::release)) {
+        if (SaveGame::isFatSupported()) {
+            test testsave;
+            // Random::string(10).copy(testsave.str, 10);
+            strcpy(testsave.str, Random::string(10).c_str());
+            std::cout << "Saving Random number: (" << testsave.str << ")" << std::endl;
 
-        std::string random = Random::string(5);
-        SaveData.var3 = random;
+            // SaveGame::save(&var3, "save_slot1");
 
-        std::cout << "Generate Random string: (" << random << ")" << std::endl;
-
-
-        std::cout << "Save file" << std::endl;
-
-        savefile = fopen("fat:/savefile.sav","wb");
-        fwrite(&SaveData,1,sizeof(SaveData),savefile);
-        fclose(savefile);
+            FILE* savefile = fopen("fat:/savefile.sav" ,"wb");
+            fwrite(&testsave, 1, sizeof(&testsave), savefile);
+            fclose(savefile);
+        } else {
+            std::cout << "Save failed! fat not supported" << std::endl;
+        }
     }
 
     if (SNF::getKeys(Key::DOWN, KeyPhase::release)) {
-        std::cout << "Load file" << std::endl;
+        if (SaveGame::isFatSupported()) {
+            //int NewSaveData;
+            // SaveGame::load(&NewSaveData,"save_slot1");
 
-        savefile = fopen("fat:/savefile.sav","rb");
-        fread(&SaveData,1,sizeof(SaveData),savefile);
-        fclose(savefile);
+            test loadsave;
 
-         std::cout << "Hasil load = " << SaveData.var3 << std::endl;
+            FILE* savefile = fopen("fat:/savefile.sav" ,"rb");
+            fread(&loadsave, 1, sizeof(&loadsave), savefile);
+            fclose(savefile);
+
+            std::cout << "Hasil load = " << loadsave.str << std::endl;
+        } else {
+            std::cout << "Load failed! fat not supported" << std::endl;
+        }
 
         // NGObject* obj = new NGObject(Random::string(5), Assets::getSprite("mist"), Assets::getPallete("mist"));
         // obj->x = Random::range(256);

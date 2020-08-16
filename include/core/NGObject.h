@@ -15,6 +15,7 @@
 #include "Random.h"
 #include "Assets.h"
 #include "TransformObject.h"
+#include "SaveGame.h"
 
 
 typedef struct ObjectBound {
