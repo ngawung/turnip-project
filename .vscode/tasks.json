@@ -32,12 +32,22 @@
             "problemMatcher": []
         },
         {
+            "label": "make fat",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "fat"
+            ],
+            "problemMatcher": []
+        },
+        {
             "label": "run desmume",
             "type": "shell",
             "isBackground": true,
             "command": "/usr/games/desmume",
             "args": [
-                "${workspaceFolder}/dist/${workspaceFolderBasename}.nds"
+                "--cflash-image=${workspaceFolder}/drastic_dldi.img",
+                "${workspaceFolder}/dist/patch/${workspaceFolderBasename}-mpcf.nds"
             ],
             "presentation": {
                 "clear": true,
