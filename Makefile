@@ -68,11 +68,13 @@ TARGET		:=	$(shell basename $(CURDIR))
 BUILD		:=	build
 SOURCES		:=	source \
 				source/core \
+				source/graphic \
 				source/scene \
 				source/utils \
 				include/lib
 INCLUDES	:=	include \
 				include/core \
+				include/graphic \
 				include/scene \
 				include/utils \
 				include/lib

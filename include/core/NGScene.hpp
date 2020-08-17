@@ -1,12 +1,11 @@
 #pragma once
 
-#include "NGObject.hpp"
-
+#include "DisplayObject.hpp"
 
 class NGScene {
     public:
     private:
-        std::vector<NGObject*> children;
+        std::vector<DisplayObject*> children;
     
     public:
         NGScene();
@@ -17,14 +16,14 @@ class NGScene {
         virtual void initialize() = 0;
         virtual void update() = 0;
         
-        void destroy();
+        virtual void destroy();
 
-        NGObject* addChild(NGObject* child);
+        DisplayObject* addChild(DisplayObject* child);
         
-        NGObject* getChildByName(std::string name);
-        NGObject* getChildbyId(unsigned int id);
+        DisplayObject* getChildByName(std::string name);
+        DisplayObject* getChildbyId(unsigned int id);
         
-        bool removeChild(NGObject* child);
+        bool removeChild(DisplayObject* child);
         bool removeChildByName(std::string name);
         bool removeChildById(unsigned int id);
         bool removeChildAll();

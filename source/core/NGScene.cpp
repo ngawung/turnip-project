@@ -10,7 +10,7 @@ NGScene::~NGScene() {
 
 void NGScene::preUpdate() {
 	for (uint i=0; i<children.size(); i++) {
-		children[i]->update();
+		children[i]->preUpdate();
 	}
 
 	update();
@@ -21,7 +21,7 @@ void NGScene::destroy() {
 	removeChildAll();
 }
 
-NGObject* NGScene::addChild(NGObject* child) {
+DisplayObject* NGScene::addChild(DisplayObject* child) {
 	if (children.size() == 254) { // sometime it crash when there is 255 sprite in screen
 		std::cout << "Max child size reached";
 		return nullptr;
@@ -30,19 +30,19 @@ NGObject* NGScene::addChild(NGObject* child) {
 	// push child
 	children.push_back(child);
 
-	// get the last index
-	uint index = children.size() - 1;
+	// // get the last index
+	// uint index = children.size() - 1;
 
-	// render child
-	child->draw(index);
+	// initialize child
+	child->initialize();
 
 	// return child pointer
 	return child;
 }
         
-NGObject* NGScene::getChildByName(std::string name) {
+DisplayObject* NGScene::getChildByName(std::string name) {
 	for (unsigned int i=0; i<children.size(); i++) { 
-		if (children[i]->getName() == name) {
+		if (children[i]->get_name() == name) {
 			return children[i];
 		}
 	}
@@ -50,12 +50,12 @@ NGObject* NGScene::getChildByName(std::string name) {
 	return nullptr;
 }
 
-NGObject* NGScene::getChildbyId(unsigned int id) {
+DisplayObject* NGScene::getChildbyId(unsigned int id) {
 	if (id >= children.size()) return nullptr;
 	else return children[id];
 }
 
-bool NGScene::removeChild(NGObject* child) {
+bool NGScene::removeChild(DisplayObject* child) {
 	for (unsigned int i=0; i<children.size(); i++) {
 		if (children[i] == child) {
 			child->destroy();
@@ -69,7 +69,7 @@ bool NGScene::removeChild(NGObject* child) {
 }
 
 bool NGScene::removeChildByName(std::string name) {
-	NGObject* ptr = getChildByName(name);
+	DisplayObject* ptr = getChildByName(name);
 	if (ptr != nullptr) {
 		removeChild(ptr);
 		return true;
@@ -80,7 +80,7 @@ bool NGScene::removeChildByName(std::string name) {
 }
 
 bool NGScene::removeChildById(unsigned int id) {
-	NGObject* ptr = getChildbyId(id);
+	DisplayObject* ptr = getChildbyId(id);
 
 	if (ptr != nullptr) {
 		removeChild(ptr);
@@ -109,6 +109,6 @@ unsigned int NGScene::numChildren() {
 
 void NGScene::printName() {
 	for (unsigned int i=0; i<children.size(); i++) { 
-		std::cout << children[i]->getId() << ":" << children[i]->getName() << " " << children[i]->x << ":" << children[i]->y << std::endl;
+		std::cout << children[i]->get_id() << ":" << children[i]->get_name() << std::endl;
 	}
 }
