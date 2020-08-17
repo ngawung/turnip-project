@@ -1,7 +1,7 @@
 #include "NGObject.hpp"
 
 NGObject::NGObject(std::string name)
-	: _name(name)
+	: enableUpdate(false), _name(name)
 {
 	
 }
@@ -11,7 +11,7 @@ NGObject::~NGObject() {
 }
 
 void NGObject::preUpdate() {
-	update();
+	if (enableUpdate) update();
 }
 
 void NGObject::destroy() {
