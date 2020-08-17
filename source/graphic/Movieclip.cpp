@@ -7,6 +7,8 @@ Movieclip::Movieclip(std::string name, std::string sprite, std::string pallete)
 }
 
 void Movieclip::preUpdate() {
+	if (delay < 0) delay = 0;
+	
     if (_frame != frame) {
         if (frame < 0) frame = 0;
         NF_Set3dSpriteFrame(_id, frame);

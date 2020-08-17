@@ -30,10 +30,13 @@ DisplayObject* NGScene::addChild(DisplayObject* child) {
 	// push child
 	children.push_back(child);
 
-	// // get the last index
-	// uint index = children.size() - 1;
+	// get the last index
+	uint index = children.size() - 1;
 
-	// initialize child
+	// set child id to last index
+	child->set_id(index);
+
+	// initialize child (render)
 	child->initialize();
 
 	// return child pointer

@@ -38,8 +38,6 @@ class DisplayObject : public NGObject {
 
         DisplayObject(std::string name);
 
-        virtual void draw() = 0;
-
         bool getTouch(KeyPhase phase);
 
     private:

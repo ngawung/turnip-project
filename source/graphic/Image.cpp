@@ -20,6 +20,9 @@ void Image::preUpdate() {
     }
 
     if (_scaleX != scaleX || _scaleY != scaleY) {
+        scaleX = std::clamp(static_cast<int>(scaleX), 0, 800);
+        scaleY = std::clamp(static_cast<int>(scaleY), 0, 800);
+        
         NF_Scale3dSprite(_id, TransformObject::scale(scaleX), TransformObject::scale(scaleY));
         _scaleX = scaleX;
         _scaleY = scaleY;

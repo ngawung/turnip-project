@@ -1,6 +1,8 @@
 #pragma once
 
 #include "DisplayObject.hpp"
+#include "Image.hpp"
+#include "Movieclip.hpp"
 
 class NGScene {
     public:

@@ -14,6 +14,14 @@ void NGObject::preUpdate() {
 	if (enableUpdate) update();
 }
 
+void NGObject::initialize() {
+	
+}
+
+void NGObject::update() {
+	
+}
+
 void NGObject::destroy() {
 	
 }

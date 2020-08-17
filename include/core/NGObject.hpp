@@ -60,8 +60,8 @@ class NGObject {
         // void draw(uint16_t id);
 		virtual void preUpdate();
 
-		virtual void initialize() = 0;
-        virtual void update() = 0;
+		virtual void initialize();
+        virtual void update();
 		
         virtual void destroy();
 
