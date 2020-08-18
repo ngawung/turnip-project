@@ -6,10 +6,11 @@ NGMain* NGMain::getInstance() {
     return _instance;
 }
 
-NGMain::NGMain(bool console) {
+NGMain::NGMain(uint8_t screen3D = 1, bool console = false) {
     NGMain* ptr = this;
     _instance = ptr;
     _console = console;
+    _screen3D = screen3D;
 
     initialize();
 }
@@ -18,8 +19,8 @@ void NGMain::initialize() {
     srand(time(NULL));
 
     // setup screen
-    NF_Set3D(SCREEN_1, 0);
-    NF_Set2D(SCREEN_0, 0);
+    NF_Set3D(_screen3D, 0);
+    NF_Set2D(SCREEN_1, 0);
 
     NF_SetRootFolder("NITROFS");
 
@@ -28,8 +29,10 @@ void NGMain::initialize() {
     NF_InitTiledBgSys(SCREEN_0);
     NF_InitTiledBgSys(SCREEN_1);
 
-    // update 3d sprite
+    // setup sprite buffer
     NF_InitSpriteBuffers();
+    
+    // update 3d sprite
     NF_Init3dSpriteSys();
     NF_3dSpritesLayer(2);  //default 3d sprite layer 2
 
@@ -55,8 +58,12 @@ void NGMain::update() {
     NF_ClearTextLayer(0, 1); //for now screen 0 & layer 1 only
 
     //update scene
-    if (_currentScene != nullptr) {
-        _currentScene->preUpdate();
+    if (_mainScene != nullptr) {
+        _mainScene->preUpdate();
+    }
+
+    if (_subScene != nullptr) {
+        _subScene->preUpdate();
     }
 
     // draw 3d sprite
@@ -73,9 +80,14 @@ void NGMain::update() {
 }
 
 void NGMain::destroy() {
-    if (_currentScene != nullptr) {
-        _currentScene->destroy();
-        delete _currentScene;
+    if (_mainScene != nullptr) {
+        _mainScene->destroy();
+        delete _mainScene;
+    }
+
+    if (_subScene != nullptr) {
+        _subScene->destroy();
+        delete _subScene;
     }
 }
 
@@ -85,17 +97,33 @@ void NGMain::enableConsole() {
 
 // GET && SET
 
-NGScene* NGMain::get_scene() {
-    return _currentScene;
+NGScene* NGMain::get_mainScene() {
+    return _mainScene;
 }
 
-void NGMain::set_scene(NGScene* scene) {
-    if (_currentScene != nullptr) {
-        std::cout << "Call destroy" << std::endl;
-        _currentScene->destroy();
-        delete _currentScene;
+void NGMain::set_mainScene(NGScene* scene) {
+    if (_mainScene != nullptr) {
+        _mainScene->destroy();
+        delete _mainScene;
     }
 
-    _currentScene = scene;
-    _currentScene->initialize();
+    _mainScene = scene;
+    _mainScene->set_screen(_screen3D);
+    _mainScene->initialize();
+}
+
+NGScene* NGMain::get_subScene() {
+    return _subScene;
+}
+
+void NGMain::set_subScene(NGScene* scene) {
+    if (_subScene != nullptr) {
+        _subScene->destroy();
+        delete _subScene;
+    }
+
+    _subScene = scene;
+    if (_screen3D == 0) _subScene->set_screen(1);
+    else if (_screen3D == 1) _subScene->set_screen(0);
+    _subScene->initialize();
 }

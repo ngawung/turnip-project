@@ -121,6 +121,16 @@ bool NGScene::removeChildAll() {
 	return true;
 }
 
+// GET && SET
+
+uint8_t NGScene::get_screen() {
+	return _screen;
+}
+
+void NGScene::set_screen(uint8_t screen) {
+	_screen = screen;
+}
+
 unsigned int NGScene::numChildren() {
 	return children.size();
 }

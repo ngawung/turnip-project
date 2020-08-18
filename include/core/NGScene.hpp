@@ -8,6 +8,7 @@
 class NGScene {
     public:
     private:
+        uint8_t _screen;
         uint16_t _numSprite2D;
         uint16_t _numSprite3D;
         
@@ -33,6 +34,11 @@ class NGScene {
         bool removeChildByName(std::string name);
         bool removeChildById(unsigned int id);
         bool removeChildAll();
+
+        // Get && Set
+
+        uint8_t get_screen();
+        void set_screen(uint8_t screen);
         
         unsigned int numChildren();
         void printName();

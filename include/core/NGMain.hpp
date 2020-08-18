@@ -21,14 +21,17 @@ class NGMain {
     public:
     private:
         static NGMain* _instance;
-        NGScene* _currentScene;
+        
+        NGScene* _mainScene;
+        NGScene* _subScene;
 
+        uint8_t _screen3D;
         bool _console;
     
     public:
         static NGMain* getInstance();
 
-        NGMain(bool console = false);
+        NGMain(uint8_t screen3D, bool console);
 
         void initialize();
         void update();
@@ -38,8 +41,11 @@ class NGMain {
 
         // GET && SET
 
-        NGScene* get_scene();
-        void set_scene(NGScene* scene);
+        NGScene* get_mainScene();
+        void set_mainScene(NGScene* scene);
+        
+        NGScene* get_subScene();
+        void set_subScene(NGScene* scene);
 
     private:
 };
