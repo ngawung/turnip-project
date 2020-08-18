@@ -22,8 +22,9 @@ void NGScene::destroy() {
 }
 
 DisplayObject* NGScene::addChild(DisplayObject* child) {
-	if (children.size() == 254) { // sometime it crash when there is 255 sprite in screen
-		std::cout << "Max child size reached";
+	// limit sprite on screen
+	if (child->isSprite() && DisplayObject::get_numSprite() >= 254) { // 254 instead of 255, sometime it crash when there is 255 sprite in screen
+		std::cout << "Max sprite limit reached";
 		return nullptr;
 	}
 

@@ -1,7 +1,7 @@
 #include "DisplayObject.hpp"
 
 DisplayObject::DisplayObject(std::string name) 
-    : NGObject(name), x(0), rotation(0), scaleX(100), scaleY(100), layer(0), bound(0, 0, 0, 0)
+    : NGObject(name), x(0), rotation(0), scaleX(100), scaleY(100), layer(0), bound(0, 0, 0, 0), visible(true), _isSprite(false)
 {
     
 }
@@ -23,4 +23,16 @@ bool DisplayObject::getTouch(KeyPhase phase) {
 		bound.height,
 		phase
 	);
+}
+
+// Get && Set
+
+bool DisplayObject::isSprite() {
+	return _isSprite;
+}
+
+// Static
+
+uint16_t DisplayObject::get_numSprite() {
+	return _numSprite;
 }

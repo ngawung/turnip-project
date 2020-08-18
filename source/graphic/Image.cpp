@@ -2,12 +2,18 @@
 #include "Image.hpp"
 
 Image::Image(std::string name, std::string sprite, std::string pallete)
-    : DisplayObject(name), _sprite(sprite), _pallete(pallete), _x(x), _y(y), _rotation(rotation), _scaleX(scaleX), _scaleY(scaleY), _layer(layer)
+    : DisplayObject(name), _sprite(sprite), _pallete(pallete), _x(x), _y(y), _rotation(rotation), _scaleX(scaleX), _scaleY(scaleY), _layer(layer), _visible(visible)
 {
-
+    _isSprite = true;
 }
 
 void Image::preUpdate() {
+    if (_visible != visible) {
+        NF_Show3dSprite(_id, visible);
+        _visible = visible;
+        if (!_visible) return;
+    }
+
     if (_x != x || _y != y) {
         NF_Move3dSprite(_id, x, y);
         _x = x;
@@ -39,10 +45,12 @@ void Image::preUpdate() {
 
 void Image::initialize() {
     NF_Create3dSprite(_id, Assets::getSprite(_sprite), Assets::getSprite(_pallete), x, y);
+    _numSprite++;
 }
 
 void Image::destroy() {
     NF_Delete3dSprite(_id);
+    _numSprite--;
 
     Image::DisplayObject::destroy();
 }

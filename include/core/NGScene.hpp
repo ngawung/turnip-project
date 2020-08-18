@@ -3,6 +3,7 @@
 #include "DisplayObject.hpp"
 #include "Image.hpp"
 #include "Movieclip.hpp"
+#include "BMFont.hpp"
 
 class NGScene {
     public:

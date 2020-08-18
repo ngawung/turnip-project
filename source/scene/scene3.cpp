@@ -1,6 +1,7 @@
 #include "scene3.hpp"
 
 Movieclip* mist;
+BMFont* font1;
 
 scene3::scene3() {
 
@@ -12,8 +13,11 @@ void scene3::initialize() {
     Assets::load3dSprite("new/anim", "anim", 0, 32, 32, false);
     Assets::load3dPallete("new/anim", "anim", 0);
 
-    NF_WriteText(SCREEN_0, LAYER_1, 0, 0, "Test 1...2..3..!!");
-    NF_WriteText(SCREEN_0, LAYER_1, 1, 1, "Test 1...2..3..!!");
+    // NF_WriteText(SCREEN_0, LAYER_1, 0, 1, "Test 1...2..3..!!");
+    // NF_WriteText(SCREEN_0, LAYER_1, 3, 1, "Test 1...2..3..!!");
+
+    font1 = new BMFont("font1", "Test font");
+    addChild(font1);
 
     mist = new Movieclip("mist", "anim", "anim");
     addChild(mist);
@@ -23,10 +27,10 @@ void scene3::initialize() {
 
 void scene3::update() {
 
-    if (SNF::getKeys(Key::UP, KeyPhase::held)) mist->y -= 3;
-    if (SNF::getKeys(Key::DOWN, KeyPhase::held)) mist->y += 3;
-    if (SNF::getKeys(Key::LEFT, KeyPhase::held)) mist->x -= 3;
-    if (SNF::getKeys(Key::RIGHT, KeyPhase::held)) mist->x += 3;
+    if (SNF::getKeys(Key::UP, KeyPhase::held)) font1->y -= 3;
+    if (SNF::getKeys(Key::DOWN, KeyPhase::held)) font1->y += 3;
+    if (SNF::getKeys(Key::LEFT, KeyPhase::held)) font1->x -= 3;
+    if (SNF::getKeys(Key::RIGHT, KeyPhase::held)) font1->x += 3;
 
     if (SNF::getKeys(Key::A, KeyPhase::held)) {
         mist->scaleX += 5;

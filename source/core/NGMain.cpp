@@ -51,6 +51,9 @@ void NGMain::update() {
     // update input
     scanKeys();
 
+    // clear bmfont before scene update
+    NF_ClearTextLayer(0, 1); //for now screen 0 & layer 1 only
+
     //update scene
     if (_currentScene != nullptr) {
         _currentScene->preUpdate();

@@ -14,6 +14,7 @@ class Image : public DisplayObject {
         int16_t _scaleX;
         int16_t _scaleY;
         int16_t _layer;
+        int16_t _visible;
     
     public:
         Image(std::string name, std::string sprite, std::string pallete);

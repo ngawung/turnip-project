@@ -32,13 +32,25 @@ class DisplayObject : public NGObject {
         int16_t scaleY;
         int16_t layer;
         ObjectBound bound;
-    private:
+		bool visible;
+
+    protected:
+		bool _isSprite;
+		static inline uint16_t _numSprite = 0;
     
     public:
 
         DisplayObject(std::string name);
 
         bool getTouch(KeyPhase phase);
+
+		// Get && Set
+
+		bool isSprite();
+
+		// static
+
+		static uint16_t get_numSprite();
 
     private:
 };
