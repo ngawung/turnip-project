@@ -2,9 +2,11 @@ currently working on
 - [ ] Running text
 - [ ] finish all default bmfont character
 - [ ] add more rng function
-- [ ] bmfont manager class
+- [x] bmfont manager class
 - [x] member intialization (done i guess?? im only using this for const and class)
 - [x] add save feature (im struggling... it doesnt workk)
+- [ ] using scene manager for both screen
+- [ ] add support for 2d render
 - [ ]
 
 done
