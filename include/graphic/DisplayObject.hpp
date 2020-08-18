@@ -35,7 +35,7 @@ class DisplayObject : public NGObject {
 		bool visible;
 
     protected:
-		bool _isSprite;
+		std::string _type;
 		static inline uint16_t _numSprite = 0;
     
     public:
@@ -46,7 +46,7 @@ class DisplayObject : public NGObject {
 
 		// Get && Set
 
-		bool isSprite();
+		std::string get_type();
 
 		// static
 

@@ -18,8 +18,8 @@ void NGMain::initialize() {
     srand(time(NULL));
 
     // setup screen
-    NF_Set3D(SCREEN_0, 0);
-    NF_Set2D(SCREEN_1, 0);
+    NF_Set3D(SCREEN_1, 0);
+    NF_Set2D(SCREEN_0, 0);
 
     NF_SetRootFolder("NITROFS");
 

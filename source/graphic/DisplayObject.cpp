@@ -1,9 +1,9 @@
 #include "DisplayObject.hpp"
 
 DisplayObject::DisplayObject(std::string name) 
-    : NGObject(name), x(0), rotation(0), scaleX(100), scaleY(100), layer(0), bound(0, 0, 0, 0), visible(true), _isSprite(false)
+    : NGObject(name), x(0), rotation(0), scaleX(100), scaleY(100), layer(0), bound(0, 0, 0, 0), visible(true), _type("DisplayObject")
 {
-    
+
 }
 
 // Touch
@@ -27,8 +27,8 @@ bool DisplayObject::getTouch(KeyPhase phase) {
 
 // Get && Set
 
-bool DisplayObject::isSprite() {
-	return _isSprite;
+std::string DisplayObject::get_type() {
+	return _type;
 }
 
 // Static

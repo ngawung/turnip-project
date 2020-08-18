@@ -1,6 +1,8 @@
 #include "NGScene.hpp"
 
-NGScene::NGScene() {
+NGScene::NGScene() 
+	: _numSprite2D(0), _numSprite3D(0)
+{
 
 }
 
@@ -23,8 +25,12 @@ void NGScene::destroy() {
 
 DisplayObject* NGScene::addChild(DisplayObject* child) {
 	// limit sprite on screen
-	if (child->isSprite() && DisplayObject::get_numSprite() >= 254) { // 254 instead of 255, sometime it crash when there is 255 sprite in screen
-		std::cout << "Max sprite limit reached";
+
+	if (child->get_type() == "Sprite3D" && _numSprite3D >= 254) { // 254 instead of 255, sometime it crash when there is 255 sprite in screen
+		std::cout << "Max Sprite3D limit reached" << std::endl;
+		return nullptr;
+	} else if (child->get_type() == "Sprite2D" && _numSprite3D >= 127) { // 127 instead of 128, sometime it crash when there is 128 sprite in screen
+		std::cout << "Max Sprite2D limit reached" << std::endl;
 		return nullptr;
 	}
 
@@ -39,6 +45,10 @@ DisplayObject* NGScene::addChild(DisplayObject* child) {
 
 	// initialize child (render)
 	child->initialize();
+
+	// incrase num
+	if (child->get_type() == "Sprite3D") _numSprite3D++;
+	if (child->get_type() == "Sprite2D") _numSprite2D++;
 
 	// return child pointer
 	return child;
@@ -62,6 +72,10 @@ DisplayObject* NGScene::getChildbyId(unsigned int id) {
 bool NGScene::removeChild(DisplayObject* child) {
 	for (unsigned int i=0; i<children.size(); i++) {
 		if (children[i] == child) {
+			// decrease num
+			if (child->get_type() == "Sprite3D") _numSprite3D--;
+			if (child->get_type() == "Sprite2D") _numSprite2D--;
+			
 			child->destroy();
 			children.erase(children.begin() + i);
 			delete child;
@@ -99,6 +113,8 @@ bool NGScene::removeChildAll() {
 	for (unsigned int i=0; i<children.size(); i++) {
 		children[i]->destroy();
 		delete children[i];
+
+		_numSprite3D = _numSprite2D = 0;
 	}
 
 	children.clear();

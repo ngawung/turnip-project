@@ -8,6 +8,9 @@
 class NGScene {
     public:
     private:
+        uint16_t _numSprite2D;
+        uint16_t _numSprite3D;
+        
         std::vector<DisplayObject*> children;
     
     public:
@@ -22,10 +25,10 @@ class NGScene {
         virtual void destroy();
 
         DisplayObject* addChild(DisplayObject* child);
-        
+         
         DisplayObject* getChildByName(std::string name);
         DisplayObject* getChildbyId(unsigned int id);
-        
+         
         bool removeChild(DisplayObject* child);
         bool removeChildByName(std::string name);
         bool removeChildById(unsigned int id);

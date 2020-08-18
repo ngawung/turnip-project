@@ -3,7 +3,7 @@
 BMFont::BMFont(std::string _name, std::string _text = "")
     : DisplayObject(_name), text(_text)
 {
-
+    _type = "BMFont";
 }
 
 void BMFont::preUpdate() {
