@@ -1,9 +1,13 @@
 #pragma once
 
 #include "DisplayObject.hpp"
+
 #include "Image.hpp"
 #include "Movieclip.hpp"
+
 #include "BMFont.hpp"
+
+#include "Image2D.hpp"
 
 class NGScene {
     public:

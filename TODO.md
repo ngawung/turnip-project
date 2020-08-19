@@ -5,7 +5,7 @@ currently working on
 - [x] bmfont manager class
 - [x] member intialization (done i guess?? im only using this for const and class)
 - [x] add save feature (im struggling... it doesnt workk)
-- [ ] using scene manager for both screen
+- [x] using scene manager for both screen
 - [ ] add support for 2d render
 - [ ]
 
@@ -33,6 +33,17 @@ feature
 - [ ] speaking of rectangle... adding shape class might be fun
 - [ ] 
 
+random
+- [ ] move this todo list to trello
+- [ ]
+
+
+
+
+
+
+
+
 big feature that may take a very long time to finish
 - [ ] ahh yess.. game engine would'nt be game engine without physic
 - [ ] improved 2d transformation with matrix
@@ -41,7 +52,3 @@ big feature that may take a very long time to finish
 - [ ] tiled map from json or maybe with famous tiled software
 - [ ] moaarr post processing shaderr boiii...
 - [ ] 
-
-random
-- [ ] move this todo list to trello
-- [ ]

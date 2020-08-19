@@ -48,9 +48,5 @@ class DisplayObject : public NGObject {
 
 		std::string get_type();
 
-		// static
-
-		static uint16_t get_numSprite();
-
     private:
 };

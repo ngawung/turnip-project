@@ -10,12 +10,12 @@
 int main() {
 
 
-	NGMain* game = new NGMain(1, true);
+	NGMain* game = new NGMain(1, false);
 	
 	// Assets::load3dSprite("new/mist", "mist", 0, 64, 128, false);
 	// Assets::load3dPallete("new/mist", "mist", 0);
 	
-	game->set_mainScene(new scene3());
+	game->set_subScene(new scene3());
 
 	while(1) {
 		game->update();

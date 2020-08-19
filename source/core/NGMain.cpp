@@ -10,7 +10,10 @@ NGMain::NGMain(uint8_t screen3D = 1, bool console = false) {
     NGMain* ptr = this;
     _instance = ptr;
     _console = console;
+
     _screen3D = screen3D;
+    // if (_screen3D == 0) _screen2D = 1;
+    // else if (_screen3D == 1) _screen2D = 0;
 
     initialize();
 }
@@ -32,9 +35,12 @@ void NGMain::initialize() {
     // setup sprite buffer
     NF_InitSpriteBuffers();
     
-    // update 3d sprite
+    // init 3d sprite
     NF_Init3dSpriteSys();
     NF_3dSpritesLayer(2);  //default 3d sprite layer 2
+
+    // init 2d sprite
+    NF_InitSpriteSys(SCREEN_1);
 
     // setup bmfont
     NF_InitTextSys(SCREEN_0);
@@ -70,10 +76,18 @@ void NGMain::update() {
     NF_Draw3dSprites();
     glFlush(0);
 
+    // draw 2d sprite
+    NF_SpriteOamSet(SCREEN_1);
+
+    // ==============//
     swiWaitForVBlank();
+    // ==============//
 
     // update animation
     NF_Update3dSpritesGfx();
+
+    // update oam
+    oamUpdate(&oamSub);
 
     // update bmfont
     NF_UpdateTextLayers();
@@ -108,7 +122,7 @@ void NGMain::set_mainScene(NGScene* scene) {
     }
 
     _mainScene = scene;
-    _mainScene->set_screen(_screen3D);
+    _mainScene->set_screen(0);
     _mainScene->initialize();
 }
 
@@ -123,7 +137,6 @@ void NGMain::set_subScene(NGScene* scene) {
     }
 
     _subScene = scene;
-    if (_screen3D == 0) _subScene->set_screen(1);
-    else if (_screen3D == 1) _subScene->set_screen(0);
+    _subScene->set_screen(1);
     _subScene->initialize();
 }

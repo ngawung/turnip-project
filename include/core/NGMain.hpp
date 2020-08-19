@@ -26,6 +26,7 @@ class NGMain {
         NGScene* _subScene;
 
         uint8_t _screen3D;
+        uint8_t _screen2D;
         bool _console;
     
     public:
