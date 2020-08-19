@@ -1,14 +1,9 @@
 currently working on
+- [ ] fixing the goddamn bmfont >:(((((((
 - [ ] Running text
 - [ ] finish all default bmfont character
 - [ ] add more rng function
-- [x] bmfont manager class
-- [x] member intialization (done i guess?? im only using this for const and class)
-- [x] add save feature (im struggling... it doesnt workk)
-- [x] using scene manager for both screen
-- [ ] add support for 2d render
 - [ ]
-
 done
 - [x] using pointer instead of reff
 - [x] basic transform
@@ -21,6 +16,11 @@ done
 - [x] better input (?? im just improving simplenfl basically)
 - [x] simple tween system (using lib)
 - [x] modify simplenfl
+- [x] bmfont manager class
+- [x] member intialization (done i guess?? im only using this for const and class)
+- [x] add save feature (im struggling... it doesnt workk)
+- [x] using scene manager for both screen
+- [x] add support for 2d render
 - [ ] 
 
 feature
