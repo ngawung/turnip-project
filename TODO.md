@@ -1,5 +1,5 @@
 currently working on
-- [ ] fixing the goddamn bmfont >:(((((((
+- [x] fixing the goddamn bmfont >:(((((((
 - [ ] Running text
 - [ ] finish all default bmfont character
 - [ ] add more rng function

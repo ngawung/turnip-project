@@ -16,22 +16,22 @@ void scene2::initialize() {
     Assets::loadSprite3D("cat3D", true);
     Assets::loadPallete3D("cat3D");
 
-    NF_CreateTiledBg(get_screen(), 3, "nfl");
+    // NF_CreateTiledBg(get_screen(), 3, "nfl");
 
-    // font1 = new BMFont("font1", "Test font");
-    // addChild(font1);
+    font1 = new BMFont("font1", "Test font");
+    addChild(font1);
 
-    mist = new Movieclip("mist", "cat3D", "cat3D");
-    addChild(mist);
+    // mist = new Movieclip("mist", "cat3D", "cat3D");
+    // addChild(mist);
 
     mist->quickPlay(std::vector<int>{0,1}, 1);
 }
 
 void scene2::update() {
-    if (SNF::getKeys(Key::UP, KeyPhase::held)) mist->y -= 3;
-    if (SNF::getKeys(Key::DOWN, KeyPhase::held)) mist->y += 3;
-    if (SNF::getKeys(Key::LEFT, KeyPhase::held)) mist->x -= 3;
-    if (SNF::getKeys(Key::RIGHT, KeyPhase::held)) mist->x += 3;
+    if (SNF::getKeys(Key::UP, KeyPhase::held)) font1->y -= 3;
+    if (SNF::getKeys(Key::DOWN, KeyPhase::held)) font1->y += 3;
+    if (SNF::getKeys(Key::LEFT, KeyPhase::held)) font1->x -= 3;
+    if (SNF::getKeys(Key::RIGHT, KeyPhase::held)) font1->x += 3;
 
     if (SNF::getKeys(Key::A, KeyPhase::held)) {
         mist->scaleX += 5;

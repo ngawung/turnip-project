@@ -12,7 +12,7 @@
 int main() {
 
 
-	NGMain* game = new NGMain(0, false);
+	NGMain* game = new NGMain(1, false);
 	
 	// Assets::load3dSprite("new/mist", "mist", 0, 64, 128, false);
 	// Assets::load3dPallete("new/mist", "mist", 0);

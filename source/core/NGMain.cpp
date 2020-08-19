@@ -32,6 +32,10 @@ void NGMain::initialize() {
     NF_InitTiledBgSys(SCREEN_0);
     NF_InitTiledBgSys(SCREEN_1);
 
+    // init bmfont
+    NF_InitTextSys(0);
+	NF_InitTextSys(1);
+
     // setup sprite buffer
     NF_InitSpriteBuffers();
     
@@ -42,7 +46,7 @@ void NGMain::initialize() {
     // init 2d sprite
     NF_InitSpriteSys(SCREEN_1);
 
-    // setup bmfont
+    // setup bmfont layer
     NF_InitTextSys(SCREEN_0);
     NF_LoadTextFont("core/font/default", "font", 256, 256, 0);
     NF_CreateTextLayer(SCREEN_0, LAYER_1, 0, "font");
@@ -61,17 +65,24 @@ void NGMain::update() {
     scanKeys();
 
     // clear bmfont before scene update
-    NF_ClearTextLayer(0, 1); //layer 1 only
-    NF_ClearTextLayer(1, 2);
+    NF_ClearTextLayer(0, 1);
 
-    //update scene
+    // update main scene
     if (_mainScene != nullptr) {
         _mainScene->preUpdate();
     }
 
+    // update bmfont on main scene
+    NF_UpdateTextLayers();
+    NF_ClearTextLayer(1, 2);
+
+    // update sub scene
     if (_subScene != nullptr) {
         _subScene->preUpdate();
     }
+
+    // update bmfont on sub scene
+    NF_UpdateTextLayers();
 
     // draw 3d sprite
     NF_Draw3dSprites();
@@ -89,9 +100,6 @@ void NGMain::update() {
 
     // update oam
     oamUpdate(&oamSub);
-
-    // update bmfont
-    NF_UpdateTextLayers();
 }
 
 void NGMain::destroy() {
