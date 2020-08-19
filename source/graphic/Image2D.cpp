@@ -7,20 +7,20 @@ Image2D::Image2D(std::string name, std::string sprite, std::string pallete)
 }
 
 void Image2D::initialize() {
-    NF_CreateSprite(1, _id, Assets::get_sprite2D(_sprite), Assets::get_pallete2D(_pallete), _x, _y);
+    NF_CreateSprite(screen, _id, Assets::get_sprite2D(_sprite), Assets::get_pallete2D(_pallete), _x, _y);
 }
 
 void Image2D::preUpdate() {
     // visibility update
     if (_visible != visible) {
-        NF_ShowSprite(1, _id, visible);
+        NF_ShowSprite(screen, _id, visible);
         _visible = visible;
         if (!_visible) return;
     }
 
     // position update
     if (_x != x || _y != y) {
-        NF_MoveSprite(1, _id, x, y);
+        NF_MoveSprite(screen, _id, x, y);
         _x = x;
         _y = y;
     }
@@ -38,7 +38,7 @@ void Image2D::preUpdate() {
 }
 
 void Image2D::destroy() {
-    NF_DeleteSprite(1, _id);
+    NF_DeleteSprite(screen, _id);
 
     Image2D::DisplayObject::destroy();
 }

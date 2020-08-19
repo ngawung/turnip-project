@@ -1,57 +1,51 @@
-// #include <iostream>
-// #include <fstream>
+#include <iostream>
+#include <fstream>
 
-// #include "scene1.hpp"
-// #include "scene2.hpp"
+#include "scene2.hpp"
 
-// class SaveData {
-//     public:
-//         char var[40];
-// };
+scene2::scene2() {
+    i = 0;
+}
 
-// scene2::scene2() {
-//     i = 0;
-// }
+void scene2::initialize() {
+    std::cout << "Scene 2 init" << std::endl;
 
-// void scene2::initialize() {
-//     std::cout << "Scene 2 init" << std::endl;
+    Assets::loadSprite("new/anim", "cat3D", 32, 32);
+    Assets::loadPallete("new/anim", "cat3D");
 
-//     Assets::load3dSprite("new/mist", "mist", 0, 64, 128, false);
-// 	Assets::load3dPallete("new/mist", "mist", 0);
-// }
+    Assets::loadSprite3D("cat3D", true);
+    Assets::loadPallete3D("cat3D");
 
-// void scene2::update() {
-//     if (SNF::getKeys(Key::UP, KeyPhase::release)) {
-//         if (SaveGame::isFatSupported()) {
-//             SaveData one;
-//             strcpy(one.var, Random::string(10).c_str());
-//             std::cout << "Saving random string: " << one.var << std::endl;
+    NF_CreateTiledBg(get_screen(), 3, "nfl");
 
-//             SaveGame::save(&one, "slot_1");
+    // font1 = new BMFont("font1", "Test font");
+    // addChild(font1);
 
-//         } else {
-//             std::cout << "Save failed! fat not supported" << std::endl;
-//         }
-//     }
+    mist = new Movieclip("mist", "cat3D", "cat3D");
+    addChild(mist);
 
-//     if (SNF::getKeys(Key::DOWN, KeyPhase::release)) {
-//         if (SaveGame::isFatSupported()) {
-//             SaveData two;
+    mist->quickPlay(std::vector<int>{0,1}, 1);
+}
 
-//             SaveGame::load(&two, "slot_1");
+void scene2::update() {
+    if (SNF::getKeys(Key::UP, KeyPhase::held)) mist->y -= 3;
+    if (SNF::getKeys(Key::DOWN, KeyPhase::held)) mist->y += 3;
+    if (SNF::getKeys(Key::LEFT, KeyPhase::held)) mist->x -= 3;
+    if (SNF::getKeys(Key::RIGHT, KeyPhase::held)) mist->x += 3;
 
-//             std::cout << "Hasil load: " << two.var << std::endl;
-//         } else {
-//             std::cout << "Load failed! fat not supported" << std::endl;
-//         }
-//     }
+    if (SNF::getKeys(Key::A, KeyPhase::held)) {
+        mist->scaleX += 5;
+        mist->scaleY += 5;
+    }
+    
+    if (SNF::getKeys(Key::B, KeyPhase::held)) {
+        mist->scaleX -= 5;
+        mist->scaleY -= 5;
+    }
 
-//     if (SNF::getKeys(Key::RIGHT, KeyPhase::held)) {
-//         NGObject* obj = new NGObject(Random::string(5), Assets::getSprite("mist"), Assets::getPallete("mist"));
-//         obj->x = Random::range(256);
-//         obj->y = Random::range(192);
-//         NGMain::getInstance()->get_scene()->addChild(obj);
-
-//         i++;
-//     }
-// }
+    if (SNF::getKeys(Key::X, KeyPhase::held)) mist->rotation += 5;
+    if (SNF::getKeys(Key::Y, KeyPhase::held)) mist->rotation -= 5;
+    
+    if (SNF::getKeys(Key::R, KeyPhase::held)) mist->delay += 1;
+    if (SNF::getKeys(Key::L, KeyPhase::held)) mist->delay -= 1;
+}

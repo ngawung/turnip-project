@@ -8,7 +8,7 @@ Image::Image(std::string name, std::string sprite, std::string pallete)
 }
 
 void Image::initialize() {
-    //NF_Create3dSprite(_id, Assets::get_sprite3D(_sprite), Assets::get_pallete2D(_pallete), x, y);
+    NF_Create3dSprite(_id, Assets::get_sprite3D(_sprite), Assets::get_pallete2D(_pallete), x, y);
 }
 
 

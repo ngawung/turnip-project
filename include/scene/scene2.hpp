@@ -6,6 +6,8 @@
 class scene2 : public NGScene {
     public:
         int i;
+        Movieclip* mist;
+        BMFont* font1;
     private:
     
     public:

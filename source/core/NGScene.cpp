@@ -43,6 +43,9 @@ DisplayObject* NGScene::addChild(DisplayObject* child) {
 	// set child id to last index
 	child->set_id(index);
 
+	// set child screen
+	child->screen = get_screen();
+
 	// initialize child (render)
 	child->initialize();
 

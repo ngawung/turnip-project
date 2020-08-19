@@ -28,7 +28,7 @@ class NGObject {
 		// int frame;
 		// int delay;
 		// ObjectBound bound;
-
+		uint8_t screen;
 		bool enableUpdate;
 		// bool enableAnimation;
 

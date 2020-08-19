@@ -46,7 +46,7 @@ void NGMain::initialize() {
     NF_InitTextSys(SCREEN_0);
     NF_LoadTextFont("core/font/default", "font", 256, 256, 0);
     NF_CreateTextLayer(SCREEN_0, LAYER_1, 0, "font");
-    NF_CreateTextLayer(SCREEN_0, LAYER_2, 0, "font");
+    NF_CreateTextLayer(SCREEN_1, LAYER_2, 0, "font");
 
     // preload core assets
 
@@ -61,7 +61,8 @@ void NGMain::update() {
     scanKeys();
 
     // clear bmfont before scene update
-    NF_ClearTextLayer(0, 1); //for now screen 0 & layer 1 only
+    NF_ClearTextLayer(0, 1); //layer 1 only
+    NF_ClearTextLayer(1, 2);
 
     //update scene
     if (_mainScene != nullptr) {
@@ -77,7 +78,6 @@ void NGMain::update() {
     glFlush(0);
 
     // draw 2d sprite
-    NF_SpriteOamSet(SCREEN_0);
     NF_SpriteOamSet(SCREEN_1);
 
     // ==============//

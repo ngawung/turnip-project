@@ -19,6 +19,7 @@ bool Assets::loadSprite(const char* file, std::string name, uint16_t width, uint
 		if (sprite[i].name != "") continue;
 
 		sprite[i].name = name;
+		std::cout << "loadSprite " << name << ":" << i << std::endl;
 		NF_LoadSpriteGfx(file, i, width, height);
 		return true;
 	}
@@ -39,6 +40,7 @@ bool Assets::loadPallete(const char* file, std::string name) {
 		if (pallete[i].name != "") continue;
 
 		pallete[i].name = name;
+		std::cout << "loadPallete " << name << ":" << i << std::endl;
 		NF_LoadSpritePal(file, i);
 		return true;
 	}
@@ -82,15 +84,16 @@ bool Assets::loadSprite2D(std::string name, bool keepframes) {
 		// find empty slot
 		for (int j=0; j<128; j++) {
 			// return if name already exist
-			if (sprite2D[i].name == name) {
+			if (sprite2D[j].name == name) {
 				std::cout << name << " already exist in vram2D" << std::endl;
 				return false;
 			}
 
 			// skip
-			if (sprite2D[i].name != "") continue;
+			if (sprite2D[j].name != "") continue;
 
-			sprite2D[i].name = name;
+			sprite2D[j].name = name;
+			std::cout << "loadSprite2D " << name << ":" << i << ":" << j << std::endl;
 			NF_VramSpriteGfx(1, i, j, keepframes);
 			return true;
 		}
@@ -107,15 +110,16 @@ bool Assets::loadPallete2D(std::string name) {
 		// find empty slot
 		for (int j=0; j<16; j++) {
 			// return if name already exist
-			if (pallete2D[i].name == name) {
+			if (pallete2D[j].name == name) {
 				std::cout << name << " already exist in vram2D" << std::endl;
 				return false;
 			}
 
 			// skip
-			if (pallete2D[i].name != "") continue;
+			if (pallete2D[j].name != "") continue;
 
-			pallete2D[i].name = name;
+			pallete2D[j].name = name;
+			std::cout << "loadPallete2D " << name << ":" << i << ":" << j << std::endl;
 			NF_VramSpritePal(1, i, j);
 			return true;
 		}
@@ -160,15 +164,15 @@ bool Assets::loadSprite3D(std::string name, bool keepframes) {
 		// find empty slot
 		for (int j=0; j<16; j++) {
 			// return if name already exist
-			if (sprite3D[i].name == name) {
+			if (sprite3D[j].name == name) {
 				std::cout << name << " already exist in vram3D" << std::endl;
 				return false;
 			}
 
 			// skip
-			if (sprite3D[i].name != "") continue;
+			if (sprite3D[j].name != "") continue;
 
-			sprite3D[i].name = name;
+			sprite3D[j].name = name;
 			NF_Vram3dSpriteGfx(i, j, keepframes);
 			return true;
 		}
@@ -185,15 +189,15 @@ bool Assets::loadPallete3D(std::string name) {
 		// find empty slot
 		for (int j=0; j<16; j++) {
 			// return if name already exist
-			if (pallete3D[i].name == name) {
+			if (pallete3D[j].name == name) {
 				std::cout << name << " already exist in vram3D" << std::endl;
 				return false;
 			}
 
 			// skip
-			if (pallete3D[i].name != "") continue;
+			if (pallete3D[j].name != "") continue;
 
-			pallete3D[i].name = name;
+			pallete3D[j].name = name;
 			NF_Vram3dSpritePal(i, j);
 			return true;
 		}
