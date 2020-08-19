@@ -77,6 +77,7 @@ void NGMain::update() {
     glFlush(0);
 
     // draw 2d sprite
+    NF_SpriteOamSet(SCREEN_0);
     NF_SpriteOamSet(SCREEN_1);
 
     // ==============//

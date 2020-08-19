@@ -8,6 +8,7 @@
 #include "BMFont.hpp"
 
 #include "Image2D.hpp"
+#include "Movieclip2D.hpp"
 
 class NGScene {
     public:

@@ -1,7 +1,7 @@
 #include "DisplayObject.hpp"
 
 DisplayObject::DisplayObject(std::string name) 
-    : NGObject(name), x(0), rotation(0), scaleX(100), scaleY(100), layer(0), bound(0, 0, 0, 0), visible(true), _type("DisplayObject")
+    : NGObject(name), x(0), y(0), rotation(0), scaleX(100), scaleY(100), layer(0), bound(0, 0, 0, 0), visible(true), _type("DisplayObject")
 {
 
 }
@@ -29,10 +29,4 @@ bool DisplayObject::getTouch(KeyPhase phase) {
 
 std::string DisplayObject::get_type() {
 	return _type;
-}
-
-// Static
-
-uint16_t DisplayObject::get_numSprite() {
-	return _numSprite;
 }
