@@ -19,7 +19,7 @@ class Assets {
 
         // vram 3d
         static inline RamSlot sprite3D[256];
-        static inline RamSlot pallete3D[256];
+        static inline RamSlot pallete3D[32];
 
     private:
     
@@ -39,11 +39,11 @@ class Assets {
         static bool freePallete2D(std::string name);
 
         // vram3D
-        static bool loadSprite3D();
-        static bool loadPallete3D();
+        static bool loadSprite3D(std::string name, bool keepframes);
+        static bool loadPallete3D(std::string name);
 
-        static bool freeSprite3D();
-        static bool freePallete3D();
+        static bool freeSprite3D(std::string name);
+        static bool freePallete3D(std::string name);
 
         // Get && Set
         static uint16_t get_sprite2D(std::string name);
@@ -64,8 +64,8 @@ class Assets {
         // static void unload3dSpriteAll();
         // static void unload3dPalleteAll();
 
-        // static uint16_t getSprite(std::string name);
-        // static uint16_t getPallete(std::string name);
+        static uint16_t getSprite(std::string name);
+        static uint16_t getPallete(std::string name);
 
     private:
 };

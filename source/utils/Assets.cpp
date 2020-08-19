@@ -72,7 +72,8 @@ bool Assets::unloadPallete(std::string name) {
 	return false;
 }
 
-// vram2DAssets::
+// vram2D
+
 bool Assets::loadSprite2D(std::string name, bool keepframes) {
 	// find name in ram
 	for (int i=0; i<256; i++) {
@@ -149,12 +150,83 @@ bool Assets::freePallete2D(std::string name) {
 	return false;
 }
 
-// vram3DAssets::
-// bool Assets::loadSprite3D() {}
-// bool Assets::loadPallete3D() {}
+// vram3D
 
-// bool Assets::freeSprite3D() {}
-// bool Assets::freePallete3D() {}
+bool Assets::loadSprite3D(std::string name, bool keepframes) {
+	// find name in ram
+	for (int i=0; i<256; i++) {
+		if (sprite[i].name != name) continue;
+
+		// find empty slot
+		for (int j=0; j<16; j++) {
+			// return if name already exist
+			if (sprite3D[i].name == name) {
+				std::cout << name << " already exist in vram3D" << std::endl;
+				return false;
+			}
+
+			// skip
+			if (sprite3D[i].name != "") continue;
+
+			sprite3D[i].name = name;
+			NF_Vram3dSpriteGfx(i, j, keepframes);
+			return true;
+		}
+	}
+
+	return false;
+}
+
+bool Assets::loadPallete3D(std::string name) {
+	// find name in ram
+	for (int i=0; i<32; i++) {
+		if (pallete[i].name != name) continue;
+
+		// find empty slot
+		for (int j=0; j<16; j++) {
+			// return if name already exist
+			if (pallete3D[i].name == name) {
+				std::cout << name << " already exist in vram3D" << std::endl;
+				return false;
+			}
+
+			// skip
+			if (pallete3D[i].name != "") continue;
+
+			pallete3D[i].name = name;
+			NF_Vram3dSpritePal(i, j);
+			return true;
+		}
+	}
+
+	return false;
+}
+
+bool Assets::freeSprite3D(std::string name) {
+	for (int i=0; i<256; i++) {
+		if (sprite3D[i].name == name) {
+			sprite3D[i].name = "";
+			NF_Free3dSpriteGfx(i);
+			return true;
+		}
+	}
+
+	std::cout << "cannot find " << name << "in vram3D" << std::endl;
+	return false;
+}
+
+bool Assets::freePallete3D(std::string name) {
+	for (int i=0; i<32; i++) {
+		if (pallete3D[i].name == name) {
+			pallete3D[i].name = "";
+			// there is no need to free pallete... just replace the id
+			return true;
+		}
+	}
+
+	std::cout << "cannot find " << name << "in vram3D" << std::endl;
+	return false;
+}
 
 // Get && Set
 uint16_t Assets::get_sprite2D(std::string name) {
@@ -173,8 +245,21 @@ uint16_t Assets::get_pallete2D(std::string name) {
 	return 0;
 }
 
-// uint16_t Assets::get_sprite3D(std::string name) {}
-// uint16_t Assets::get_pallete3D(std::string name) {}
+uint16_t Assets::get_sprite3D(std::string name) {
+	for (int i=0; i<256; i++) {
+		if (sprite3D[i].name == name) return i;
+	}
+
+	return 0;
+}
+
+uint16_t Assets::get_pallete3D(std::string name) {
+	for (int i=0; i<32; i++) {
+		if (pallete3D[i].name == name) return i;
+	}
+
+	return 0;
+}
 
 // // ram vram 256
 // void Assets::load3dSprite(const char* file, std::string name, uint16_t ramslot, uint16_t width, uint16_t height, bool keepframe) {
