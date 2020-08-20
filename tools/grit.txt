@@ -1,0 +1,10 @@
+quick background
+-g -gTFF00FF -m -mRtf -mLs -p -ftb
+
+font
+-g -gTFF00FF -mR! -p -ftb
+
+sprites
+-g -gTFF00FF -p -pS -ftb -OName
+
+-g -gTFF00FF -p -ftb
