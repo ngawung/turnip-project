@@ -24,7 +24,7 @@ void scene3::initialize() {
     // mist = new Movieclip2D("mist", "cat", "cat");
     // addChild(mist);
 
-    mist->quickPlay(std::vector<int>{0,1}, 1);
+    // mist->quickPlay(std::vector<int>{0,1}, 1);
 }
 
 void scene3::update() {

@@ -1,7 +1,7 @@
 currently working on
 - [x] fixing the goddamn bmfont >:(((((((
 - [ ] Running text
-- [ ] finish all default bmfont character
+- [x] finish all default bmfont character
 - [ ] add more rng function
 - [ ] sound manager
 - [x] background manager

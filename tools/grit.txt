@@ -3,6 +3,7 @@ quick background
 
 font
 -g -gTFF00FF -mR! -p -ftb
+-g -gTFF00FF -p -ftb
 
 sprites
 -g -gTFF00FF -p -pS -ftb -OName

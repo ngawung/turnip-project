@@ -16,15 +16,15 @@ void scene2::initialize() {
     Assets::loadSprite3D("cat3D", true);
     Assets::loadPallete3D("cat3D");
 
-    background.changeBg("nfl");
+    // background.changeBg("nfl");
 
-    font1 = new BMFont("font1", "Test font");
+    font1 = new BMFont("font1", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.");
     addChild(font1);
 
     // mist = new Movieclip("mist", "cat3D", "cat3D");
     // addChild(mist);
 
-    mist->quickPlay(std::vector<int>{0,1}, 1);
+    // mist->quickPlay(std::vector<int>{0,1}, 1);
 }
 
 void scene2::update() {
