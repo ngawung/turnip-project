@@ -3,6 +3,8 @@ currently working on
 - [ ] Running text
 - [ ] finish all default bmfont character
 - [ ] add more rng function
+- [ ] sound manager
+- [x] background manager
 - [ ]
 done
 - [x] using pointer instead of reff
@@ -21,6 +23,12 @@ done
 - [x] add save feature (im struggling... it doesnt workk)
 - [x] using scene manager for both screen
 - [x] add support for 2d render
+- [ ] 
+
+improving current feature
+- [ ] impruv assets manager for quick load/unload to vram
+- [ ] add pivot point when scale and rotating DisplayObject
+- [ ] add flipX and flipY on DisplayObject (definitely need this... but im to lazy)
 - [ ] 
 
 feature
