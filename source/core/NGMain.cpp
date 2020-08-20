@@ -132,6 +132,7 @@ void NGMain::set_mainScene(NGScene* scene) {
 
     _mainScene = scene;
     _mainScene->set_screen(0);
+    _mainScene->background.screen = 0; // i should move this to NGScene.. but im lazy
     _mainScene->initialize();
 }
 
@@ -147,5 +148,6 @@ void NGMain::set_subScene(NGScene* scene) {
 
     _subScene = scene;
     _subScene->set_screen(1);
+    _subScene->background.screen = 1; // i should move this to NGScene.. but im lazy
     _subScene->initialize();
 }

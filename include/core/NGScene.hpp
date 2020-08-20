@@ -6,12 +6,15 @@
 #include "Movieclip.hpp"
 
 #include "BMFont.hpp"
+#include "Background.hpp"
 
 #include "Image2D.hpp"
 #include "Movieclip2D.hpp"
 
 class NGScene {
     public:
+        Background background;
+        
     private:
         uint8_t _screen;
         uint16_t _numSprite2D;

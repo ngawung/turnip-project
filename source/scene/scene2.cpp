@@ -16,7 +16,7 @@ void scene2::initialize() {
     Assets::loadSprite3D("cat3D", true);
     Assets::loadPallete3D("cat3D");
 
-    // NF_CreateTiledBg(get_screen(), 3, "nfl");
+    background.changeBg("nfl");
 
     font1 = new BMFont("font1", "Test font");
     addChild(font1);

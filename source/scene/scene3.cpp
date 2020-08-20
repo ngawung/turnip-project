@@ -16,7 +16,7 @@ void scene3::initialize() {
     Assets::loadSprite2D("cat", true);
     Assets::loadPallete2D("cat");
 
-    // NF_CreateTiledBg(get_screen(), 3, "nfl");
+    background.changeBg("nfl2");
 
     font1 = new BMFont("font1", "Screen 1");
     addChild(font1);

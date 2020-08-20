@@ -45,12 +45,31 @@ class Assets {
         static bool freeSprite3D(std::string name);
         static bool freePallete3D(std::string name);
 
-        // Get && Set
+        // Background
+        static bool loadBg(std::string name);
+        static bool unloadBg(std::string name);
+        
+        // Sound
+        static bool loadSound(std::string name);
+        static bool unloadSound(std::string name);
+
+        // ================ Get && Set ==================
+
+        // vram2d
         static uint16_t get_sprite2D(std::string name);
         static uint16_t get_pallete2D(std::string name);
         
+        // vram3d
         static uint16_t get_sprite3D(std::string name);
         static uint16_t get_pallete3D(std::string name);
+
+        // not implemented yet.... to lazy
+        static uint16_t getSprite(std::string name);
+        static uint16_t getPallete(std::string name);
+
+        // background
+
+        // sound
 
 
         // // ram vram 256
@@ -63,9 +82,6 @@ class Assets {
         // static void unload3dPallete(std::string name);
         // static void unload3dSpriteAll();
         // static void unload3dPalleteAll();
-
-        static uint16_t getSprite(std::string name);
-        static uint16_t getPallete(std::string name);
-
+        
     private:
 };

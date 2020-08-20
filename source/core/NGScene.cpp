@@ -1,7 +1,7 @@
 #include "NGScene.hpp"
 
 NGScene::NGScene() 
-	: _numSprite2D(0), _numSprite3D(0)
+	: background(), _numSprite2D(0), _numSprite3D(0)
 {
 
 }
