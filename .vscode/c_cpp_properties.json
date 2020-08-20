@@ -9,8 +9,7 @@
                 "/home/melody/Desktop/devkitpro/devkitARM/arm-none-eabi/include/**"
             ],
             "defines": [
-                "ARM9",
-                "ARM7"
+                "ARM9"
             ],
             "compilerPath": "/home/melody/Desktop/devkitpro/devkitARM/bin/arm-none-eabi-g++",
             "cStandard": "c11",

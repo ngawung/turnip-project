@@ -25,6 +25,12 @@ void scene2::initialize() {
     // addChild(mist);
 
     // mist->quickPlay(std::vector<int>{0,1}, 1);
+
+    // soundEnable();
+    // NF_InitRawSoundBuffers();
+    // NF_LoadRawSound("music", 1, 22050, 0);
+    // NF_PlayRawSound(1, 127, 64, true, 0);
+
 }
 
 void scene2::update() {
