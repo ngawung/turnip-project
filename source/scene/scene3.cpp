@@ -29,25 +29,25 @@ void scene3::initialize() {
 
 void scene3::update() {
 
-    if (SNF::getKeys(Key::UP, KeyPhase::held)) font1->y -= 3;
-    if (SNF::getKeys(Key::DOWN, KeyPhase::held)) font1->y += 3;
-    if (SNF::getKeys(Key::LEFT, KeyPhase::held)) font1->x -= 3;
-    if (SNF::getKeys(Key::RIGHT, KeyPhase::held)) font1->x += 3;
+    // if (SNF::getKeys(Key::UP, KeyPhase::held)) font1->y -= 3;
+    // if (SNF::getKeys(Key::DOWN, KeyPhase::held)) font1->y += 3;
+    // if (SNF::getKeys(Key::LEFT, KeyPhase::held)) font1->x -= 3;
+    // if (SNF::getKeys(Key::RIGHT, KeyPhase::held)) font1->x += 3;
 
-    if (SNF::getKeys(Key::A, KeyPhase::held)) {
-        mist->scaleX += 5;
-        mist->scaleY += 5;
-    }
+    // if (SNF::getKeys(Key::A, KeyPhase::held)) {
+    //     mist->scaleX += 5;
+    //     mist->scaleY += 5;
+    // }
     
-    if (SNF::getKeys(Key::B, KeyPhase::held)) {
-        mist->scaleX -= 5;
-        mist->scaleY -= 5;
-    }
+    // if (SNF::getKeys(Key::B, KeyPhase::held)) {
+    //     mist->scaleX -= 5;
+    //     mist->scaleY -= 5;
+    // }
 
-    if (SNF::getKeys(Key::X, KeyPhase::held)) mist->rotation += 5;
-    if (SNF::getKeys(Key::Y, KeyPhase::held)) mist->rotation -= 5;
+    // if (SNF::getKeys(Key::X, KeyPhase::held)) mist->rotation += 5;
+    // if (SNF::getKeys(Key::Y, KeyPhase::held)) mist->rotation -= 5;
     
-    if (SNF::getKeys(Key::R, KeyPhase::held)) mist->delay += 1;
-    if (SNF::getKeys(Key::L, KeyPhase::held)) mist->delay -= 1;
+    // if (SNF::getKeys(Key::R, KeyPhase::held)) mist->delay += 1;
+    // if (SNF::getKeys(Key::L, KeyPhase::held)) mist->delay -= 1;
 
 }

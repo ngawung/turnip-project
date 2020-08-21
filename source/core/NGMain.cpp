@@ -27,14 +27,17 @@ void NGMain::initialize() {
 
     NF_SetRootFolder("NITROFS");
 
+    // soundEnable();
+    // NF_InitRawSoundBuffers();
+
     // setup background
     NF_InitTiledBgBuffers();
     NF_InitTiledBgSys(SCREEN_0);
     NF_InitTiledBgSys(SCREEN_1);
 
     // init bmfont
-    NF_InitTextSys(0);
-	NF_InitTextSys(1);
+    NF_InitTextSys(SCREEN_0);
+	NF_InitTextSys(SCREEN_1);
 
     // setup sprite buffer
     NF_InitSpriteBuffers();
@@ -47,7 +50,6 @@ void NGMain::initialize() {
     NF_InitSpriteSys(SCREEN_1);
 
     // setup bmfont layer
-    NF_InitTextSys(SCREEN_0);
     NF_LoadTextFont("core/font/default", "font", 256, 256, 0);
     NF_CreateTextLayer(SCREEN_0, LAYER_1, 0, "font");
     NF_CreateTextLayer(SCREEN_1, LAYER_2, 0, "font");
@@ -57,7 +59,7 @@ void NGMain::initialize() {
     if (_console) enableConsole();
     std::cout << "Game Initialize" << std::endl;
 
-    SaveGame::initialize();
+    // SaveGame::initialize();
 }
 
 void NGMain::update() {
