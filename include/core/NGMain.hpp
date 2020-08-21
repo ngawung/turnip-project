@@ -2,8 +2,6 @@
 
 #include "NGScene.hpp"
 
-#include "SaveGame.hpp"
-
 #define SCREEN_0 0
 #define SCREEN_1 1
 

@@ -3,9 +3,10 @@ currently working on
 - [ ] Running text
 - [x] finish all default bmfont character
 - [ ] add more rng function
-- [ ] sound manager
+- [x] sound manager
 - [x] background manager
 - [ ]
+
 done
 - [x] using pointer instead of reff
 - [x] basic transform
@@ -29,6 +30,7 @@ improving current feature
 - [ ] impruv assets manager for quick load/unload to vram
 - [ ] add pivot point when scale and rotating DisplayObject
 - [ ] add flipX and flipY on DisplayObject (definitely need this... but im to lazy)
+- [ ] volume manager
 - [ ] 
 
 feature

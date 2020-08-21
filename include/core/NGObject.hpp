@@ -11,6 +11,7 @@
 #include <nf_lib.h>
 
 #include "simplenfl.hpp"
+#include "Sound.hpp"
 #include "STween.hpp"
 #include "Random.hpp"
 #include "Assets.hpp"

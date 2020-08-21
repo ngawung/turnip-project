@@ -27,8 +27,8 @@ void NGMain::initialize() {
 
     NF_SetRootFolder("NITROFS");
 
-    // soundEnable();
-    // NF_InitRawSoundBuffers();
+    // init maxmod
+    SFX::initialize();
 
     // setup background
     NF_InitTiledBgBuffers();
@@ -65,6 +65,9 @@ void NGMain::initialize() {
 void NGMain::update() {
     // update input
     scanKeys();
+
+    //update maxmod
+    SFX::update();
 
     // clear bmfont before scene update
     NF_ClearTextLayer(0, 1);
