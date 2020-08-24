@@ -34,15 +34,21 @@ void scene2::initialize() {
     namebox->y = textbox->y - 16 -4;
     addChild(namebox);
 
-    name = new BMFont("name", "123456789123456789123456789123456789");
+    name = new BMFont("name", "Your name");
     name->y = namebox->y + 4 + 1;
     name->x = 0;
     addChild(name);
 
-    text = new TextBox("text", "123456789123456789123456789123456789123456789123456789123456789123456789", 256 - 16, 16);
+    BMFont::defineHex(0, 1, 0x000000);
+    // NF_DefineTextColor(0, 1, 1, 0, 0, 0);
+    NF_SetTextColor(0, 1, 1);
+    
+
+    text = new TextBox("text", "Testing running text|New line here|More random text over here to|Hellloooooooo.....|Testting...", 256 - 16, 0);
     text->y = textbox->y + 8 + 1;
     text->x = 8;
     text->skip = 3;
+    text->enableRunningText = true;
     addChild(text);
 
 }

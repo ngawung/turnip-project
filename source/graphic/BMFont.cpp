@@ -28,8 +28,8 @@ void BMFont::defineRGB(uint8_t _screen, uint16_t id, RGB rgb) {
     // convert rgb
     rgb.convert(ColorMode::NFLib);
 
-    // for now screen 0 and layer 1 only
-    NF_DefineTextColor(_screen, 1, id, rgb.r, rgb.g, rgb.b);
+    if (_screen == 0) NF_DefineTextColor(0, 1, id, rgb.r, rgb.g, rgb.b);
+    else NF_DefineTextColor(1, 2, id, rgb.r, rgb.g, rgb.b);
 }
 
 void BMFont::defineHex(uint8_t _screen, uint16_t id, uint16_t hex) {
@@ -40,6 +40,7 @@ void BMFont::defineHex(uint8_t _screen, uint16_t id, uint16_t hex) {
     // convert rgb
     rgb.convert(ColorMode::NFLib);
 
-    // for now screen 0 and layer 1 only
-    NF_DefineTextColor(_screen, 1, id, rgb.r, rgb.g, rgb.b);
+    if (_screen == 0) NF_DefineTextColor(0, 1, id, rgb.r, rgb.g, rgb.b);
+    else NF_DefineTextColor(1, 2, id, rgb.r, rgb.g, rgb.b);
+    
 }
