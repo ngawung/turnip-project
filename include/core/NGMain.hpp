@@ -11,8 +11,8 @@
 #define LAYER_3 3
 
 typedef struct Stage {
-    const uint width = 256;
-    const uint height = 192;
+    static const uint width = 256;
+    static const uint height = 192;
 } Stage;
 
 class NGMain {

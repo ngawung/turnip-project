@@ -9,3 +9,6 @@ sprites
 -g -gTFF00FF -p -pS -ftb -OName
 
 -g -gTFF00FF -p -ftb
+
+sprite3d
+-gb -gu8 -gB8 -pu8 -ftb -fh! -gTFF00FF -pS -OName
