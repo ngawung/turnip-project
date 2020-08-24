@@ -6,6 +6,7 @@
 #include "Movieclip.hpp"
 
 #include "BMFont.hpp"
+#include "TextBox.hpp"
 #include "Background.hpp"
 
 #include "Image2D.hpp"

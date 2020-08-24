@@ -13,6 +13,9 @@
 typedef struct Stage {
     static const uint width = 256;
     static const uint height = 192;
+
+    static const uint bmfWidth = 256 / 8;
+    static const uint bmfHeight = 192 / 8;
 } Stage;
 
 class NGMain {

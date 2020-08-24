@@ -10,7 +10,6 @@ void BMFont::preUpdate() {
     x = std::clamp(static_cast<int>(x), 0, 256);
     y = std::clamp(static_cast<int>(y), 0, 192);
 
-    // for now screen 0 and layer 1 only
     if (visible) {
         if (screen == 0) NF_WriteText(screen, 1, x / 8, y / 8, text.c_str());
         else NF_WriteText(screen, 2, x / 8, y / 8, text.c_str()); // use layer 2 instead

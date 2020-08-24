@@ -9,7 +9,7 @@ class BMFont : public DisplayObject {
         // uint16_t colorId;
 
     private:
-        uint16_t _colorId;
+        // uint16_t _colorId;
     
     public:
         BMFont(std::string _name, std::string _text);
