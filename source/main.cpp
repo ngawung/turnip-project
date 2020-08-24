@@ -12,7 +12,7 @@
 
 int main() {
 
-	NGMain* game = new NGMain(0, false);
+	NGMain* game = new NGMain(0, true);
 
 	std::cout << "Initialize" << std::endl;
 

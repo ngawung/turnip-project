@@ -146,6 +146,10 @@ NGScene* NGMain::get_subScene() {
 }
 
 void NGMain::set_subScene(NGScene* scene) {
+    if (_console) {
+        std::cout << "Cannot set sub scene while using console" << std::endl;
+        return;
+    }
     if (_subScene != nullptr) {
         _subScene->destroy();
         delete _subScene;

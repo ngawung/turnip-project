@@ -12,10 +12,15 @@ class TextBox : public BMFont {
         uint8_t _skip;
         std::string _fullText;
         std::string _currentText;
-    
+        
+        uint8_t _currentPosX;
+        uint8_t _currentPosY;
+        
     public:
         TextBox(std::string name, std::string text, uint8_t width, uint8_t height);
+        void initialize() override;
         void preUpdate() override;
 
+        void validate();
     private:
 };

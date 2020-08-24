@@ -34,15 +34,15 @@ void scene2::initialize() {
     namebox->y = textbox->y - 16 -4;
     addChild(namebox);
 
-    name = new BMFont("name", "Name Here");
+    name = new BMFont("name", "123456789123456789123456789123456789");
     name->y = namebox->y + 4 + 1;
-    name->x = 8;
+    name->x = 0;
     addChild(name);
 
-    text = new TextBox("text", "Some random and super long text over here just for testing purpose.", 10, 10);
+    text = new TextBox("text", "123456789123456789123456789123456789123456789123456789123456789123456789", 256 - 16, 16);
     text->y = textbox->y + 8 + 1;
     text->x = 8;
-    text->skip = 10;
+    text->skip = 3;
     addChild(text);
 
 }

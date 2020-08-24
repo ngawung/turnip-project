@@ -23,12 +23,12 @@ void Background::preUpdate() {
 
 
 void Background::changeBg(const char* name) {
-    // if (_isExist) {
-    //     NF_DeleteTiledBg(screen, 3);
-    //     NF_CreateTiledBg(screen, 3, name);
-    // } else {
+    if (_isExist) {
+        NF_DeleteTiledBg(screen, 3);
         NF_CreateTiledBg(screen, 3, name);
-    // }
+    } else {
+        NF_CreateTiledBg(screen, 3, name);
+    }
 
     _isExist = true;
 }
