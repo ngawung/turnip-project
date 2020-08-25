@@ -1,10 +1,7 @@
 currently working on
-- [x] fixing the goddamn bmfont >:(((((((
-- [x] Running text
-- [x] finish all default bmfont character
-- [ ] add more rng function
-- [x] sound manager
-- [x] background manager
+- [ ] add callback for textbox
+- [ ] start working on assets you coward
+- [ ] build simple prototype
 - [ ]
 
 done
@@ -24,6 +21,11 @@ done
 - [x] add save feature (im struggling... it doesnt workk)
 - [x] using scene manager for both screen
 - [x] add support for 2d render
+- [x] fixing the goddamn bmfont >:(((((((
+- [x] Running text
+- [x] finish all default bmfont character
+- [x] sound manager
+- [x] background manager
 - [ ] 
 
 improving current feature
@@ -31,6 +33,7 @@ improving current feature
 - [ ] add pivot point when scale and rotating DisplayObject
 - [ ] add flipX and flipY on DisplayObject (definitely need this... but im to lazy)
 - [ ] volume manager
+- [ ] add more rng function
 - [ ] 
 
 feature
