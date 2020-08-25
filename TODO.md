@@ -1,5 +1,5 @@
 currently working on
-- [ ] add callback for textbox
+- [x] add callback for textbox
 - [ ] start working on assets you coward
 - [ ] build simple prototype
 - [ ]

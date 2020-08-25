@@ -10,7 +10,7 @@ class TextBox : public BMFont {
         uint8_t skip;
 
         bool enableRunningText;
-        void(*callbackRunningText)();
+        std::function<void(void)> callbackRunningText;
     private:
         uint8_t _skip;
         std::string _fullText;

@@ -24,8 +24,10 @@ void BMFont::destroy() {
 
 // static
 
-void BMFont::defineRGB(uint8_t _screen, uint16_t id, RGB rgb) {
+void BMFont::defineRGB(uint8_t _screen, uint16_t id, uint8_t r, uint8_t g, uint8_t b) {
     // convert rgb
+    RGB rgb;
+    rgb.set(r, g, b);
     rgb.convert(ColorMode::NFLib);
 
     if (_screen == 0) NF_DefineTextColor(0, 1, id, rgb.r, rgb.g, rgb.b);
@@ -43,4 +45,9 @@ void BMFont::defineHex(uint8_t _screen, uint16_t id, uint16_t hex) {
     if (_screen == 0) NF_DefineTextColor(0, 1, id, rgb.r, rgb.g, rgb.b);
     else NF_DefineTextColor(1, 2, id, rgb.r, rgb.g, rgb.b);
     
+}
+
+void BMFont::setColor(uint8_t _screen, uint16_t id) {
+    if (_screen == 0) NF_SetTextColor(0, 1, id);
+    else NF_SetTextColor(1, 2, id);
 }

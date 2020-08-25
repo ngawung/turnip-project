@@ -18,7 +18,8 @@ class BMFont : public DisplayObject {
 
         // static
 
-        static void defineRGB(uint8_t _screen, uint16_t id, RGB rgb);
+        static void defineRGB(uint8_t _screen, uint16_t id, uint8_t r, uint8_t g, uint8_t b);
         static void defineHex(uint8_t _screen, uint16_t id, uint16_t hex);
+        static void setColor(uint8_t _screen, uint16_t id);
     private:
 };
