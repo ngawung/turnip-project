@@ -1,7 +1,7 @@
 #include "TextBox.hpp"
 
 TextBox::TextBox(std::string _name, std::string _text, uint8_t _width = 0, uint8_t _height = 0)
-    : BMFont(_name, ""), width(_width), height(_height), skip(1), enableRunningText(false), _skip(0),  _fullText(_text)
+    : BMFont(_name, ""), width(_width), height(_height), skip(1), enableRunningText(false), _skip(0),  _fullText(_text), _isFinish(false)
 {
     
 }
@@ -28,6 +28,7 @@ void TextBox::validate() {
     // reset text
     text = "";
     _index = 0;
+    _isFinish = false;
 
     // reset current index position
     _nowX = _realX;
@@ -38,16 +39,21 @@ void TextBox::validate() {
 
     // write all text
     while(true) {
-        if (!next()) break;
+        if (!next()) {
+            _isFinish = true;
+            break;
+        }
     }
 }
 
 void TextBox::preUpdate() {
-    if (enableRunningText) {
-
-        if (_index < _fullText.size() && _skip > skip) {
-            next();
+    if (enableRunningText && !_isFinish) {
+        if (_skip > skip) {
             _skip = 0;
+            if (!next()) {
+                _isFinish = true;
+                if (callbackRunningText) callbackRunningText();
+            }
         }
 
         _skip++;
@@ -58,7 +64,7 @@ void TextBox::preUpdate() {
 
 bool TextBox::next() {
     // text completed
-    if (_index > _fullText.size()) return false;
+    if (_index >= _fullText.size()) return false;
 
     // return if line >= height
     if (_nowY >= _realHeight) return false;
@@ -102,4 +108,8 @@ void TextBox::set_text(std::string text) {
 
 std::string TextBox::get_text() {
     return _fullText;
+}
+
+bool TextBox::get_isFinsih() {
+    return _isFinish;
 }

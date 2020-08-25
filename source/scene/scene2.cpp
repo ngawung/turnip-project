@@ -49,6 +49,7 @@ void scene2::initialize() {
     text->x = 8;
     text->skip = 3;
     text->enableRunningText = true;
+    text->callbackRunningText = []() { std::cout << "running text done" << std::endl; };
     addChild(text);
 
 }

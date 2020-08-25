@@ -1,5 +1,6 @@
 #pragma once
 
+#include <functional>
 #include "BMFont.hpp"
 
 class TextBox : public BMFont {
@@ -9,6 +10,7 @@ class TextBox : public BMFont {
         uint8_t skip;
 
         bool enableRunningText;
+        void(*callbackRunningText)();
     private:
         uint8_t _skip;
         std::string _fullText;
@@ -22,6 +24,8 @@ class TextBox : public BMFont {
         
         uint8_t _nowX;
         uint8_t _nowY;
+
+        bool _isFinish;
         
     public:
         TextBox(std::string name, std::string text, uint8_t width, uint8_t height);
@@ -33,6 +37,8 @@ class TextBox : public BMFont {
         // get && set
         void set_text(std::string text);
         std::string get_text();
+
+        bool get_isFinsih();
 
     private:
         bool next();
