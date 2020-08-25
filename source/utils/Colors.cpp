@@ -1,7 +1,8 @@
 #include <algorithm>
+#include <iostream>
 #include "Color.hpp"
 
-void RGB::set(int8_t r, int8_t g, int8_t b) {
+void RGB::set(uint8_t r, uint8_t g, uint8_t b) {
     this->r = r;
     this->g = g;
     this->b = b;
@@ -16,29 +17,26 @@ void RGB::setFromHex(uint16_t hex) {
 }
 
 void RGB::convert(ColorMode mode) {
-    int high = 0;
     int old_max = 0;
     int new_max = 0;
 
     switch (mode) {
-        case ColorMode::Normal:
-            high = 255;
+        case ColorMode::NFLib:
             old_max = 255;
             new_max = 31;
             break;
         
-        case ColorMode::NFLib:
+        case ColorMode::Normal:
             break;
-            high = 31;
             old_max = 31;
             new_max = 255;
     }
 
-    double _r = std::clamp((int)this->r, 0, high);
-    double _g = std::clamp((int)this->g, 0, high);
-    double _b = std::clamp((int)this->b, 0, high);
+    double _r = std::clamp((int)this->r, 0, old_max);
+    double _g = std::clamp((int)this->g, 0, old_max);
+    double _b = std::clamp((int)this->b, 0, old_max);
 
-    this->r = (_r / old_max) * new_max;
-    this->g = (_g / old_max) * new_max;
-    this->b = (_b / old_max) * new_max;
+    this->r = (_r * new_max / old_max);
+    this->g = (_g * new_max / old_max);
+    this->b = (_b * new_max / old_max);
 }
