@@ -59,6 +59,13 @@ bool SNF::getTouchRect(int x, int y, int width, int height, KeyPhase phase) {
     return false;
 }
 
+bool SNF::getTouchCircle(int x, int y, int radius, KeyPhase phase) {
+    if (getTouch(phase)) {
+        return ((Stylus.px - x) * (Stylus.px - x)) + ((Stylus.py - y) * (Stylus.py - y)) < radius * radius;
+    }
+    return false;
+}
+
 bool SNF::overlap(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {
     if ((x3 <= x1 && x1 <= x4 && y3 <= y1 && y1 <= y4) ||
         (x3 <= x1 && x1 <= x4 && y3 <= y2 && y2 <= y4) ||

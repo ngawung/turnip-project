@@ -47,6 +47,9 @@ class SNF {
 
         // get touch by Rectangle
         static bool getTouchRect(int x, int y, int width, int height, KeyPhase phase);
+        
+          // get touch by Circle
+        static bool getTouchCircle(int x, int y, int radius, KeyPhase phase);
 
         // check rectangle overlap
         static bool overlap(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4);
