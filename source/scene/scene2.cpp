@@ -73,14 +73,56 @@ void scene2::initialize() {
 
 }
 
+int initialX = 0;
+int initialY = 0;
+
 void scene2::update() {
-    if (waiting && SNF::getTouch(KeyPhase::release)) {
-        waiting = false;
-        if (i < 3) {
-            std::cout << i << std::endl;
-            text->set_text(MSG::getAction(i)->chat);
-            i++;
-        }
-    }
+    // if (waiting && SNF::getTouch(KeyPhase::release)) {
+    //     waiting = false;
+    //     if (i < 3) {
+    //         std::cout << i << std::endl;
+    //         text->set_text(MSG::getAction(i)->chat);
+    //         i++;
+    //     }
+    // }
+
+    if (SNF::getSwipeGesture(Swipe::SwipeLeft))  std::cout << "left" << std::endl;
+    if (SNF::getSwipeGesture(Swipe::SwipeRight))  std::cout << "right" << std::endl;
+    if (SNF::getSwipeGesture(Swipe::SwipeUp))  std::cout << "up" << std::endl;
+    if (SNF::getSwipeGesture(Swipe::SwipeDown))  std::cout << "down" << std::endl;
+
+
+    // if (SNF::getTouch(KeyPhase::press)) {
+    //     initialX = SNF::Stylus.px;
+    //     initialY = SNF::Stylus.py;
+    // }
+
+    // if (SNF::getTouch(KeyPhase::release)) {
+    //     int currentX = SNF::Stylus.px;
+    //     int currentY = SNF::Stylus.py;
+        
+    //     int diffX = initialX - currentX;
+    //     int diffY = initialY - currentY;
+
+    //     if (abs(diffX) > abs(diffY)) {
+    //         // sliding horizontally
+    //         if (diffX > 0) {
+    //         // swiped left
+    //         std::cout << "left" << std::endl;
+    //         } else {
+    //         // swiped right
+    //         std::cout << "right" << std::endl;
+    //         }  
+    //     } else {
+    //         // sliding vertically
+    //         if (diffY > 0) {
+    //         // swiped up
+    //         std::cout << "up" << std::endl;
+    //         } else {
+    //         // swiped down
+    //         std::cout << "down" << std::endl;
+    //         }  
+    //     }
+    // }
     
 }

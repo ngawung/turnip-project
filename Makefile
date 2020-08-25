@@ -71,14 +71,14 @@ SOURCES		:=	source \
 				source/graphic \
 				source/scene \
 				source/utils \
-				source/lang \
+				source/game \
 				include/lib
 INCLUDES	:=	include \
 				include/core \
 				include/graphic \
 				include/scene \
 				include/utils \
-				include/lang \
+				include/game \
 				include/lib
 DATA		:=	data
 NITRODATA	:=	nitrofiles
