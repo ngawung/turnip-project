@@ -1,3 +1,4 @@
+#include <iostream>
 #include <nf_lib.h>
 
 #include "simplenfl.hpp"
@@ -63,6 +64,44 @@ bool SNF::getTouchCircle(int x, int y, int radius, KeyPhase phase) {
     if (getTouch(phase)) {
         return ((Stylus.px - x) * (Stylus.px - x)) + ((Stylus.py - y) * (Stylus.py - y)) < radius * radius;
     }
+    return false;
+}
+
+bool SNF::getSwipeGesture(Swipe gesture) {
+    if (getTouch(KeyPhase::press)) {
+        startX = Stylus.px;
+        startY = Stylus.py;
+    }
+
+    if (getTouch(KeyPhase::release)) {
+        int currentX = Stylus.px;
+        int currentY = Stylus.py;
+        
+        int diffX = startX - currentX;
+        int diffY = startY - currentY;
+
+        // get absolute without math lib
+        int absX = diffX * ((diffX > 0) - (diffX < 0));
+        int absY = diffY * ((diffY > 0) - (diffY < 0));
+        
+        bool result = absX > absY;
+
+        switch (gesture) {
+            case Swipe::SwipeLeft:
+                if(result && diffX > 0) return true;
+                break;
+            case Swipe::SwipeRight:
+                if(result && diffX < 0) return true;
+                break;
+            case Swipe::SwipeUp:
+                if(!result && diffY > 0) return true;
+                break;
+            case Swipe::SwipeDown:
+                if(!result && diffY < 0) return true;
+                break;
+        }
+    }
+
     return false;
 }
 

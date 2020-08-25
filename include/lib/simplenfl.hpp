@@ -24,12 +24,18 @@ enum Key {
 };
 
 enum KeyPhase { release, press, held };
+enum Swipe { SwipeRight, SwipeLeft, SwipeUp, SwipeDown };
 
 class SNF {
     public:
         static inline touchPosition Stylus;
         static inline touchPosition PrevStylus; // previous frame stylus position
-
+    private:
+		// store stylus position for swipe gesture
+      	static inline int startX;
+      	static inline int startY;
+	
+	public:
         // quick load sprite
         static void loadsprite(int screen, int ramslot, int vramslot, int width, int height, const char *dir, const char *dir2, bool transflag);
         
@@ -48,8 +54,11 @@ class SNF {
         // get touch by Rectangle
         static bool getTouchRect(int x, int y, int width, int height, KeyPhase phase);
         
-          // get touch by Circle
+    	// get touch by Circle
         static bool getTouchCircle(int x, int y, int radius, KeyPhase phase);
+
+		// get simple swipe gesture
+		static bool getSwipeGesture(Swipe gesture);
 
         // check rectangle overlap
         static bool overlap(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4);
