@@ -15,6 +15,7 @@ class Image : public DisplayObject {
         int16_t _scaleY;
         int16_t _layer;
         bool _visible;
+        bool _flip;
     
     public:
         Image(std::string name, std::string sprite, std::string pallete);
@@ -22,6 +23,8 @@ class Image : public DisplayObject {
         void preUpdate() override;
         void initialize() override;
         void destroy() override;
+
+        virtual void validate();
 
     private:
 };

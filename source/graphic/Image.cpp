@@ -2,17 +2,18 @@
 #include "Image.hpp"
 
 Image::Image(std::string name, std::string sprite, std::string pallete)
-    : DisplayObject(name), _sprite(sprite), _pallete(pallete), _x(x), _y(y), _rotation(rotation), _scaleX(scaleX), _scaleY(scaleY), _layer(layer), _visible(visible)
+    : DisplayObject(name), _sprite(sprite), _pallete(pallete), _x(x), _y(y), _rotation(rotation), _scaleX(scaleX), _scaleY(scaleY), _layer(layer), _visible(visible), _flip(flip)
 {
     _type = "Sprite3D";
 }
 
 void Image::initialize() {
     NF_Create3dSprite(_id, Assets::get_sprite3D(_sprite), Assets::get_pallete3D(_pallete), x, y);
+
+    validate();
 }
 
-
-void Image::preUpdate() {
+void Image::validate() {
     // visibility update
     if (_visible != visible) {
         NF_Show3dSprite(_id, visible);
@@ -28,9 +29,11 @@ void Image::preUpdate() {
     }
 
     // rotation update
-    if (_rotation != rotation) {
-        NF_Rotate3dSprite(_id, 0, 0, TransformObject::rotate(rotation));
+    if (_rotation != rotation || _flip != flip) {
+        if (flip) NF_Rotate3dSprite(_id, 0, TransformObject::rotate(180), TransformObject::rotate(rotation));
+        else NF_Rotate3dSprite(_id, 0, 0, TransformObject::rotate(rotation));
         _rotation = rotation;
+        _flip = flip;
     }
 
     // scaling update
@@ -49,6 +52,10 @@ void Image::preUpdate() {
         NF_3dSpriteSetDeep(_id, -layer);
         _layer = layer;
     }
+}
+
+void Image::preUpdate() {
+    validate();
 
     Image::DisplayObject::preUpdate();
 }
