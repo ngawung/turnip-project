@@ -5,7 +5,9 @@
 #include <vector>
 
 enum ActionType {
-    CHAT,
+    CHAT_OPEN,
+    CHAT_UPDATE,
+    CHAT_CLOSE,
     NPC_SPAWN,
     NPC_UPDATE,
     NPC_REMOVE
@@ -37,11 +39,21 @@ struct Action {
         this->skipOnLoad = skipOnLoad;
     }
 
-    void set_chat(std::string name, std::string msg, uint8_t speed = 1) {
-        this->type = ActionType::CHAT;
+    void set_chatOpen() {
+        this->type = ActionType::CHAT_OPEN;
+        this->autoSkip = true;
+    }
+
+    void set_chatUpdate(std::string name, std::string msg, uint8_t speed = 1) {
+        this->type = ActionType::CHAT_UPDATE;
         this->chat_name = name;
         this->chat_msg = msg;
         this->chat_speed = speed;
+    }
+
+    void set_chatClose() {
+        this->type = ActionType::CHAT_CLOSE;
+        this->autoSkip = true;
     }
 
     void set_npcSpawn(uint16_t id, std::string gfx, std::string pal, int16_t x = 0, int16_t y = 0, bool flip = false) {

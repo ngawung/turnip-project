@@ -3,6 +3,8 @@ currently working on
 - [ ] start working on assets you coward
 - [ ] build simple prototype
 - [ ] using validate on all DisplayObject
+- [ ] simple particle system
+- [ ] keyboard for basic text input
 - [ ]
 
 done

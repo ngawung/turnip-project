@@ -8,7 +8,6 @@ scene2::scene2() {
     i = 0;
 }
 
-Image* textbox;
 Image* namebox;
 Image* ricardo;
 BMFont* name;
@@ -44,13 +43,8 @@ void scene2::initialize() {
 
     background.changeBg("nfl2");
 
-    textbox = new Image("textbox", "textbox", "hud");
-    textbox->y = 191 - 56;
-    addChild(textbox);
-
-
     namebox = new Image("namebox", "namebox", "hud");
-    namebox->y = textbox->y - 16 -4;
+    namebox->y = 191 - 56 - 16 -4;
     addChild(namebox);
 
     name = new BMFont("name", "");
@@ -62,8 +56,8 @@ void scene2::initialize() {
     BMFont::defineRGB(get_screen(), 2, 50, 168, 82);
     BMFont::setColor(get_screen(), 1);
 
-    text = new TextBox("textbox", "", 256 - 16, 0);
-    text->y = textbox->y + 8 + 1;
+    text = new TextBox("text", "", 256 - 16, 0);
+    text->y = 191 - 56 + 8 + 1;
     text->x = 8;
     text->skip = 3;
     text->enableRunningText = true;
@@ -95,17 +89,66 @@ void scene2::nextAction() {
     if (mapIndex < mapList->size()) {
 
         Action* result = MSG::getAction((*mapList)[mapIndex]);
-        std::cout << "Running action no " << i << ":" << result->type << std::endl;
+        std::cout << "Running action no " << mapIndex << ":" << result->type << std::endl;
 
-        if (result->type == ActionType::CHAT) {
+
+        // switch (result->type) {
+        //     case ActionType::CHAT_OPEN:
+        //         break;
+
+        //     case ActionType::CHAT_UPDATE:
+        //         break;
+
+        //     case ActionType::CHAT_CLOSE:
+        //         break;
+
+        //     case ActionType::NPC_SPAWN:
+        //         break;
+
+        //     case ActionType::NPC_UPDATE:
+        //         break;
+            
+        //     case ActionType::NPC_REMOVE:
+        //         break;
+            
+        // }
+
+        if (result->type == ActionType::CHAT_OPEN) {
+            // remove textbox if already exist
+            if (getChildByName("action_textbox")) removeChildByName("action_textbox");
+
+            Image* textbox = new Image("action_textbox", "textbox", "hud");
+            textbox->y = 191;
+            textbox->layer = 10;
+            addChild(textbox);
+
+            tween.From(&textbox->y).To(191 - 56).Time(1.0).Easing(STween::EasingFunction::CubicInOut).OnFinish([&]() {
+                // mapIndex++;
+                nextAction();
+            });
+        }
+
+        if (result->type == ActionType::CHAT_UPDATE) {
             std::cout << i << std::endl;
             name->text = result->chat_name;
             text->skip = result->chat_speed;
             text->set_text(result->chat_msg);
         }
 
+        if (result->type == ActionType::CHAT_CLOSE) {
+            DisplayObject* textbox = getChildByName("action_textbox");
+
+            if (textbox) {
+                tween.From(&textbox->y).To(191).Time(1.0).Easing(STween::EasingFunction::CubicInOut).OnFinish([&]() {
+                    removeChildByName("action_textbox");
+                    // mapIndex++;
+                    nextAction();
+                });
+            }
+        }
+
         if (result->type == ActionType::NPC_SPAWN) {
-            std::string npcName = "npc_";
+            std::string npcName = "action_npc_";
             npcName += std::to_string(result->npc_id);
             
             // remove npc if the id already exist
@@ -115,12 +158,13 @@ void scene2::nextAction() {
             npc->x = result->npc_x;
             npc->y = result->npc_y;
             npc->flip = result->npc_flip;
+            npc->layer = -10;
             addChild(npc);
             waiting = true;
         }
 
         if (result->type == ActionType::NPC_UPDATE) {
-            std::string npcName = "npc_";
+            std::string npcName = "action_npc_";
             npcName += std::to_string(result->npc_id);
 
             DisplayObject* npc = getChildByName(npcName);
