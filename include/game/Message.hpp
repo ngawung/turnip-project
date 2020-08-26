@@ -53,6 +53,14 @@ struct Action {
         this->npc_y = y;
         this->npc_flip = flip;
     }
+
+    void set_npcUpdate(uint16_t id, int16_t x = 0, int16_t y = 0, bool flip = false) {
+        this->type = ActionType::NPC_UPDATE;
+        this->npc_id = id;
+        this->npc_x = x;
+        this->npc_y = y;
+        this->npc_flip = flip;
+    }
 };
 
 class MSG {

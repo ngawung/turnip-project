@@ -17,8 +17,11 @@ TextBox* text;
 bool waiting = true;
 
 uint16_t mapIndex = 0;
-
 std::vector<uint16_t>* mapList;
+
+STween::STween<int16_t> tween;
+
+int j = 0;
 
 void scene2::initialize() {
     std::cout << "Scene 2 init" << std::endl;
@@ -80,6 +83,8 @@ void scene2::initialize() {
 }
 
 void scene2::update() {
+    tween.Update(0.02); // fixed dt, time doesnt work on desmume
+
     if (waiting && SNF::getTouch(KeyPhase::release)) {
         nextAction();
     }    
@@ -111,8 +116,22 @@ void scene2::nextAction() {
             npc->y = result->npc_y;
             npc->flip = result->npc_flip;
             addChild(npc);
-            
             waiting = true;
+        }
+
+        if (result->type == ActionType::NPC_UPDATE) {
+            std::string npcName = "npc_";
+            npcName += std::to_string(result->npc_id);
+
+            DisplayObject* npc = getChildByName(npcName);
+            if (npc) {
+                tween.From(&npc->x).To(result->npc_x).Time(1.0).Easing(STween::EasingFunction::CubicInOut);
+                tween.From(&npc->y).To(result->npc_y).Time(1.0).Easing(STween::EasingFunction::CubicInOut).OnFinish([&]() {
+                    waiting = true;
+                });
+            } else {
+                waiting = true;
+            }
         }
 
         mapIndex++;
