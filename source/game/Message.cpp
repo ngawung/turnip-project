@@ -6,23 +6,20 @@ MSG::MSG() {
 
 void MSG::initialize() {
     // List
-    _actionList[0].set_chat(
-        "Ferdian",
-        "This is action no 1...................."
-    );
+    _actionList[0].set_chat("", "introducing.... npc spawn");
 
-    _actionList[1].set_chat(
-        "Ferdian",
-        "This is action no 2...................."
-    );
+    _actionList[1].set_npcSpawn(0, "ricardo", "ricardo", 0, 192 - 160);
+    _actionList[1].set_option(false, true);
 
-    _actionList[2].set_chat(
-        "Ferdian",
-        "This is action no 3...................."
-    );
+    _actionList[2].set_chat("Ricardo", "Its mee.... ricardooo-kyun");
+
+    _actionList[3].set_npcSpawn(1, "ricardo", "ricardo", 256 - 128, 192 - 160, true);
+    _actionList[3].set_option(false, true);
+
+    _actionList[4].set_chat("Ricardo 2", "Kyaaaa ricardoo....");
 
     // Map
-    _actionMap.insert({ "test", std::vector<uint16_t>{0,1,2} });
+    _actionMap.insert({ "test", std::vector<uint16_t>{0,1,2,3,4} });
 
 }
 

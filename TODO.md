@@ -2,6 +2,7 @@ currently working on
 - [x] add callback for textbox
 - [ ] start working on assets you coward
 - [ ] build simple prototype
+- [ ] using validate on all DisplayObject
 - [ ]
 
 done
@@ -34,6 +35,7 @@ improving current feature
 - [ ] add flipX and flipY on DisplayObject (definitely need this... but im to lazy)
 - [ ] volume manager
 - [ ] add more rng function
+- [ ] align textbox to right/left i dont wanna do center... to lazy
 - [ ] 
 
 feature
@@ -44,6 +46,8 @@ feature
 - [ ] using event instead callback
 - [ ] simple hitbox test with rectangle
 - [ ] speaking of rectangle... adding shape class might be fun
+- [ ] need solution to easy debug thing
+- [ ] also profiler would be nice too
 - [ ] 
 
 random

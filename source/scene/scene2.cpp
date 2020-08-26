@@ -16,6 +16,10 @@ TextBox* text;
 
 bool waiting = true;
 
+uint16_t mapIndex = 0;
+
+std::vector<uint16_t>* mapList;
+
 void scene2::initialize() {
     std::cout << "Scene 2 init" << std::endl;
 
@@ -46,7 +50,7 @@ void scene2::initialize() {
     namebox->y = textbox->y - 16 -4;
     addChild(namebox);
 
-    name = new BMFont("name", "Ganteng");
+    name = new BMFont("name", "");
     name->y = namebox->y + 4 + 1;
     name->x = 0;
     addChild(name);
@@ -66,63 +70,52 @@ void scene2::initialize() {
     };
     addChild(text);
 
-    ricardo = new Image("ricardo", "ricardo", "ricardo");
-    ricardo->layer = -10;
-    ricardo->y = Stage::height - 180;
-    addChild(ricardo);
+    // ricardo = new Image("ricardo", "ricardo", "ricardo");
+    // ricardo->layer = -10;
+    // ricardo->y = Stage::height - 180;
+    // ricardo->flip = true;
+    // addChild(ricardo);
 
+    mapList = MSG::getMap("test");
 }
 
-int initialX = 0;
-int initialY = 0;
-
 void scene2::update() {
-    // if (waiting && SNF::getTouch(KeyPhase::release)) {
-    //     waiting = false;
-    //     if (i < 3) {
-    //         std::cout << i << std::endl;
-    //         text->set_text(MSG::getAction(i)->chat);
-    //         i++;
-    //     }
-    // }
+    if (waiting && SNF::getTouch(KeyPhase::release)) {
+        nextAction();
+    }    
+}
 
-    if (SNF::getSwipeGesture(Swipe::SwipeLeft))  std::cout << "left" << std::endl;
-    if (SNF::getSwipeGesture(Swipe::SwipeRight))  std::cout << "right" << std::endl;
-    if (SNF::getSwipeGesture(Swipe::SwipeUp))  std::cout << "up" << std::endl;
-    if (SNF::getSwipeGesture(Swipe::SwipeDown))  std::cout << "down" << std::endl;
+void scene2::nextAction() {
+    waiting = false;
+    if (mapIndex < mapList->size()) {
 
+        Action* result = MSG::getAction((*mapList)[mapIndex]);
+        std::cout << "Running action no " << i << ":" << result->type << std::endl;
 
-    // if (SNF::getTouch(KeyPhase::press)) {
-    //     initialX = SNF::Stylus.px;
-    //     initialY = SNF::Stylus.py;
-    // }
+        if (result->type == ActionType::CHAT) {
+            std::cout << i << std::endl;
+            name->text = result->chat_name;
+            text->skip = result->chat_speed;
+            text->set_text(result->chat_msg);
+        }
 
-    // if (SNF::getTouch(KeyPhase::release)) {
-    //     int currentX = SNF::Stylus.px;
-    //     int currentY = SNF::Stylus.py;
-        
-    //     int diffX = initialX - currentX;
-    //     int diffY = initialY - currentY;
+        if (result->type == ActionType::NPC_SPAWN) {
+            std::string npcName = "npc_";
+            npcName += std::to_string(result->npc_id);
+            
+            // remove npc if the id already exist
+            if (getChildByName(npcName)) removeChildByName(npcName);
 
-    //     if (abs(diffX) > abs(diffY)) {
-    //         // sliding horizontally
-    //         if (diffX > 0) {
-    //         // swiped left
-    //         std::cout << "left" << std::endl;
-    //         } else {
-    //         // swiped right
-    //         std::cout << "right" << std::endl;
-    //         }  
-    //     } else {
-    //         // sliding vertically
-    //         if (diffY > 0) {
-    //         // swiped up
-    //         std::cout << "up" << std::endl;
-    //         } else {
-    //         // swiped down
-    //         std::cout << "down" << std::endl;
-    //         }  
-    //     }
-    // }
-    
+            Image* npc = new Image(npcName, result->npc_gfx, result->npc_pal);
+            npc->x = result->npc_x;
+            npc->y = result->npc_y;
+            npc->flip = result->npc_flip;
+            addChild(npc);
+            
+            waiting = true;
+        }
+
+        mapIndex++;
+        if (result->skipOnLoad) nextAction();
+    }
 }

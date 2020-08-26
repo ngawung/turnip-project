@@ -14,5 +14,7 @@ class scene2 : public NGScene {
         scene2();
         void initialize() override;
         void update() override;
+
+        void nextAction();
     private:
 };

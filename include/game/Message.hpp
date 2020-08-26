@@ -5,20 +5,53 @@
 #include <vector>
 
 enum ActionType {
-    CHAT
+    CHAT,
+    NPC_SPAWN,
+    NPC_UPDATE,
+    NPC_REMOVE
 };
 
 struct Action {
     ActionType type;
 
+    // option
+    bool autoSkip = false;
+    bool skipOnLoad = false;
+
     // CHAT
-    std::string name;
-    std::string chat;
+    std::string chat_name;
+    std::string chat_msg;
+    uint8_t chat_speed;
+    
+    // NPC
+    uint16_t npc_id;
+    std::string npc_gfx;
+    std::string npc_pal;
 
+    int16_t npc_x;
+    int16_t npc_y;
+    bool npc_flip;
 
-    void set_chat(std::string name, std::string chat) {
-        this->name = name;
-        this->chat = chat;
+    void set_option(bool autoSkip, bool skipOnLoad) {
+        this->autoSkip = autoSkip;
+        this->skipOnLoad = skipOnLoad;
+    }
+
+    void set_chat(std::string name, std::string msg, uint8_t speed = 1) {
+        this->type = ActionType::CHAT;
+        this->chat_name = name;
+        this->chat_msg = msg;
+        this->chat_speed = speed;
+    }
+
+    void set_npcSpawn(uint16_t id, std::string gfx, std::string pal, int16_t x = 0, int16_t y = 0, bool flip = false) {
+        this->type = ActionType::NPC_SPAWN;
+        this->npc_id = id;
+        this->npc_gfx = gfx;
+        this->npc_pal = pal;
+        this->npc_x = x;
+        this->npc_y = y;
+        this->npc_flip = flip;
     }
 };
 

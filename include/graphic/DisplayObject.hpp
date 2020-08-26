@@ -33,6 +33,7 @@ class DisplayObject : public NGObject {
         int16_t layer;
         ObjectBound bound;
 		bool visible;
+		bool flip;
 
     protected:
 		std::string _type;
