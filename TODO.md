@@ -5,6 +5,7 @@ currently working on
 - [ ] using validate on all DisplayObject
 - [ ] simple particle system
 - [ ] keyboard for basic text input
+- [ ] handle bmfont to use diferent layer
 - [ ]
 
 done
