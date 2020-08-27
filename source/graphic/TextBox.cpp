@@ -72,7 +72,7 @@ bool TextBox::next() {
     if (_nowX < _realWidth) {
         // check for newline
         if (_fullText.at(_index) == '|') {
-            uint8_t whitespace = (32 - (_realX + _nowX)) + _realX + 1;
+            uint8_t whitespace = ((256/8) - _nowX) + _realX;
             for (int i2=0; i2<whitespace; i2++) {
                 text.push_back(' ');
             }
@@ -88,7 +88,7 @@ bool TextBox::next() {
         _index++;
     } else {
         // add whitespace to the next line
-        uint8_t whitespace = (32 - (_realX + _nowX)) + _realX + 1;
+        uint8_t whitespace = ((256/8) - _nowX) + _realX;
         for (int i2=0; i2<whitespace; i2++) {
             text.push_back(' ');
         }
