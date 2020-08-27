@@ -30,6 +30,10 @@ void scene3::initialize() {
     text2->set_text(capital);
     addChild(text2);
 
+    BMFont* result = new BMFont("result", "");
+    result->y = 10*8 + 8*8 + 2*8;
+    addChild(result);
+
 }
 
 
@@ -40,15 +44,20 @@ void scene3::update() {
     for (uint x=0; x<8; x++) {
         for (uint y=0; y<4; y++) {
 
-            if (SNF::getTouchRect(x*8 + x*2*8, y*8 + y*8, 8, 8, KeyPhase::release)) {
-                if ((x + y*8) < baseCapital.size()) std::cout << baseCapital.at(x + y*8) << std::endl;
+            if (SNF::getTouchRect(x*8 + x*2*8 - 3, y*8 + y*8 - 3, 8 + 3, 8 + 3, KeyPhase::release)) {
+                reinterpret_cast<BMFont*>(getChildByName("result"))->text += baseCapital.at(x + y*8);
             }
 
-            if (SNF::getTouchRect(x*8 + x*2*8, y*8 + y*8 + (8*8 + 2*8), 8, 8, KeyPhase::release)) {
-                if ((x + y*8) < baseCapital.size()) std::cout << std::tolower(baseCapital.at(x + y*8), std::locale()) << std::endl;
+            if (SNF::getTouchRect(x*8 + x*2*8 - 3, y*8 + y*8 + (8*8 + 2*8) - 3, 8 + 3, 8 + 3, KeyPhase::release)) {
+                reinterpret_cast<BMFont*>(getChildByName("result"))->text += std::tolower(baseCapital.at(x + y*8), std::locale());
             }
 
         }
+    }
+
+    if (SNF::getKeys(Key::B, KeyPhase::release)) {
+        std::string* text = &reinterpret_cast<BMFont*>(getChildByName("result"))->text;
+        if (!text->empty()) text->pop_back();
     }
 
 }
