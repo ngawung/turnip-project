@@ -20,7 +20,7 @@ int main() {
 	NF_LoadTiledBg("bg", "nfl2", 256, 256);
 	
 
-	game->set_mainScene(new scene2());
+	game->set_mainScene(new scene3());
 	game->set_subScene(new scene3());
 
 	while(1) {
