@@ -50,8 +50,6 @@ void nameInput::initialize() {
     Image* mist2 = new Image("mist", "mist", "mist");
     mist2->x = mist2->y = 30;
     addChild(mist2);
-    
-    // tween.From(&mist->alpha).To(0).Time(30.0)
 }
 
 void nameInput::update() {
