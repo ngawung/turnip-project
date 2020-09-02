@@ -70,6 +70,7 @@ SOURCES		:=	source \
 				source/core \
 				source/graphic \
 				source/scene \
+				source/scene/prototype \
 				source/utils \
 				source/game \
 				include/lib

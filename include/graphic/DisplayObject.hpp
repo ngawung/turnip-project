@@ -34,6 +34,7 @@ class DisplayObject : public NGObject {
         ObjectBound bound;
 		bool visible;
 		bool flip;
+		int16_t alpha;
 
     protected:
 		std::string _type;

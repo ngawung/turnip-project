@@ -2,12 +2,13 @@
 #include "Image.hpp"
 
 Image::Image(std::string name, std::string sprite, std::string pallete)
-    : DisplayObject(name), _sprite(sprite), _pallete(pallete), _x(x), _y(y), _rotation(rotation), _scaleX(scaleX), _scaleY(scaleY), _layer(layer), _visible(visible), _flip(flip)
+    : DisplayObject(name), polygonId(0), _sprite(sprite), _pallete(pallete), _x(x), _y(y), _rotation(rotation), _scaleX(scaleX), _scaleY(scaleY), _layer(layer), _visible(visible), _flip(flip), _alpha(alpha)
 {
     _type = "Sprite3D";
 }
 
 void Image::initialize() {
+     std::cout << "create" << std::endl;
     NF_Create3dSprite(_id, Assets::get_sprite3D(_sprite), Assets::get_pallete3D(_pallete), x, y);
 
     validate();
@@ -19,6 +20,17 @@ void Image::validate() {
         NF_Show3dSprite(_id, visible);
         _visible = visible;
         if (!_visible) return;
+    }
+
+    // update alpha
+    if (_alpha != alpha) {
+        if (polygonId == 0 && alpha != 100) {
+            std::cout << "Change polygonId to use alpha" << std::endl;
+        } else {
+            std::cout << TransformObject::alpha(alpha) << std::endl;
+            NF_Blend3dSprite(_id, polygonId, TransformObject::alpha(alpha));
+            _alpha = alpha;
+        }
     }
 
     // position update

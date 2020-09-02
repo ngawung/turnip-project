@@ -1,7 +1,7 @@
 #include "DisplayObject.hpp"
 
 DisplayObject::DisplayObject(std::string name) 
-    : NGObject(name), x(0), y(0), rotation(0), scaleX(100), scaleY(100), layer(0), bound(0, 0, 0, 0), visible(true), flip(false), _type("DisplayObject")
+    : NGObject(name), x(0), y(0), rotation(0), scaleX(100), scaleY(100), layer(0), bound(0, 0, 0, 0), visible(true), flip(false), alpha(100), _type("DisplayObject")
 {
 
 }

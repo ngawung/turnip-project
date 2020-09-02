@@ -23,3 +23,13 @@ int TransformObject::scale(int value) {
 
     return (_value / old_max) * new_max;
 }
+
+// convert 0-100 to 0-31;
+int TransformObject::alpha(int value) {
+    double _value = std::clamp(value, 0, 100);
+
+    int old_max = 100;
+    int new_max = 31;
+
+    return (_value / old_max) * new_max;
+}

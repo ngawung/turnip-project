@@ -4,6 +4,8 @@
 
 class Image : public DisplayObject {
     public:
+        uint8_t polygonId;
+
     protected:
         std::string _sprite;
 	    std::string _pallete;
@@ -16,6 +18,7 @@ class Image : public DisplayObject {
         int16_t _layer;
         bool _visible;
         bool _flip;
+        int16_t _alpha;
     
     public:
         Image(std::string name, std::string sprite, std::string pallete);
