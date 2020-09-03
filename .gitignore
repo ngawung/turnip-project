@@ -1,4 +1,8 @@
-/build
-/test
-/dist
-/drastic_dldi.img
+nflib/build/*
+nflib/lib/*
+
+Ephemeral/build/*
+Ephemeral/lib/*
+
+Game/bin/*
+Game/bin-int/*

@@ -159,7 +159,7 @@ void NF_ScrollBg(u8 screen, u8 layer, s16 x, s16 y) {
 
 		// Variables temporales de Fondos infinitos
 		u32 address = 0;		// Puntero a la VRAM
-		u16 blockx = 0;		// Nº de bloque en pantalla
+		u16 blockx = 0;		// Nï¿½ de bloque en pantalla
 		u16 blocky = 0;
 		u32 mapmovex = 0;	// Desplazamiento de la copia de datos (block x 2048)
 		u32 mapmovey = 0;
@@ -426,7 +426,7 @@ void NF_EnableSpriteRotScale(u8 screen, u8 sprite, u8 id, bool doublesize) {
 
 	// Verifica si el Sprite esta creado
 	if (!NF_SPRITEOAM[screen][sprite].created) {
-		char text[3];
+		char text[4];
 		sprintf(text, "%d", screen);
 		NF_Error(112, text, sprite);
 	}
@@ -448,7 +448,7 @@ void NF_DisableSpriteRotScale(u8 screen, u8 sprite) {
 
 	// Verifica si el Sprite esta creado
 	if (!NF_SPRITEOAM[screen][sprite].created) {
-		char text[3];
+		char text[4];
 		sprintf(text, "%d", screen);
 		NF_Error(112, text, sprite);
 	}
