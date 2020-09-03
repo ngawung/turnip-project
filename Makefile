@@ -1,7 +1,7 @@
 #---------------------------------------------------------------------------------
 # all subfolder name (order is important)
 #---------------------------------------------------------------------------------
-SUBDIRS:= nflib Ephemeral Game
+SUBDIRS:= 	Vendor/nds_nflib/nflib Ephemeral Game
 
 all:
 	@for dir in $(SUBDIRS) ; do \
@@ -11,6 +11,9 @@ all:
 		echo "" ; \
 	done
 
+#---------------------------------------------------------------------------------
+# clean all build file
+#---------------------------------------------------------------------------------
 clean:
 	@for i in $(SUBDIRS); do if test -e $$i/Makefile ; then $(MAKE)  -C $$i clean || { exit 1;} fi; done;
 	@echo Cleaning done....

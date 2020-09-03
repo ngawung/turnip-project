@@ -1,8 +1,5 @@
-nflib/build/*
-nflib/lib/*
+build
+lib
 
-Ephemeral/build/*
-Ephemeral/lib/*
-
-Game/bin/*
-Game/bin-int/*
+bin
+bin-int

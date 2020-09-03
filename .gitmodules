@@ -1,0 +1,9 @@
+[submodule "SimpleNFL"]
+	path = SimpleNFL
+	url = https://github.com/ngawung/SimpleNFL
+[submodule "nds_nflib"]
+	path = nds_nflib
+	url = https://github.com/ngawung/nds_nflib
+[submodule "STween"]
+	path = STween
+	url = https://github.com/ngawung/STween
