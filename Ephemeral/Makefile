@@ -42,7 +42,8 @@ LDFLAGS	=	-specs=ds_arm9.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 # list of directories containing libraries, this must be the top level containing
 # include and lib
 #---------------------------------------------------------------------------------
-LIBDIRS	:=	$(LIBNDS)
+VENDOR	:=	$(CURDIR)/../Vendor
+LIBDIRS	:=	$(LIBNDS) $(VENDOR)/nds_nflib/nflib $(VENDOR)/SimpleNFL $(VENDOR)/STween
 
 #---------------------------------------------------------------------------------
 # no real need to edit anything past this point unless you need to add additional

@@ -1,9 +1,12 @@
-[submodule "SimpleNFL"]
-	path = SimpleNFL
+[submodule "Vendor/SimpleNFL"]
+	path = Vendor/SimpleNFL
 	url = https://github.com/ngawung/SimpleNFL
-[submodule "nds_nflib"]
-	path = nds_nflib
+[submodule "Vendor/nds_nflib"]
+	path = Vendor/nds_nflib
 	url = https://github.com/ngawung/nds_nflib
-[submodule "STween"]
-	path = STween
+[submodule "Vendor/STween"]
+	path = Vendor/STween
 	url = https://github.com/ngawung/STween
+[submodule "Vendor/aixlog"]
+	path = Vendor/aixlog
+	url = https://github.com/badaix/aixlog
