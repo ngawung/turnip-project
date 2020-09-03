@@ -23,11 +23,10 @@ jobs:
       commit_tag: ${{ steps.build.outputs.commit_tag }}
       commit_message: ${{ steps.build.outputs.commit_message }}
     steps:
-      steps:
-      - name: Checkout submodules
-        uses: textbook/git-checkout-submodule-action@master
+      - name: "Checkout"
+        uses: actions/checkout@v2
         with:
-          remote: true
+          submodules: 'recursive'
 
       - name: Clean
         run: make clean
