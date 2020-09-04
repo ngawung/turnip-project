@@ -7,6 +7,3 @@
 [submodule "Vendor/STween"]
 	path = Vendor/STween
 	url = https://github.com/ngawung/STween
-[submodule "Vendor/aixlog"]
-	path = Vendor/aixlog
-	url = https://github.com/badaix/aixlog
