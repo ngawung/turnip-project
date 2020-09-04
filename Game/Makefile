@@ -43,7 +43,7 @@ NITRO    := nitrofiles
 ARCH := -marm -mthumb-interwork -march=armv5te -mtune=arm946e-s
 
 CFLAGS   := -g -Wall -O3\
-			$(ARCH) $(INCLUDE) -DARM9
+			$(ARCH) $(INCLUDE) -DARM9 -DDBG_MACRO_NO_WARNING
 CXXFLAGS := $(CFLAGS) -fno-rtti -fno-exceptions
 ASFLAGS  := -g $(ARCH)
 LDFLAGS   = -specs=ds_arm9.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
@@ -74,7 +74,7 @@ LIBS := -lEphemeral $(LIBS)
 # include and lib
 #---------------------------------------------------------------------------------
 VENDOR	:=	$(CURDIR)/../Vendor
-LIBDIRS	:=	$(LIBNDS) $(PORTLIBS) $(VENDOR)/nds_nflib/nflib $(VENDOR)/SimpleNFL $(VENDOR)/STween $(CURDIR)/../Ephemeral
+LIBDIRS	:=	$(LIBNDS) $(PORTLIBS) $(VENDOR)/nds_nflib/nflib $(VENDOR)/SimpleNFL $(VENDOR)/STween $(VENDOR)/dbg-macro $(CURDIR)/../Ephemeral
 
 #---------------------------------------------------------------------------------
 # no real need to edit anything past this point unless you need to add additional

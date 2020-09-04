@@ -32,7 +32,7 @@ CFLAGS	:=	-g -Wall -O2\
 		-fomit-frame-pointer -ffast-math \
 		$(ARCH)
 
-CFLAGS	+=	$(INCLUDE) -DARM9
+CFLAGS	+=	$(INCLUDE) -DARM9 -DDBG_MACRO_NO_WARNING
 CXXFLAGS	:= $(CFLAGS) -fno-rtti -fno-exceptions
 
 ASFLAGS	:=	-g $(ARCH) -march=armv5te -mtune=arm946e-s
@@ -43,7 +43,7 @@ LDFLAGS	=	-specs=ds_arm9.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 # include and lib
 #---------------------------------------------------------------------------------
 VENDOR	:=	$(CURDIR)/../Vendor
-LIBDIRS	:=	$(LIBNDS) $(VENDOR)/nds_nflib/nflib $(VENDOR)/SimpleNFL $(VENDOR)/STween
+LIBDIRS	:=	$(LIBNDS) $(VENDOR)/nds_nflib/nflib $(VENDOR)/SimpleNFL $(VENDOR)/STween $(VENDOR)/dbg-macro
 
 #---------------------------------------------------------------------------------
 # no real need to edit anything past this point unless you need to add additional

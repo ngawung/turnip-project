@@ -7,3 +7,6 @@
 [submodule "Vendor/STween"]
 	path = Vendor/STween
 	url = https://github.com/ngawung/STween
+[submodule "Vendor/dbg-macro"]
+	path = Vendor/dbg-macro
+	url = https://github.com/ngawung/dbg-macro

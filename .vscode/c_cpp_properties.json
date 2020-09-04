@@ -8,12 +8,14 @@
                 "${workspaceFolder}/Vendor/nds_nflib/nflib/**",
                 "${workspaceFolder}/Vendor/SimpleNFL/**",
                 "${workspaceFolder}/Vendor/STween/**",
+                "${workspaceFolder}/Vendor/dbg-macro/**",
                 "/home/melody/Desktop/devkitpro/libnds/include/**",
                 "/home/melody/Desktop/devkitpro/devkitARM/include/**",
                 "/home/melody/Desktop/devkitpro/devkitARM/arm-none-eabi/include/**"
             ],
             "defines": [
-                "ARM9"
+                "ARM9",
+                "DBG_MACRO_NO_WARNING"
             ],
             "compilerPath": "/home/melody/Desktop/devkitpro/devkitARM/bin/arm-none-eabi-g++",
             "cStandard": "c11",

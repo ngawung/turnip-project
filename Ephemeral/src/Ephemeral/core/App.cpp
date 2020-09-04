@@ -21,7 +21,7 @@ namespace EE {
 
         consoleDemoInit();
 
-        std::cout << "Hello World" << std::endl;
+        dbg("Ephemeral initialized");
 
         while(true) {
             scanKeys();
