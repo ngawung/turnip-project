@@ -19,7 +19,8 @@ TARGET		:=	$(shell basename $(CURDIR))
 BUILD		:=	build
 DATA		:=	data
 SOURCES		:=	src \
-				src/Ephemeral/core
+				src/Ephemeral/core \
+				src/Ephemeral/graphic
 INCLUDES	:=	include $(SOURCES)
 
 #---------------------------------------------------------------------------------

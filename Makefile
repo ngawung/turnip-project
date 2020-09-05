@@ -1,7 +1,8 @@
 #---------------------------------------------------------------------------------
 # all subfolder name (order is important)
 #---------------------------------------------------------------------------------
-SUBDIRS:= 	Vendor/nds_nflib/nflib Ephemeral Game
+GAMEDIRS	:=	Ephemeral Game
+SUBDIRS		:=	Vendor/nds_nflib/nflib $(GAMEDIRS)
 
 all:
 	@for dir in $(SUBDIRS) ; do \
@@ -12,8 +13,15 @@ all:
 	done
 
 #---------------------------------------------------------------------------------
-# clean all build file
+# clean game build file
 #---------------------------------------------------------------------------------
 clean:
+	@for i in $(GAMEDIRS); do if test -e $$i/Makefile ; then $(MAKE)  -C $$i clean || { exit 1;} fi; done;
+	@echo Cleaning done....
+
+#---------------------------------------------------------------------------------
+# clean all build file
+#---------------------------------------------------------------------------------
+cleanall:
 	@for i in $(SUBDIRS); do if test -e $$i/Makefile ; then $(MAKE)  -C $$i clean || { exit 1;} fi; done;
 	@echo Cleaning done....
