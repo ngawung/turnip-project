@@ -6,7 +6,7 @@
 #include "Ephemeral/core/Scene.hpp"
 
 // ======== Graphic ========
-#include "Ephemeral/graphic/Entity.hpp"
+#include "Ephemeral/graphic/Image.hpp"
 
 // ======== Entry Point ========
 #include "Ephemeral/Entrypoint.hpp"

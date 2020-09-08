@@ -6,7 +6,7 @@ namespace EE {
 
     enum class ObjectCategory {
         NONE = 0,
-        SPRITE2D, SPRITE3D , BACKGROUND ,BMFONT
+        SPRITE2D, SPRITE3D , TILEDBG ,BMFONT
     };
 
     class Object {
@@ -31,15 +31,15 @@ namespace EE {
             virtual void destroy();
 
              // Get && Set
-            std::string get_name();
+            std::string get_name() { return _name; }
 
-            ObjectCategory get_category();
+            ObjectCategory get_type() { return _type; }
 
-            void set_id(uint16_t id);
-            uint16_t get_id();
+            void set_id(uint16_t id) { _id = id; }
+            uint16_t get_id() { return _id; }
 
-            void set_screen(uint16_t screen);
-            uint16_t get_screen();
+            void set_screen(uint16_t screen) { _screen = screen; }
+            uint16_t get_screen() { return _screen; }
 
         private:
     };
