@@ -20,7 +20,7 @@ namespace EE {
     class App {
         public:
         private:
-            static inline App* _instance;
+            static App* _instance;
             bool _console;
 
             Scene* _mainScene;
