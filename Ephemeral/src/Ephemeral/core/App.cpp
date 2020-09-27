@@ -5,6 +5,8 @@
 
 namespace EE {
 
+    App* App::_instance = 0;
+
     App::App(uint8_t screen3D = 1, bool console = false) {
         App* ptr = this;
         _instance = ptr;

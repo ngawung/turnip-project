@@ -38,6 +38,8 @@ namespace EE {
             void initialize() override;
             void destroy() override;
 
+            virtual void validate();
+
         private:
     };
 
