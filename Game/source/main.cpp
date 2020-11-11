@@ -9,7 +9,7 @@ class Game : public EE::App {
 
 	public:
 		Game() 
-			: App(1, true)
+			: App(SCREEN_0, true)
 		{
 
 		}

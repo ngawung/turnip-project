@@ -46,8 +46,8 @@
             "isBackground": true,
             "command": "/usr/games/desmume",
             "args": [
-                "--cflash-image=${workspaceFolder}/drastic_dldi.img",
-                "${workspaceFolder}/dist/patch/${workspaceFolderBasename}-mpcf.nds"
+                "--cflash-image=${workspaceFolder}/tmp/drastic_dldi.img",
+                "${workspaceFolder}/Game/bin/Game.nds"
             ],
             "presentation": {
                 "clear": true,
