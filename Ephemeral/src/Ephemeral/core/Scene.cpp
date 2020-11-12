@@ -27,7 +27,7 @@ void EE::Scene::destroy() {
 EE::Object* EE::Scene::addChild(Object* child) {
     switch(child->get_type()) {
         case ObjectCategory::SPRITE3D:
-            if (_numSprite3D > 254) {
+            if (_numSprite3D >= 254) {
                 dbg("Max Sprite3D limit reached");
                 return nullptr;
             }
@@ -35,7 +35,7 @@ EE::Object* EE::Scene::addChild(Object* child) {
             break;
 
         case ObjectCategory::SPRITE2D:
-        if (_numSprite2D > 127) {
+        if (_numSprite2D >= 127) {
                 dbg("Max Sprite2D limit reached");
                 return nullptr;
             }

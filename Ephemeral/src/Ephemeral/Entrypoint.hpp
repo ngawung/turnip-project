@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include "Ephemeral/core/App.hpp"
@@ -9,4 +8,5 @@ int main(int argc, char** argv) {
 	ephemeral->start();
     delete ephemeral;
 
+	// return 0;
 }

@@ -3,6 +3,8 @@
 #include <maxmod9.h>
 #include <soundbank.h>
 
+#include "scene/testScene.hpp"
+
 class Game : public EE::App {
 	public:
 	private:
@@ -17,6 +19,12 @@ class Game : public EE::App {
 		~Game () {
 
 		}
+
+		void handleOnStart() override {
+			set_mainScene(new EE::Scene1());
+			
+		}
+
 	private:
 };
 

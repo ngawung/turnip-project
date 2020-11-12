@@ -59,14 +59,31 @@ namespace EE {
 
         dbg("Ephemeral initialized");
 
+        handleOnStart();
+
         while(true) {
             scanKeys();
+
+            update();
+            
             swiWaitForVBlank();
         }
+    }
+
+    void App::update() {
+        // update scene
+        if (_mainScene != nullptr) _mainScene->preUpdate();
+        if (_subScene != nullptr) _subScene->preUpdate();
     }
 
     void App::enableConsole() {
         consoleDemoInit();
     }
+
+    void App::trace(const char * text) {
+        std::cout << "[Tr] " << text << std::endl;
+    }
+
+    // GET && SET
 
 }

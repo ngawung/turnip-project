@@ -26,7 +26,8 @@ include $(DEVKITARM)/ds_rules
 TARGET   := $(shell basename $(CURDIR))
 DIST     := bin
 BUILD    := bin-int
-SOURCES  := source
+SOURCES  := source \
+			source/scene
 INCLUDES := include
 DATA     := data
 GRAPHICS :=
