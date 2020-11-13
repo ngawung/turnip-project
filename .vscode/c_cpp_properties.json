@@ -15,7 +15,8 @@
             ],
             "defines": [
                 "ARM9",
-                "DBG_MACRO_NO_WARNING"
+                "DBG_MACRO_NO_WARNING",
+                "DEBUG"
             ],
             "compilerPath": "/home/melody/Desktop/devkitpro/devkitARM/bin/arm-none-eabi-g++",
             "cStandard": "c11",

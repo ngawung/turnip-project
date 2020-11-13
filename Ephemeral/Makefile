@@ -20,7 +20,8 @@ BUILD		:=	build
 DATA		:=	data
 SOURCES		:=	src \
 				src/Ephemeral/core \
-				src/Ephemeral/graphic
+				src/Ephemeral/graphic \
+				src/Ephemeral/utils
 INCLUDES	:=	include $(SOURCES)
 
 #---------------------------------------------------------------------------------
@@ -33,7 +34,7 @@ CFLAGS	:=	-g -Wall -O2\
 		-fomit-frame-pointer -ffast-math \
 		$(ARCH)
 
-CFLAGS	+=	$(INCLUDE) -DARM9 -DDBG_MACRO_NO_WARNING
+CFLAGS	+=	$(INCLUDE) -DARM9 -DDBG_MACRO_NO_WARNING -DDEBUG
 CXXFLAGS	:= $(CFLAGS) -fno-rtti -fno-exceptions -std=gnu++17
 
 ASFLAGS	:=	-g $(ARCH) -march=armv5te -mtune=arm946e-s

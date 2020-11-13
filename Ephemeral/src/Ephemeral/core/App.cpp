@@ -57,7 +57,9 @@ namespace EE {
 
         // SaveGame::initialize();
 
-        dbg("Ephemeral initialized");
+        #ifdef DEBUG
+            std::cout << "Ephemeral initialized" << std::endl; 
+        #endif
 
         handleOnStart();
 

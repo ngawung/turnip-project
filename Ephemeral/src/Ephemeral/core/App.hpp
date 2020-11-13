@@ -59,6 +59,7 @@ namespace EE {
 
                 _mainScene = scene;
                 _mainScene->set_screen(SCREEN_0);
+                _mainScene->set_type(SceneType::SCENE3D);
                 _mainScene->initialize();
             }
 
@@ -70,6 +71,7 @@ namespace EE {
 
                 _subScene = scene;
                 _subScene->set_screen(SCREEN_1);
+                _subScene->set_type(SceneType::SCENE2D);
                 _subScene->initialize();
             }
 

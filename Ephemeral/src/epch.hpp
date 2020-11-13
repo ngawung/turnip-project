@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <functional>
 
+#include <ctime>
 #include <string>
 #include <sstream>
 #include <vector>
@@ -16,5 +17,3 @@
 #include <nf_lib.h>
 // #include <simplenfl.h>
 #include <STween.h>
-
-#include <dbg.h>

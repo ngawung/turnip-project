@@ -52,6 +52,7 @@ namespace EE {
 
             uint8_t get_screen() { return _screen; }
             void set_screen(uint8_t screen) { _screen = screen; }
+            void set_type(SceneType type) { _type = type; }
 
         private:
     };

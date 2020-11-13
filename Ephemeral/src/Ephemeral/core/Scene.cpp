@@ -20,23 +20,41 @@ void EE::Scene::preUpdate() {
 }
 
 void EE::Scene::destroy() {
-    dbg("destroy scene");
+    #ifdef DEBUG
+        std::cout << "Destroy scene" << std::endl; 
+    #endif
     removeChildAll();
 }
 
 EE::Object* EE::Scene::addChild(Object* child) {
     switch(child->get_type()) {
         case ObjectCategory::SPRITE3D:
+            if (_type != SceneType::SCENE3D) {
+                #ifdef DEBUG
+                    std::cout << "Cannot add child except Sprite3D" << std::endl; 
+                #endif
+            }
+
             if (_numSprite3D >= 254) {
-                dbg("Max Sprite3D limit reached");
+                #ifdef DEBUG
+                    std::cout << "Max Sprite3D limit reached" << std::endl; 
+                #endif
                 return nullptr;
             }
             _numSprite3D++;
             break;
 
         case ObjectCategory::SPRITE2D:
+        if (_type != SceneType::SCENE2D) {
+            #ifdef DEBUG
+                std::cout << "Cannot add child except Sprite3D" << std::endl; 
+            #endif
+        }
+        
         if (_numSprite2D >= 127) {
-                dbg("Max Sprite2D limit reached");
+                #ifdef DEBUG
+                    std::cout << "Max Sprite2D limit reached" << std::endl; 
+                #endif
                 return nullptr;
             }
             _numSprite2D++;
@@ -98,7 +116,9 @@ bool EE::Scene::removeChild(Object* child) {
             return true;
         }
     }
-    dbg("Failed to remove child");
+    #ifdef DEBUG
+        std::cout << "Failed to remove child (" << child->get_name() << ")" << std::endl; 
+    #endif
     return false;
 }
 
@@ -108,7 +128,9 @@ bool EE::Scene::removeChildByName(std::string name) {
         removeChild(ptr);
         return true;
     } else {
-        dbg(std::string("Failed to remove ") + name);
+        #ifdef DEBUG
+            std::cout << "Failed to remove child byName (" << name << ")" << std::endl; 
+        #endif
         return false;
     }
 }
@@ -120,7 +142,9 @@ bool EE::Scene::removeChildById(unsigned int id) {
         removeChild(ptr);
         return true;
     } else {
-        dbg(std::string("Failed to remove id ") + std::to_string(id));
+        #ifdef DEBUG
+            std::cout << "Failed to remove child byId (" << id << ")" << std::endl; 
+        #endif
         return false;
     }
 }
