@@ -10,17 +10,17 @@
             "dependsOn": [
                 "make run",
                 "run desmume"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
+            ]
         },
         {
             "label": "make run",
             "type": "shell",
             "command": "make",
-            "problemMatcher": []
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
         },
         {
             "label": "make clean",
