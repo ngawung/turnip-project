@@ -14,30 +14,32 @@ namespace EE {
 
     class Assets {
         public:
-            // ram
-            static std::vector<RamSlot*> sprite;
-            static std::vector<RamSlot*> pallete;
-
-            // vram 2d
-            static std::vector<RamSlot*> sprite2D;
-            static std::vector<RamSlot*> pallete2D;
-
-            // vram 3d
-            static std::vector<RamSlot*> sprite3D;
-            static std::vector<RamSlot*> pallete3D;
-
         private:
             // ram
-            uint16_t maxSprite = 256;
-            uint16_t maxPallete = 64;
+            static inline RamSlot* sprite[256];
+            static inline RamSlot* pallete[64];
 
             // vram 2d
-            uint16_t maxSprite2D = 128;
-            uint16_t maxPallete2D = 16;
+            static inline RamSlot* sprite2D[128];
+            static inline RamSlot* pallete2D[16];
+
+            // vram 3d
+            static inline RamSlot* sprite3D[256];
+            static inline RamSlot* pallete3D[32];
+
+            // ==================
+
+            // ram
+            static inline uint16_t maxSprite = 256;
+            static inline uint16_t maxPallete = 64;
+
+            // vram 2d
+            static inline uint16_t maxSprite2D = 128;
+            static inline uint16_t maxPallete2D = 16;
             
             // vram 3d
-            uint16_t maxSprite3D = 256;
-            uint16_t maxPallete3D = 32;
+            static inline uint16_t maxSprite3D = 256;
+            static inline uint16_t maxPallete3D = 32;
         
         public:
             // ram
@@ -48,11 +50,11 @@ namespace EE {
             static bool unloadPallete(std::string name);
 
             // vram2D
-            static bool loadSprite2D(std::string name, bool keepframes);
-            static bool loadPallete2D(std::string name);
+            // static bool loadSprite2D(std::string name, bool keepframes);
+            // static bool loadPallete2D(std::string name);
 
-            static bool freeSprite2D(std::string name);
-            static bool freePallete2D(std::string name);
+            // static bool freeSprite2D(std::string name);
+            // static bool freePallete2D(std::string name);
 
             // vram3D
             static bool loadSprite3D(std::string name, bool keepframes);

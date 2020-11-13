@@ -6,7 +6,9 @@ namespace EE {
             // ======= ram =======
             bool Assets::loadSprite(const char* file, std::string name, uint16_t width, uint16_t height) {
                 // check if name already exist
-                for (uint16_t i=0; i<sprite.size(); i++) {
+                for (uint16_t i=0; i<maxSprite; i++) {
+                    if (sprite[i] == nullptr) continue;
+
                     if (sprite[i]->name == name) {
                         #ifdef DEBUG
                             std::cout << "sprite (" << name << ") already exist" << std::endl; 
@@ -14,26 +16,119 @@ namespace EE {
                         return false;
                     }
                 }
+                
+                // find empty slot
+                for (uint16_t i=0; i<maxSprite; i++) {
+                    if (sprite[i] != nullptr) continue;
 
-                RamSlot* ramslot = new RamSlot(name);
-                #ifdef DEBUG 
-                    std::cout << "" << std::endl; 
+                    // load ramslot
+                    RamSlot* ramslot = new RamSlot(name);
+                    sprite[i] = ramslot;
+                    #ifdef DEBUG 
+                        std::cout << "load sprite " << name << std::endl; 
+                    #endif
+                    NF_LoadSpriteGfx(file, i, width, height);
+                    return true;
+                }
+  
+                #ifdef DEBUG
+                    std::cout << "sprite reached max capacity" << std::endl; 
                 #endif
+                return false;
             }
-            bool Assets::loadPallete(const char* file, std::string name) {}
 
-            bool Assets::unloadSprite(std::string name) {}
-            bool Assets::unloadPallete(std::string name) {}
+            bool Assets::loadPallete(const char* file, std::string name) {
+                // check if name already exist
+                for (uint16_t i=0; i<maxPallete; i++) {
+                    if (pallete[i] == nullptr) continue;
+
+                    if (pallete[i]->name == name) {
+                        #ifdef DEBUG
+                            std::cout << "pallete (" << name << ") already exist" << std::endl; 
+                        #endif
+                        return false;
+                    }
+                }
+                
+                // find empty slot
+                for (uint16_t i=0; i<maxPallete; i++) {
+                    if (pallete[i] != nullptr) continue;
+
+                    // load ramslot
+                    RamSlot* ramslot = new RamSlot(name);
+                    pallete[i] = ramslot;
+                    #ifdef DEBUG 
+                        std::cout << "load pallete " << name << std::endl; 
+                    #endif
+                    NF_LoadSpritePal(file, i);
+                    return true;
+                }
+  
+                #ifdef DEBUG
+                    std::cout << "pallete reached max capacity" << std::endl; 
+                #endif
+                return false;
+            }
+
+            bool Assets::unloadSprite(std::string name) {
+                for (uint16_t i=0; i<maxSprite; i++) {
+                    if (sprite[i]->name == name) {
+                        delete sprite[i];
+                        sprite[i] = nullptr;
+                        #ifdef DEBUG
+                            std::cout << "unload sprite " << name << std::endl; 
+                        #endif
+                        NF_UnloadSpriteGfx(i);
+                        return true;
+                    }
+                }
+
+                #ifdef DEBUG
+                    std::cout << "failed to unload sprite " << name << std::endl; 
+                #endif
+                return false;
+            }
+
+            bool Assets::unloadPallete(std::string name) {
+                for (uint16_t i=0; i<maxPallete; i++) {
+                    if (pallete[i]->name == name) {
+                        delete pallete[i];
+                        pallete[i] = nullptr;
+                        #ifdef DEBUG
+                            std::cout << "unload pallete " << name << std::endl; 
+                        #endif
+                        NF_UnloadSpritePal(i);
+                    }
+                }
+
+                #ifdef DEBUG
+                    std::cout << "failed to unload pallete " << name << std::endl; 
+                #endif
+                return false;
+            }
 
             // ======= vram2D =======
-            bool Assets::loadSprite2D(std::string name, bool keepframes) {}
-            bool Assets::loadPallete2D(std::string name) {}
+            // bool Assets::loadSprite2D(std::string name, bool keepframes) {}
+            // bool Assets::loadPallete2D(std::string name) {}
 
-            bool Assets::freeSprite2D(std::string name) {}
-            bool Assets::freePallete2D(std::string name) {}
+            // bool Assets::freeSprite2D(std::string name) {}
+            // bool Assets::freePallete2D(std::string name) {}
 
             // ======= vram3D =======
-            bool Assets::loadSprite3D(std::string name, bool keepframes) {}
+            bool Assets::loadSprite3D(std::string name, bool keepframes) {
+                // find in ram
+                for (uint16_t i=0; i<maxSprite; i++) {
+                    if (sprite[i] == nullptr) continue;
+
+                    if (sprite[i]->name == name) {
+                        #ifdef DEBUG
+                            std::cout << "sprite (" << name << ") already exist" << std::endl; 
+                        #endif
+                        return false;
+                    }
+                }
+            }
+
             bool Assets::loadPallete3D(std::string name) {}
 
             bool Assets::freeSprite3D(std::string name) {}
