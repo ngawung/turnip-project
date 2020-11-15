@@ -117,16 +117,41 @@ namespace EE {
             // ======= vram3D =======
             bool Assets::loadSprite3D(std::string name, bool keepframes) {
                 // find in ram
+                int16_t ramIndex = -1;
                 for (uint16_t i=0; i<maxSprite; i++) {
                     if (sprite[i] == nullptr) continue;
 
                     if (sprite[i]->name == name) {
-                        #ifdef DEBUG
-                            std::cout << "sprite (" << name << ") already exist" << std::endl; 
-                        #endif
-                        return false;
+                        ramIndex = i;
+                        break;
                     }
                 }
+
+                if (ramIndex == -1) {
+                    #ifdef DEBUG
+                        std::cout << "cant find sprite " << name << " in ram" << std::endl; 
+                    #endif
+                    return false;
+                }
+
+                // find empty slot
+                for (uint16_t i=0; i<maxSprite3D; i++) {
+                    if (sprite3D[i] != nullptr) continue;
+
+                    // load ramslot
+                    RamSlot* ramslot = new RamSlot(name);
+                    sprite3D[i] = ramslot;
+                    #ifdef DEBUG 
+                        std::cout << "load sprite3D " << name << std::endl; 
+                    #endif
+                    NF_Vram3dSpriteGfx(ramIndex, i, keepframes);
+                    return true;
+                }
+  
+                #ifdef DEBUG
+                    std::cout << "sprite3D reached max capacity" << std::endl; 
+                #endif
+                return false;
             }
 
             bool Assets::loadPallete3D(std::string name) {}
