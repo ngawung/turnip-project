@@ -1,0 +1,1 @@
+gitwatch -s 60 -r origin -b remodel-structure -m "Checkpoint %d" .
