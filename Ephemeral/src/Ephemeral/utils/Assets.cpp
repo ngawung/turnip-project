@@ -154,7 +154,44 @@ namespace EE {
                 return false;
             }
 
-            bool Assets::loadPallete3D(std::string name) {}
+            bool Assets::loadPallete3D(std::string name) {
+                // find in ram
+                int16_t ramIndex = -1;
+                for (uint16_t i=0; i<maxPallete; i++) {
+                    if (pallete[i] == nullptr) continue;
+
+                    if (pallete[i]->name == name) {
+                        ramIndex = i;
+                        break;
+                    }
+                }
+
+                if (ramIndex == -1) {
+                    #ifdef DEBUG
+                        std::cout << "cant find pallete " << name << " in ram" << std::endl; 
+                    #endif
+                    return false;
+                }
+
+                // find empty slot
+                for (uint16_t i=0; i<maxPallete2D; i++) {
+                    if (pallete3D[i] != nullptr) continue;
+
+                    // load ramslot
+                    RamSlot* ramslot = new RamSlot(name);
+                    pallete3D[i] = ramslot;
+                    #ifdef DEBUG 
+                        std::cout << "load pallete3D " << name << std::endl; 
+                    #endif
+                    NF_Vram3dSpritePal(ramIndex, i);
+                    return true;
+                }
+  
+                #ifdef DEBUG
+                    std::cout << "pallete3D reached max capacity" << std::endl; 
+                #endif
+                return false;
+            }
 
             bool Assets::freeSprite3D(std::string name) {}
             bool Assets::freePallete3D(std::string name) {}
