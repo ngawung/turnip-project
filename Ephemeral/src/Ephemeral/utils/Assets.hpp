@@ -73,9 +73,9 @@ namespace EE {
 
             // ================ Get && Set ==================
 
-            // vram2d
-            static uint16_t get_sprite2D(std::string name);
-            static uint16_t get_pallete2D(std::string name);
+            // // vram2d
+            // static uint16_t get_sprite2D(std::string name);
+            // static uint16_t get_pallete2D(std::string name);
             
             // vram3d
             static uint16_t get_sprite3D(std::string name);

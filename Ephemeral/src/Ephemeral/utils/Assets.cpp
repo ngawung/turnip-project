@@ -193,15 +193,108 @@ namespace EE {
                 return false;
             }
 
-            bool Assets::freeSprite3D(std::string name) {}
-            bool Assets::freePallete3D(std::string name) {}
+            bool Assets::freeSprite3D(std::string name) {
+                for (uint16_t i=0; i<maxSprite3D; i++) {
+                    if (sprite3D[i]->name == name) {
+                        delete sprite3D[i];
+                        sprite3D[i] = nullptr;
+                        #ifdef DEBUG
+                            std::cout << "unload sprite3D " << name << std::endl; 
+                        #endif
+                        NF_Free3dSpriteGfx(i);
+                        return true;
+                    }
+                }
 
-            // ======= Background =======
-            bool Assets::loadBg(std::string name) {}
-            bool Assets::unloadBg(std::string name) {}
+                #ifdef DEBUG
+                    std::cout << "failed to unload sprite3D " << name << std::endl; 
+                #endif
+                return false;
+            }
+
+            bool Assets::freePallete3D(std::string name) {
+                for (uint16_t i=0; i<maxPallete3D; i++) {
+                    if (pallete3D[i]->name == name) {
+                        delete pallete3D[i];
+                        pallete3D[i] = nullptr;
+                        #ifdef DEBUG
+                            std::cout << "unload pallete3D " << name << std::endl; 
+                        #endif
+                        // pallete automatically replaced
+                        return true;
+                    }
+                }
+
+                #ifdef DEBUG
+                    std::cout << "failed to unload pallete3D " << name << std::endl; 
+                #endif
+                return false;
+            }
+
+            // // ======= Background =======
+            // bool Assets::loadBg(std::string name) {}
+            // bool Assets::unloadBg(std::string name) {}
             
-            // ======= Sound =======
-            bool Assets::loadSound(std::string name) {}
-            bool Assets::unloadSound(std::string name) {}
+            // // ======= Sound =======
+            // bool Assets::loadSound(std::string name) {}
+            // bool Assets::unloadSound(std::string name) {}
 
+
+            // ##############################################
+            // ############      Get && Set     #############
+            // ##############################################
+
+
+            // // vram2d
+            // uint16_t Assets::get_sprite2D(std::string name) {}
+            // uint16_t Assets::get_pallete2D(std::string name) {}
+            
+            // vram3d
+            uint16_t Assets::get_sprite3D(std::string name) {
+                for (uint16_t i=0; i<maxSprite3D; i++) {
+                    if (sprite3D[i]->name == name) return i;
+                }
+
+                #ifdef DEBUG
+                    std::cout << "failed to get sprite3D " << name << std::endl; 
+                #endif
+                return 0;
+            }
+
+            uint16_t Assets::get_pallete3D(std::string name) {
+                for (uint16_t i=0; i<maxPallete3D; i++) {
+                    if (pallete3D[i]->name == name) return i;
+                }
+
+                #ifdef DEBUG
+                    std::cout << "failed to get pallete3D " << name << std::endl; 
+                #endif
+                return 0;
+            }
+
+            uint16_t Assets::getSprite(std::string name) {
+                for (uint16_t i=0; i<maxSprite; i++) {
+                    if (sprite[i]->name == name) return i;
+                }
+
+                #ifdef DEBUG
+                    std::cout << "failed to get sprite " << name << std::endl; 
+                #endif
+                return 0;
+            }
+
+            uint16_t Assets::getPallete(std::string name) {
+                for (uint16_t i=0; i<maxPallete; i++) {
+                    if (pallete[i]->name == name) return i;
+                }
+
+                #ifdef DEBUG
+                    std::cout << "failed to get pallete " << name << std::endl; 
+                #endif
+                return 0;
+            }
+
+            // background
+
+            // sound
 }
