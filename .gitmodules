@@ -1,6 +1,6 @@
 [submodule "Vendor/SimpleNFL"]
 	path = Vendor/SimpleNFL
-	url = https://github.com/ngawung/SimpleNFL
+	url = https://github.com/PipeWarp/SimpleNFL
 [submodule "Vendor/nds_nflib"]
 	path = Vendor/nds_nflib
 	url = https://github.com/ngawung/nds_nflib
