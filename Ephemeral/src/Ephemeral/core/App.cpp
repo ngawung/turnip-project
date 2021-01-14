@@ -7,7 +7,7 @@ namespace EE {
 
     App* App::_instance = 0;
 
-    App::App(uint8_t screen3D = 1, bool console = false) {
+    App::App(ScreenPosition screen3D = ScreenPosition::TOP, bool console = false) {
         App* ptr = this;
         _instance = ptr;
 
@@ -22,36 +22,48 @@ namespace EE {
     void App::start() {
         srand(time(NULL));
 
-        // setup screen
-        NF_Set3D(_screen3D, 0);
-        NF_Set2D(SCREEN_1, 0);
+        // setup main screen position
+        if (_screen3D == ScreenPosition::TOP) lcdMainOnTop();
+        else lcdMainOnBottom();
 
+        // setup video mode
+        videoSetMode(MODE_5_3D);
+        videoSetModeSub(MODE_0_2D);
+
+        // nitrofs
         NF_SetRootFolder("NITROFS");
 
-        // init maxmod
+        // setup GL2D
+        glScreen2D();
 
-        // setup background
-        NF_InitTiledBgBuffers();
-        NF_InitTiledBgSys(SCREEN_0);
-        NF_InitTiledBgSys(SCREEN_1);
+        ////////////////////
 
-        // init bmfont
-        NF_InitTextSys(SCREEN_0);
-        NF_InitTextSys(SCREEN_1);
+        // // init maxmod
 
-        // setup sprite buffer
-        NF_InitSpriteBuffers();
+        // // setup background
+        // NF_InitTiledBgBuffers();
+        // NF_InitTiledBgSys(SCREEN_0);
+        // NF_InitTiledBgSys(SCREEN_1);
 
-        // init 3d sprite
-        NF_Init3dSpriteSys();
-        NF_3dSpritesLayer(2);  //default 3d sprite layer 2
+        // // init bmfont
+        // NF_InitTextSys(SCREEN_0);
+        // NF_InitTextSys(SCREEN_1);
 
-        // init 2d sprite
-        NF_InitSpriteSys(SCREEN_1); // init 2d sprite on subscene
+        // // setup sprite buffer
+        // NF_InitSpriteBuffers();
 
-        // setup bmfont layer
+        // // init 3d sprite
+        // NF_Init3dSpriteSys();
+        // NF_3dSpritesLayer(2);  //default 3d sprite layer 2
 
-        // preload core assets
+        // // init 2d sprite
+        // NF_InitSpriteSys(SCREEN_1); // init 2d sprite on subscene
+
+        // // setup bmfont layer
+
+        // // preload core assets
+
+        ////////////////////
 
         if (_console) enableConsole();
 
@@ -73,8 +85,15 @@ namespace EE {
     }
 
     void App::update() {
-        // update scene
-        if (_mainScene != nullptr) _mainScene->preUpdate();
+        // update main scene
+        if (_mainScene != nullptr) {
+            glBegin2D();
+            _mainScene->preUpdate();
+            glEnd2D();
+            glFlush(0);
+        }
+
+        // update sub scene
         if (_subScene != nullptr) _subScene->preUpdate();
     }
 

@@ -12,6 +12,10 @@ namespace EE {
     #define LAYER_2 2
     #define LAYER_3 3
 
+    enum class ScreenPosition {
+        TOP, BOTTOM
+    };
+
     struct Stage {
         const int witdh = 256;
         const int height = 192;
@@ -27,10 +31,10 @@ namespace EE {
             Scene* _mainScene;
             Scene* _subScene;
 
-            uint8_t _screen3D;
+            ScreenPosition _screen3D;
 
         public:
-            App(uint8_t screen3D, bool console);
+            App(ScreenPosition screen3D, bool console);
             virtual ~App();
 
             void start();

@@ -14,6 +14,7 @@
 #include <unordered_set>
 
 #include <nds.h>
+#include <gl2d.h>
 #include <nf_lib.h>
 // #include <simplenfl.h>
 #include <STween.h>

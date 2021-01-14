@@ -5,27 +5,16 @@
 
 namespace EE {
 
-    enum class SceneType {
-        NOT_DEFINED = 0,
-        SCENE2D, SCENE3D, CONSOLE
-    };
-
-    class Scene {
+    class BasicScene {
         public:
         private:
-            SceneType _type;
-            uint16_t _numSprite2D;
-            uint16_t _numSprite3D;
-            uint8_t _screen;
+        std::vector<Object*> children;
             
-            std::vector<Object*> children;
-
-            bool _TextLayer[4] = {0, 0, 0, 0};
         public:
-            Scene();
-            virtual ~Scene();
+            BasicScene();
+            virtual ~BasicScene();
 
-            void preUpdate();
+            virtual void preUpdate();
 
             // buat client
             virtual void initialize() = 0;
@@ -42,18 +31,24 @@ namespace EE {
             bool removeChildById(unsigned int id);
             bool removeChildAll();
 
-            // textlayer
-            bool textlayer_check(uint8_t layer);
-            void textlayer_create(uint8_t layer, const char* fontname, uint8_t rotation);
-            void textlayer_remove(uint8_t layer);
-            void textlayer_reset();
-
             // GET && SET
 
-            uint8_t get_screen() { return _screen; }
-            void set_screen(uint8_t screen) { _screen = screen; }
-            void set_type(SceneType type) { _type = type; }
+        private:
+    };
 
+    class MainScene : BasicScene {
+        public:
+        private:
+        
+        public:
+        private:
+    };
+
+    class SubScene : BasicScene {
+        public:
+        private:
+        
+        public:
         private:
     };
 

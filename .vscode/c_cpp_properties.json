@@ -8,7 +8,6 @@
                 "${workspaceFolder}/Vendor/nds_nflib/nflib/**",
                 "${workspaceFolder}/Vendor/SimpleNFL/**",
                 "${workspaceFolder}/Vendor/STween/**",
-                "${workspaceFolder}/Vendor/dbg-macro/**",
                 "/home/melody/Desktop/devkitpro/libnds/include/**",
                 "/home/melody/Desktop/devkitpro/devkitARM/include/**",
                 "/home/melody/Desktop/devkitpro/devkitARM/arm-none-eabi/include/**"

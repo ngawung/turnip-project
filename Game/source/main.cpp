@@ -11,7 +11,7 @@ class Game : public EE::App {
 
 	public:
 		Game() 
-			: App(SCREEN_0, true)
+			: App(EE::ScreenPosition::BOTTOM, true)
 		{
 
 		}
