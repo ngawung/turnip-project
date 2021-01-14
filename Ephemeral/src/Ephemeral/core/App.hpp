@@ -28,8 +28,8 @@ namespace EE {
             static App* _instance;
             bool _console;
 
-            Scene* _mainScene;
-            Scene* _subScene;
+            MainScene* _mainScene;
+            SubScene* _subScene;
 
             ScreenPosition _screen3D;
 
@@ -52,30 +52,26 @@ namespace EE {
             // GET && SET
             static App* get_instance() { return _instance; }
             
-            Scene* get_mainScene() { return _mainScene; }
-            Scene* get_subScene() { return _subScene; }
+            MainScene* get_mainScene() { return _mainScene; }
+            SubScene* get_subScene() { return _subScene; }
 
-            void set_mainScene(Scene* scene) {
+            void set_mainScene(MainScene* scene) {
                 if (_mainScene != nullptr) {
                     _mainScene->destroy();
                     delete _mainScene;
                 }
 
                 _mainScene = scene;
-                _mainScene->set_screen(SCREEN_0);
-                _mainScene->set_type(SceneType::SCENE3D);
                 _mainScene->initialize();
             }
 
-            void set_subScene(Scene* scene) {
+            void set_subScene(SubScene* scene) {
                 if (_subScene != nullptr) {
                     _subScene->destroy();
                     delete _subScene;
                 }
 
                 _subScene = scene;
-                _subScene->set_screen(SCREEN_1);
-                _subScene->set_type(SceneType::SCENE2D);
                 _subScene->initialize();
             }
 

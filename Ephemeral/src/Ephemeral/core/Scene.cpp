@@ -2,7 +2,7 @@
 #include "Scene.hpp"
 
 EE::BasicScene::BasicScene() {
-    
+    sceneType = SceneType::BASIC;
 }
 
 EE::BasicScene::~BasicScene() {
@@ -177,3 +177,31 @@ bool EE::BasicScene::removeChildAll() {
 //     // this also reset the text system
 //     NF_InitTextSys(_screen);
 // }
+
+///////////////////////
+
+EE::MainScene::MainScene() {
+    sceneType = SceneType::MAIN;
+}
+
+EE::MainScene::~MainScene() {
+
+}
+
+void EE::MainScene::preUpdate() {
+
+}
+
+///////////////////////
+
+EE::SubScene::SubScene() {
+    sceneType = SceneType::SUB;
+}
+
+EE::SubScene::~SubScene() {
+
+}
+
+void EE::SubScene::preUpdate() {
+
+}

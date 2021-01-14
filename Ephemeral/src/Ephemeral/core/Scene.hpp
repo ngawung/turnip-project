@@ -5,10 +5,15 @@
 
 namespace EE {
 
+    enum class SceneType {
+        BASIC, MAIN, SUB
+    };
+
     class BasicScene {
         public:
-        private:
+        protected:
         std::vector<Object*> children;
+        SceneType sceneType;
             
         public:
             BasicScene();
@@ -36,19 +41,25 @@ namespace EE {
         private:
     };
 
-    class MainScene : BasicScene {
+    class MainScene : public BasicScene {
         public:
+            MainScene();
+            virtual ~MainScene();
         private:
         
         public:
+            void preUpdate() override;
         private:
     };
 
-    class SubScene : BasicScene {
+    class SubScene : public BasicScene {
         public:
+            SubScene();
+            virtual ~SubScene();
         private:
         
         public:
+            void preUpdate() override;
         private:
     };
 
