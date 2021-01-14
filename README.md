@@ -3,29 +3,22 @@
 ![status](https://img.shields.io/github/workflow/status/ngawung/turnip-project/CI?style=for-the-badge)
 ![license](https://img.shields.io/github/license/ngawung/turnip-project?style=for-the-badge)
 
-Hello there....
-this is a simple devkitpro project...
+Hello there....<br>
+this is a simple devkitpro project...<br>
 
-feel free to use this project :D
+feel free to use this project :D<br>
 
-## Building
-1. Install [devkitPro](https://devkitpro.org/wiki/Getting_Started), khusus nya devkitARM sama libnds.
-2. Clone repo ini
+the goal of this project is to make simple game engine so i can make hombrew much easier for the future project.<br>
+
+i'll be using nflib or gl2d to display all graphic stuff. still not sure which one im gonna use. i may endup using both.<br>
+
+Ephemeral is the name of this game engine and Turnip Project is the game name that im gonna make.
+
+## How to Build this Crap
+1. Install [devkitPro](https://devkitpro.org/wiki/Getting_Started),
+2. Clone this repo and dont forget the submodule
 3. Run `make`
-4. Hasil build ada di folder `./dist`
-
-- (Note: gaperlu install compiler kayak `g++` karna udah disediain sama devkitPro nya)
-
-## Debugging
-Saya saranin make [vscode](https://code.visualstudio.com/download) buat debugging.
-1. Rubah dulu semua path di folder `./vscode`
-<sup>(Note: Dsini saya make OS linux, jadi mungkin buat windows sama mac perlu di rubah dikit settingan nya)</sup>
-2. Download [DesMuME](http://desmume.org/) versi dev
-<sup>(Note: Kalo kamu make windows mungkin bisa make no$gba katanya bisa track vram)</sup>
-3. Run task `gdb-debug`
-4. Run vscode debug (F5)
-
-- (Note: gaperlu install `gdb` udah disediain sama devkitPro nya)
+4. done... your game located in `./Game/bin` folder.
 
 ## Credits
 - [devkitPro](https://devkitpro.org/wiki/Getting_Started) for your great tools
